@@ -1,0 +1,22 @@
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Smoke test and generated output
+scripts/smoke_out/
+output/
+
+# Real Nidhaye data and third-party inspiration screenshots stay out of git
+data/private/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
