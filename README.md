@@ -36,6 +36,13 @@ Outputs go to `scripts/smoke_out/` (not committed).
 - [Submission](docs/SUBMISSION.md)
 - [Demo script](docs/DEMO_SCRIPT.md)
 
+## Credits
+
+Architecture inspired by Meta's
+[legal-agent-workshop](https://github.com/meta-models/legal-agent-workshop): agent loop,
+verification the agent cannot skip, escalation to a person, and human sign-off. No code
+from it is included; GrowthPilot's implementation was written during the hackathon.
+
 ## Dependencies and datasets
 
 - [requests](https://github.com/psf/requests) (Apache 2.0)

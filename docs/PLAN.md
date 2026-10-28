@@ -126,6 +126,74 @@ video demos live and rank them with the same rubric. The video must stand on its
 2. Integrate Meta's AI tooling early enough that it shapes the product (25%).
 3. Refine engineering quality throughout: validation, approval gate, tests (20%).
 
+## Architecture
+
+Patterns adapted from Meta's
+[legal-agent-workshop](https://github.com/meta-models/legal-agent-workshop) (a
+multimodal agent on Muse Spark + SAM 3.1). **Reference only:** the repo has no license
+and the rules require only our own hackathon work, so nothing is copied. We read it and
+write our own version for marketing, and credit it in the README.
+
+### Shape: fixed workflow, agent where it adds value
+
+```
+Intake → [Campaign agent + verification] → Owner approval → Publish/export → Metrics → Recommendation
+            ↑ owner questions (escalation)        │ rejection notes go back to the agent
+            └─────────────────────────────────────┘
+```
+
+The workflow steps are fixed code. Only **campaign creation** is an agent loop. That
+keeps the six-day build realistic and puts Meta AI's reasoning where judges can see it.
+
+### Campaign agent (Muse Spark 1.3)
+
+- **Loop:** each turn the model picks one tool, our code runs it, and the result goes
+  back. Progress is saved every turn. The loop stops when `submit_campaign` is accepted
+  or a turn limit (~15) is reached; on the last turn the model is told to submit.
+- The model chooses every tool call. Nothing about Nidhaye is hard-coded; the business
+  and product come from data.
+- **Tools** (one file each):
+
+| Tool | What it does |
+|---|---|
+| `analyze_product` | Muse Spark reads the photo + description and proposes product facts |
+| `ask_owner` | Escalation: asks the owner to confirm a fact or choose; the run pauses as `needs_input` |
+| `record_fact` | Saves a fact, accepted only if the owner confirmed it or it's in the product data |
+| `write_variant` | Drafts a Facebook or Instagram caption that cites the facts it relies on |
+| `make_creative` | SAM 3.1 masks the product → Muse Image builds a platform-sized background |
+| `submit_campaign` | Submits the variants; verification runs here, and the agent can't skip it |
+
+### Verification layer (runs inside the tools)
+
+| Check | Built how | On failure |
+|---|---|---|
+| **Claims:** every caption claim is supported by a recorded product fact | One Muse Spark call per campaign, JSON output | Refused with the unsupported claims; agent rewrites |
+| **Citations:** every fact a variant cites exists in the record | Plain code | Refused |
+| **Platform rules:** image sizes, caption length, hashtag count | Plain code | Refused |
+| **Product unchanged:** the product region of the creative matches the original photo | SAM mask + pixel comparison | Refused; regenerate |
+| 3 refusals in a row | Plain code | Escalate to the owner |
+
+The run then pauses for **owner approval**. If the owner rejects, the notes go back to
+the agent as its next message.
+
+### Trace view (for the demo)
+
+The approval screen shows the agent's turns as **plan → act → observe**: what it
+decided, which tool it called, what came back (green accepted, red refused and fixed).
+Judges see Muse Spark reason, use tools and get corrected by verification.
+
+### Evaluation
+
+A small evaluation set (~10–20 products with known true facts, using synthetic or
+consented data) is run through the agent. Report: unsupported claims per campaign,
+verification refusals caught, and time from photo to approved campaign. These numbers
+go in the README and the video.
+
+### Fallback
+
+If the agent loop isn't ready by October 30, generate the first live posts with the
+smoke-test calls plus manual owner review, and record which method made each post.
+
 ## Winning Edge
 
 About 30,000 people are taking part. "AI writes social posts for small businesses" is a

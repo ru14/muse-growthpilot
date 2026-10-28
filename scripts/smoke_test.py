@@ -57,6 +57,7 @@ def test_spark(image):
                 ],
             }
         ],
+        "text": {"format": {"type": "json_object"}},
     }
     r = requests.post(f"{BASE_URL}/responses", headers=headers(), json=body, timeout=120)
     r.raise_for_status()

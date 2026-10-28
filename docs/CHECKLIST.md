@@ -33,6 +33,20 @@
 - [ ] Video tells a clear three-minute story
 - [ ] Video works on its own (final-round judges watch it live)
 
+## Architecture
+
+See [PLAN.md](PLAN.md#architecture).
+
+- [ ] Nothing copied from legal-agent-workshop; credit line in README
+- [ ] Campaign agent loop: model picks tools, progress saved per turn, turn limit
+- [ ] Tools built: `analyze_product`, `ask_owner`, `record_fact`, `write_variant`,
+      `make_creative`, `submit_campaign`
+- [ ] Verification: claims, citations, platform rules, product unchanged
+- [ ] 3 refusals escalate to the owner
+- [ ] Owner rejection notes go back to the agent
+- [ ] Trace view (plan → act → observe) on the approval screen
+- [ ] Evaluation set run; unsupported-claim and time numbers in the README
+
 ## Winning Edge
 
 See [PLAN.md](PLAN.md#winning-edge).
