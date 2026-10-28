@@ -313,4 +313,27 @@ Skip Muse Wonder: it is in preview and the most expensive, and Spark covers the 
 - [ ] `muse-image-1.0` test edit on a product photo works
 - [ ] `sam-3.1` test mask on a product photo works (Responses API)
 
+## Later (TODO, only after the core loop works)
+
+### Muse for Small Business custom connector (stretch, ~1 hour, around Nov 1)
+
+Meta's Muse app ([Muse for Small Business](https://about.fb.com/news/2026/09/introducing-muse-small-business/),
+US and Canada) supports **Custom Connectors**: a user asks Muse to create one, and Muse
+sets it up from a service's API details. No Meta review is needed for your own use.
+The public Connector Platform listing does need review, so it is out of scope.
+
+- [ ] Quick check: ask Muse "Can you create a custom connector to a REST API I'm
+      building?" and note the answer
+- [ ] Build GrowthPilot's backend as a clean API (needed for the UI anyway)
+- [ ] Deploy GrowthPilot to a public URL
+- [ ] In Muse, create a custom connector to GrowthPilot; test "make next week's
+      campaign for my new necklace" → GrowthPilot's agent creates and verifies it →
+      returned for approval
+- [ ] If it works: add a ~20-second clip to the video. If not: mention it as the
+      "what's next" line
+
+Not core because judges score our code and live product, it's unverified, there are no
+developer docs, and Muse's answers can vary during a live demo. Meta doesn't review
+custom connectors, so use a test key with limited access.
+
 The official hackathon page is the final authority if any requirement changes.
