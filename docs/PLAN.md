@@ -170,7 +170,7 @@ keeps the six-day build realistic and puts Meta AI's reasoning where judges can 
 | **Claims:** every caption claim is supported by a recorded product fact | One Muse Spark call per campaign, JSON output | Refused with the unsupported claims; agent rewrites |
 | **Citations:** every fact a variant cites exists in the record | Plain code | Refused |
 | **Platform rules:** image sizes, caption length, hashtag count | Plain code | Refused |
-| **Product unchanged:** the product region of the creative matches the original photo | SAM mask + pixel comparison | Refused; regenerate |
+| **Product unchanged:** the product region of the creative matches the original photo | SAM mask → paste original product pixels onto the new background → measure color difference inside the mask | Refused; regenerate |
 | 3 refusals in a row | Plain code | Escalate to the owner |
 
 The run then pauses for **owner approval**. If the owner rejects, the notes go back to
@@ -307,11 +307,28 @@ Skip Muse Wonder: it is in preview and the most expensive, and Spark covers the 
 **Access checks (do today, 27 Oct):**
 
 - [ ] Hackathon page checked for a list of approved Meta tools, required APIs or credits
-- [ ] Meta Model API key obtained; check pricing, rate limits and availability in your
-      country
-- [ ] `muse-spark-1.3` test call with a product image returns structured output
-- [ ] `muse-image-1.0` test edit on a product photo works
-- [ ] `sam-3.1` test mask on a product photo works (Responses API)
+- [x] Meta Model API key obtained; all GrowthPilot models available (28 Oct)
+- [x] `muse-spark-1.3` test call with a product image returns structured output
+- [x] `muse-image-1.0` test edit on a product photo works
+- [x] `sam-3.1` test mask on a product photo works (Responses API)
+
+**Smoke test findings (28 Oct, Nidhaye launch-post saree):**
+
+- **Muse Spark** correctly read the saree's colors, motifs and border, and on its own
+  listed claims it could not verify from the photo: "pure silk vs silk-blend", weave
+  type, handloom vs powerloom, zari composition. This is exactly the input the claim
+  check needs.
+- **Muse Image** replaced the background well but **changed the product:** saree body
+  saturation went from 0.59 to 0.70 (RGB 226,93,107 → 241,72,103), visibly pinker.
+  Output size was 1920×1200 from a 2048×1300 input.
+- **SAM 3.1** returned a box and an encoded mask
+  (`<|box;x1=…;y1=…;x2=…;y2=…;w=…;h=…|><|mask;x=…;y=…;data=…|>`). Next: decode it
+  using the "reading segmentation output" docs.
+
+**Design change from this:** don't trust the image model to keep the product unchanged.
+`make_creative` composites the **original product pixels** back onto the Muse Image
+background using the SAM mask, then the "product unchanged" check measures the color
+difference inside the mask. Demo moment: show the before/after numbers.
 
 ## Later (TODO, only after the core loop works)
 
