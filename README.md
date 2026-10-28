@@ -14,10 +14,43 @@ during the hackathon.
 Requires Python 3.10+ and a Meta Model API key.
 
 ```bash
-pip install requests
+python3 -m venv .venv
+.venv/bin/pip install -r requirements.txt
 cp .env.example .env   # then add your MODEL_API_KEY
-export MODEL_API_KEY="LLM_..."
 ```
+
+## Make a verified campaign
+
+```bash
+.venv/bin/python -m growthpilot.campaign --business examples/demo_business.json \
+    --product demo-saree --photo path/to/product.jpg \
+    --brief "Festive season: introduce this saree"
+```
+
+For each product, GrowthPilot:
+
+1. **Muse Spark** reads the photo and lists what it can't verify (material, weave, origin).
+2. **Muse Spark** writes Hindi and English caption variants that cite the facts they use.
+3. **Verification** refuses unconfirmed facts, prices and offers, and malformed hashtags
+   (plain code). A second **Muse Spark** call refuses factual claims the facts don't
+   support. Refused drafts are rewritten with the reasons, up to 3 rounds.
+4. **SAM 3.1** masks the product. **Muse Image** generates only the background. The
+   original product pixels are placed on it, so the image model never touches the
+   product, and a colour check proves it.
+5. The output in `output/<run>/` holds `report.md` for the owner to approve, the images,
+   `campaign.json`, and `trace.jsonl` with every model call and check. Nothing is
+   published.
+
+Business data is JSON. See [examples/demo_business.json](examples/demo_business.json) (synthetic).
+Facts are `confirmed`, `visible` or `unconfirmed`; copy may only state the first two.
+
+## Tests
+
+```bash
+.venv/bin/python -m pytest
+```
+
+Offline: a fake model stands in for the API.
 
 ## Smoke test
 
@@ -45,5 +78,8 @@ from it is included; GrowthPilot's implementation was written during the hackath
 
 ## Dependencies and datasets
 
-- [requests](https://github.com/psf/requests) (Apache 2.0)
-- Meta Model API: Muse Spark, Muse Image, SAM 3.1
+- [openai](https://github.com/openai/openai-python) Python SDK (Apache 2.0), pointed at the Meta Model API
+- [meta-sam-parser](https://pypi.org/project/meta-sam-parser/) (Meta), decodes SAM 3.1 masks
+- [requests](https://github.com/psf/requests) (Apache 2.0), [Pillow](https://python-pillow.org) (HPND), [NumPy](https://numpy.org) (BSD), [pytest](https://pytest.org) (MIT)
+- Meta Model API: Muse Spark 1.3, Muse Image 1.0, SAM 3.1
+- `examples/demo_business.json` is synthetic data written for this project

@@ -1,0 +1,29 @@
+{
+  "name": "Demo Weaves",
+  "voice": "Warm and elegant; craft and tradition. Never pushy.",
+  "languages": "A Hindi line first, then English underneath",
+  "how_to_buy": "Message us on Instagram or Facebook.",
+  "rules": {
+    "allowed_ctas": ["Message us on Instagram or Facebook to know more"],
+    "banned_phrases": []
+  },
+  "brand": {
+    "logo": null,
+    "post_size": [1080, 1350],
+    "colors": {"background": "#F5EBDD", "frame": "#7A1F2B", "accent": "#C9A227"}
+  },
+  "products": [
+    {
+      "id": "demo-saree",
+      "name": "Demo silk saree (synthetic example data)",
+      "sam_prompt": "the saree",
+      "photos": [],
+      "facts": [
+        {"id": "type", "claim": "It is a saree", "status": "confirmed", "source": "demo"},
+        {"id": "fabric", "claim": "Silk", "status": "confirmed", "source": "demo"},
+        {"id": "colour", "claim": "Deep red with a gold border", "status": "visible", "source": "demo"},
+        {"id": "handwoven", "claim": "Handwoven", "status": "unconfirmed", "source": "demo"}
+      ]
+    }
+  ]
+}
