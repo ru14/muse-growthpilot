@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+{% block title %}{{ product.name if product else c.product }} · GrowthPilot approval{% endblock %}
+{% block content %}
+{% set awaiting = c.status == 'awaiting_owner_approval' %}
+<h1>{{ product.name if product else c.product }}</h1>
+<p class="muted">Brief: {{ c.brief }} · run {{ run_id }}{% if c.revises %} · rewrite of <a href="{{ url_for('run_page', run_id=c.revises) }}">{{ c.revises[:15] }}</a>{% endif %}</p>
+<p><span class="badge {{ c.status }}">{{ c.status.replace('_', ' ') }}</span></p>
+
+{% if c.owner_notes %}
+<div class="card"><strong>Owner notes this draft follows:</strong>
+  <ul>{% for n in c.owner_notes %}<li>{{ n }}</li>{% endfor %}</ul></div>
+{% endif %}
+
+{% if c.approval %}
+<div class="flash ok">
+  Approved by {{ c.approval.approved_by }} on {{ c.approval.approved_at }}.
+  Ready to post: {% for f in export %}<a href="{{ url_for('run_file', run_id=run_id, name='export/' ~ f) }}">{{ f }}</a>{% if not loop.last %}, {% endif %}{% endfor %}
+</div>
+{% endif %}
+{% if c.rejection %}
+<div class="flash error">Rejected by {{ c.rejection.rejected_by }} on {{ c.rejection.rejected_at }}: {{ c.rejection.note }}
+  {% if rewrite_log %}<br>A rewrite was requested; the new draft appears in the <a href="{{ url_for('index') }}">campaign list</a>.{% endif %}</div>
+{% endif %}
+{% if c.agent and c.agent.stop_reason %}
+<div class="flash error">The agent stopped and needs you: {{ c.agent.stop_reason }}</div>
+{% endif %}
+
+<form method="post" action="{{ url_for('approve', run_id=run_id) }}">
+  <h2>1. Choose an image</h2>
+  <div class="grid">
+    {% for cr in c.creatives %}
+    {% set ok = cr.product_check.passed %}
+    <label class="choice card {{ '' if ok else 'disabled' }}">
+      <input type="radio" name="image" value="{{ cr.file }}" {{ 'disabled' if not ok or not awaiting }} {{ 'checked' if c.approval and c.approval.image == cr.file }}>
+      <span class="badge {{ 'passed' if ok else 'failed' }}">{{ 'Product unchanged' if ok else 'Product changed: cannot use' }}</span>
+      <span class="muted">colour difference {{ cr.product_check.mean_rgb_difference }}/255</span>
+      <img src="{{ url_for('run_file', run_id=run_id, name=cr.file) }}" alt="{{ cr.file }}">
+    </label>
+    {% else %}
+    <p class="muted">This run has no images.</p>
+    {% endfor %}
+  </div>
+
+  <h2>2. Choose a caption</h2>
+  <p class="muted">Every caption here passed the rule check and the Muse Spark fact check, and is checked again against today's rules and facts.</p>
+  {% for v in c.variants %}
+  {% set stale = problems[loop.index0] %}
+  <label class="choice card {{ 'disabled' if stale }}" style="margin-bottom:12px">
+    <input type="radio" name="variant" value="{{ loop.index0 }}" {{ 'disabled' if not awaiting or stale }} {{ 'checked' if c.approval and c.approval.caption == v }}>
+    <strong>{{ v.angle }}</strong> <span class="muted">· facts used: {{ (v.fact_ids or []) | join(', ') or 'none' }}</span>
+    {% if stale %}<div><span class="badge failed">No longer passes</span> <span class="muted">{{ stale | join('; ') }}</span></div>{% endif %}
+    <div class="posts">
+      <div class="card"><div class="muted">Instagram</div><pre>{{ v.instagram }}</pre></div>
+      <div class="card"><div class="muted">Facebook</div><pre>{{ v.facebook }}</pre></div>
+    </div>
+  </label>
+  {% endfor %}
+
+  <h2>3. Decide</h2>
+  <div class="card">
+    <div class="row">
+      <input type="text" name="note" placeholder="Optional note with your approval" {{ 'disabled' if not awaiting }} style="flex:1">
+      <button {{ 'disabled' if not awaiting or not c.creatives or not c.variants }}>Approve and export</button>
+    </div>
+  </div>
+</form>
+
+<form method="post" action="{{ url_for('reject', run_id=run_id) }}" class="card" style="margin-top:12px">
+  <textarea name="note" rows="2" placeholder="What should change? e.g. Shorter Hindi line; mention the border" {{ 'disabled' if c.status == 'approved' }}></textarea>
+  <div class="row" style="margin-top:8px">
+    <label><input type="checkbox" name="rewrite" value="1" checked> Ask the agent for a new draft with this note</label>
+    <button class="secondary" {{ 'disabled' if c.status == 'approved' }}>Reject</button>
+  </div>
+</form>
+
+<h2 id="questions">Questions for you</h2>
+<p class="muted">Your answers become product facts. They are used from the next draft on; ask for a rewrite to use them now.</p>
+{% if product %}
+<table>
+  {% for f in product.facts if not f.allowed %}
+  <tr>
+    <td>Can we say: <strong>{{ f.claim }}</strong>?</td>
+    <td>
+      {% if f.status == 'denied' %}<span class="badge failed">You said no</span>
+      {% else %}
+      <form method="post" action="{{ url_for('fact', run_id=run_id) }}" class="row">
+        <input type="hidden" name="product" value="{{ product.id }}"><input type="hidden" name="fact_id" value="{{ f.id }}">
+        <button name="answer" value="yes">Yes, it's true</button>
+        <button name="answer" value="no" class="secondary">No</button>
+      </form>
+      {% endif %}
+    </td>
+  </tr>
+  {% else %}
+  <tr><td class="muted">No unconfirmed facts.</td></tr>
+  {% endfor %}
+</table>
+{% if open_questions %}
+<div class="card" style="margin-top:12px">
+  <p>Muse Spark couldn't verify these from the photo:</p>
+  <ul>{% for q in open_questions %}<li>{{ q }}</li>{% endfor %}</ul>
+  <form method="post" action="{{ url_for('fact', run_id=run_id) }}" class="row">
+    <input type="hidden" name="product" value="{{ product.id }}">
+    <input type="text" name="claim" placeholder="Add a true fact in your words, e.g. Comes with an unstitched blouse piece" style="flex:1">
+    <button>Add fact</button>
+  </form>
+</div>
+{% endif %}
+<p class="muted">Confirmed facts: {% for f in product.facts if f.allowed %}{{ f.claim }}{% if not loop.last %}; {% endif %}{% endfor %}</p>
+{% endif %}
+
+<h2>What verification caught</h2>
+<ul>
+  {% for r in c.verification_rounds %}
+  <li>Caption round {{ r.round }}: {{ r.accepted }} of {{ r.drafted }} drafts passed.
+    {% if r.refused %}<ul>{% for x in r.refused %}{% for p in x.problems %}<li>Refused: {{ p }}</li>{% endfor %}{% endfor %}</ul>{% endif %}</li>
+  {% endfor %}
+  {% for e in checks %}
+  <li>Image {{ e.creative }}: product {{ 'unchanged' if e.passed else 'CHANGED' }} ({{ e.mean_rgb_difference }}/255 over {{ e.pixels_checked }} pixels)</li>
+  {% endfor %}
+</ul>
+
+{% if c.agent %}
+<h2>Agent steps: plan, act, observe ({{ c.agent.turns }} turns)</h2>
+<ol class="steps">
+  {% for s in c.agent.steps %}
+  <li><strong>{{ s.tool }}</strong>: {{ s.plan }}<br><span class="muted">→ {{ s.observation[:400] }}</span></li>
+  {% endfor %}
+</ol>
+{% endif %}
+
+<h2>Model calls</h2>
+<table>
+  <tr><th>Step</th><th>Model</th><th>Time</th><th>Tokens in / out</th></tr>
+  {% for e in model_calls %}
+  <tr><td>{{ e.step }}</td><td>{{ e.model }}</td><td>{{ '%.1f' % (e.ms / 1000) }} s</td>
+    <td>{% if e.input_tokens %}{{ e.input_tokens }} / {{ e.output_tokens }}{% elif e.images %}{{ e.images }} images{% elif e.masks is defined %}{{ e.masks }} masks{% endif %}</td></tr>
+  {% endfor %}
+</table>
+{% endblock %}

@@ -16,12 +16,10 @@ import numpy as np
 from meta_sam_parser import ImageSegmentationResult, decode_mask_to_raster
 from PIL import Image, ImageDraw, ImageFilter
 
-from .business import Business
+from .business import Business, Limits
 from ..meta_api import MetaAPI
 
 # Mean absolute RGB difference (0-255) and saturation change allowed inside the product.
-MAX_MEAN_DIFF = 2.0
-MAX_SATURATION_CHANGE = 0.02
 
 BACKGROUND_PROMPT = """Top-down flat-lay background photograph for a premium {category} brand.
 Scene: {scene}
@@ -103,16 +101,18 @@ def compose(background: Image.Image, product: Image.Image, business: Business) -
     return canvas.convert("RGB"), Placement(product=placed, offset=(x, y))
 
 
-def product_unchanged(final: Image.Image, placement: Placement) -> dict:
+def product_unchanged(final: Image.Image, placement: Placement, limits: Limits = Limits()) -> dict:
     """Compare the product region of the final image with the product as it was placed."""
     x, y = placement.offset
     p = placement.product
     region = final.crop((x, y, x + p.width, y + p.height))
     inner = np.asarray(p.getchannel("A")) > 250  # skip soft edges
-    return color_shift(p.convert("RGB"), region, inner)
+    return color_shift(p.convert("RGB"), region, inner, limits)
 
 
-def color_shift(original: Image.Image, candidate: Image.Image, mask: np.ndarray) -> dict:
+def color_shift(
+    original: Image.Image, candidate: Image.Image, mask: np.ndarray, limits: Limits = Limits()
+) -> dict:
     """How far the candidate's colours drifted from the original inside the mask."""
     a = np.asarray(original.convert("RGB"), dtype=float)[mask]
     b = np.asarray(candidate.convert("RGB").resize(original.size), dtype=float)[mask]
@@ -121,7 +121,10 @@ def color_shift(original: Image.Image, candidate: Image.Image, mask: np.ndarray)
     mean_diff = float(np.abs(a - b).mean())
     sat_a = _saturation(a.mean(axis=0))
     sat_b = _saturation(b.mean(axis=0))
-    passed = mean_diff <= MAX_MEAN_DIFF and abs(sat_b - sat_a) <= MAX_SATURATION_CHANGE
+    passed = (
+        mean_diff <= limits.max_colour_difference
+        and abs(sat_b - sat_a) <= limits.max_saturation_change
+    )
     return {
         "passed": passed,
         "mean_rgb_difference": round(mean_diff, 2),
@@ -158,7 +161,7 @@ def make_creatives(
         background = Image.open(io.BytesIO(raw))
         background.save(out_dir / f"background_{i}.png")
         final, placement = compose(background, product, business)
-        check = product_unchanged(final, placement)
+        check = product_unchanged(final, placement, business.limits)
         api.trace.add("check_product_unchanged", creative=i, **check)
         path = out_dir / f"creative_{i}.png"
         final.save(path)

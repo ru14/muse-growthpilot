@@ -20,7 +20,7 @@ What the photo shows: {observed}
 FACTS you may state (id: claim):
 {allowed}
 
-NOT confirmed. Never state or imply these, in any language:
+NOT confirmed, or denied by the owner. Never state or imply these, in any language:
 {blocked}
 
 Rules:
@@ -87,13 +87,15 @@ def verified_variants(
     profile: dict,
     brief: str,
     n: int = 3,
-    max_rounds: int = 3,
+    max_rounds: int | None = None,
 ) -> tuple[list[dict], list[dict]]:
     """Variants that pass every check, plus a log of each round's refusals.
 
     Passing variants are kept; refused ones are rewritten with the refusal reasons, up to
-    max_rounds. Anything still refused after that is left for the owner.
+    max_rounds (default: the business's caption_rounds limit). Anything still refused after
+    that is left for the owner.
     """
+    max_rounds = max_rounds or business.limits.caption_rounds
     accepted: list[dict] = []
     rounds: list[dict] = []
     feedback: list[str] = []
