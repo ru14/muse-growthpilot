@@ -9,7 +9,51 @@ have access. Keep Business Suite IDs out of the public repo.
 
 ## Project overview
 
-[Add the product overview, target user and problem statement here.]
+**Problem:** A small business with no marketing history can't afford an agency, and
+generic AI tools invent product claims and alter product photos. Owners need campaigns
+they can trust, and to learn what works from very little data.
+
+**Target user:** small businesses selling physical products on Facebook and Instagram.
+First customer: Nidhaye, a brand of traditional Indian products, starting with pure silk
+sarees (brass décor and fragrances later), with customers in India and the US/Canada.
+
+**Goal:** elegant, culturally authentic Facebook and Instagram campaigns that introduce
+the business and show its real products, and get better with each campaign's results.
+
+### Campaign requirements
+
+1. Accept a product photo and product details.
+2. Analyze the photo and identify visible product characteristics (Muse Spark).
+3. Write Hindi and English captions in the brand voice (Muse Spark).
+4. Create marketing images (SAM 3.1 + Muse Image).
+5. Preserve the original product's appearance.
+6. Verify captions against confirmed product facts.
+7. Prepare the campaign for owner approval.
+8. Export approved content for publishing; the owner posts.
+9. Record each campaign's results, entered from Meta Insights with the source shown.
+10. Recommend the next campaign, with evidence and a confidence level.
+
+Nidhaye's brand voice: elegant, warm, heritage-inspired and trustworthy; never pushy.
+
+### Success criteria
+
+- At least one verified bilingual caption: Hindi in Devanagari, then English.
+- At least one verified product image; product colour difference ≤ 2/255.
+- No unsupported product claims, and no prices, offers or "buy now".
+- Nothing published without the owner's approval.
+- A traceable campaign report (every model call, check and agent step).
+- Results recorded for each published campaign, and at least one recommendation based on
+  them (campaign A → results → recommendation → campaign B).
+
+### Status (29 Oct)
+
+Done: requirements 1–7, as a CLI and campaign agent. Next: approval screen with export
+(8), then results and recommendations (9–10).
+
+### Future capabilities
+
+- Direct Facebook and Instagram publishing.
+- Muse for Small Business connector (see [Later](#later-todo-only-after-the-core-loop-works)).
 
 ## Submission Requirements and Deadlines
 
