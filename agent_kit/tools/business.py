@@ -12,7 +12,7 @@ import json
 from dataclasses import dataclass, field
 from pathlib import Path
 
-from .config import ROOT
+from growthpilot.config import ROOT
 
 ALLOWED_STATUSES = {"confirmed", "visible"}
 

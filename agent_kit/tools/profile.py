@@ -5,7 +5,7 @@ from __future__ import annotations
 from pathlib import Path
 
 from .business import Product
-from .meta_api import MetaAPI
+from ..meta_api import MetaAPI
 
 PROMPT = """You are helping a small business market one product. Look at the photo.
 

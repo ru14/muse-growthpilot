@@ -5,7 +5,7 @@ from __future__ import annotations
 import json
 
 from .business import Business, Product
-from .meta_api import MetaAPI
+from ..meta_api import MetaAPI
 from .verify import claim_check, rule_check
 
 PROMPT = """You write social media ad captions for {name}, a small business.

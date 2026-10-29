@@ -22,7 +22,7 @@ cp .env.example .env   # then add your MODEL_API_KEY
 ## Make a verified campaign
 
 ```bash
-.venv/bin/python -m growthpilot.campaign --business examples/demo_business.json \
+.venv/bin/python -m growthpilot.campaign --business cases/input/demo_business.json \
     --product demo-saree --photo path/to/product.jpg \
     --brief "Festive season: introduce this saree"
 ```
@@ -37,11 +37,11 @@ For each product, GrowthPilot:
 4. **SAM 3.1** masks the product. **Muse Image** generates only the background. The
    original product pixels are placed on it, so the image model never touches the
    product, and a colour check proves it.
-5. The output in `output/<run>/` holds `report.md` for the owner to approve, the images,
+5. The output in `cases/output/<run>/` holds `report.md` for the owner to approve, the images,
    `campaign.json`, and `trace.jsonl` with every model call and check. Nothing is
    published.
 
-Business data is JSON. See [examples/demo_business.json](examples/demo_business.json) (synthetic).
+Business data is JSON. See [cases/input/demo_business.json](cases/input/demo_business.json) (synthetic).
 Facts are `confirmed`, `visible` or `unconfirmed`; copy may only state the first two.
 
 ## Tests
@@ -61,6 +61,18 @@ python3 scripts/smoke_test.py path/to/product.jpg "the necklace"
 ```
 
 Outputs go to `scripts/smoke_out/` (not committed).
+
+## Project layout
+
+| Folder | Responsibility |
+|---|---|
+| `agent/` | Decides what to do and when to stop (campaign agent loop, coming next) |
+| `agent_kit/` | Reusable pieces: `meta_api.py` (Meta Model API client) and `tools/` (business data, product profile, captions, creative, verification) |
+| `cases/` | Campaign inputs (`input/`, synthetic examples) and generated runs (`output/`, not committed) |
+| `growthpilot/` | Coordinates the application: `campaign.py` CLI, `config.py`, `trace.py` |
+| `ui/` | Owner approval screen with the trace view (coming) |
+| `tests/` | Offline tests |
+| `docs/` | Plan, checklist, submission and demo script |
 
 ## Project docs
 
@@ -82,4 +94,4 @@ from it is included; GrowthPilot's implementation was written during the hackath
 - [meta-sam-parser](https://pypi.org/project/meta-sam-parser/) (Meta), decodes SAM 3.1 masks
 - [requests](https://github.com/psf/requests) (Apache 2.0), [Pillow](https://python-pillow.org) (HPND), [NumPy](https://numpy.org) (BSD), [pytest](https://pytest.org) (MIT)
 - Meta Model API: Muse Spark 1.3, Muse Image 1.0, SAM 3.1
-- `examples/demo_business.json` is synthetic data written for this project
+- `cases/input/demo_business.json` is synthetic data written for this project

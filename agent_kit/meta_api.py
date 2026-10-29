@@ -15,8 +15,8 @@ import requests
 from meta_sam_parser import CompletedOutcome, ImageSegmentationResult, image_segmentation_format
 from openai import OpenAI
 
-from . import config
-from .trace import Trace
+from growthpilot import config
+from growthpilot.trace import Trace
 
 RETRY_STATUSES = {429, 500, 502, 503, 504}
 

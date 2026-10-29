@@ -17,7 +17,7 @@ from meta_sam_parser import ImageSegmentationResult, decode_mask_to_raster
 from PIL import Image, ImageDraw, ImageFilter
 
 from .business import Business
-from .meta_api import MetaAPI
+from ..meta_api import MetaAPI
 
 # Mean absolute RGB difference (0-255) and saturation change allowed inside the product.
 MAX_MEAN_DIFF = 2.0

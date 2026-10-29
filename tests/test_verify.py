@@ -1,11 +1,11 @@
 from pathlib import Path
 
-from growthpilot.business import load_business
-from growthpilot.captions import verified_variants
+from agent_kit.tools.business import load_business
+from agent_kit.tools.captions import verified_variants
+from agent_kit.tools.verify import claim_check, format_post, rule_check
 from growthpilot.trace import Trace
-from growthpilot.verify import claim_check, format_post, rule_check
 
-EXAMPLE = Path(__file__).resolve().parent.parent / "examples" / "demo_business.json"
+EXAMPLE = Path(__file__).resolve().parent.parent / "cases" / "input" / "demo_business.json"
 
 
 def demo():
