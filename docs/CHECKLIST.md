@@ -29,7 +29,7 @@
 
 ### Technical Depth & Execution (20%)
 - [ ] Inputs are validated
-- [ ] Human approval is required before external publishing
+- [x] Human approval is required before external publishing (approval gate, 29 Oct)
 - [ ] Metric sources are shown and honest
 - [ ] Error cases handled; core flow tested
 
@@ -48,8 +48,8 @@ See [PLAN.md](PLAN.md#architecture).
       `submit_campaign`, `stop` (28 Oct). `record_fact` is owner-only, for the approval screen
 - [x] Verification: claims, citations, platform rules, Devanagari Hindi, product unchanged
 - [x] 3 failures in a row escalate to the owner
-- [ ] Owner rejection notes go back to the agent
-- [ ] Trace view (plan → act → observe) on the approval screen
+- [x] Owner rejection notes go back to the agent (29 Oct)
+- [x] Trace view (plan → act → observe) on the approval screen (29 Oct)
 - [ ] Evaluation set run; unsupported-claim and time numbers in the README
 
 ## Winning Edge

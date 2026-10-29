@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Campaigns</h1>
+<p class="muted">Nothing is posted from here. Approving exports the image and caption for the owner to post.</p>
+{% if runs %}
+<table>
+  <tr><th>Run</th><th>Product</th><th>Brief</th><th>Captions</th><th>Images</th><th>Status</th></tr>
+  {% for r in runs %}
+  <tr>
+    <td><a href="{{ url_for('run_page', run_id=r.id) }}">{{ r.id[:15] }}</a>{% if r.agent %} <span class="muted">agent</span>{% endif %}</td>
+    <td>{{ r.product }}</td>
+    <td>{{ r.brief }}</td>
+    <td>{{ r.captions }}</td>
+    <td>{{ r.images }}</td>
+    <td><span class="badge {{ r.status }}">{{ r.status.replace('_', ' ') }}</span></td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<p>No campaigns yet. Make one with <code>python -m growthpilot.campaign --agent ...</code></p>
+{% endif %}
+{% endblock %}

@@ -15,6 +15,19 @@ from pathlib import Path
 from growthpilot.config import ROOT
 
 ALLOWED_STATUSES = {"confirmed", "visible"}
+# "denied": the owner said it is not true. Like "unconfirmed", copy must never state it.
+STATUSES = ALLOWED_STATUSES | {"unconfirmed", "denied"}
+
+
+@dataclass
+class Limits:
+    """How hard GrowthPilot tries before handing over to the owner. Enforced in code."""
+
+    caption_rounds: int = 3  # rewrite rounds for refused captions
+    agent_turns: int = 15
+    tool_failures: int = 3  # failures in a row before the agent escalates
+    max_colour_difference: float = 2.0  # mean RGB difference /255 inside the product
+    max_saturation_change: float = 0.02
 
 
 @dataclass
@@ -62,6 +75,7 @@ class Business:
     post_size: tuple[int, int]
     colors: dict[str, str]
     products: list[Product] = field(default_factory=list)
+    limits: Limits = field(default_factory=Limits)
 
     def product(self, product_id: str) -> Product:
         for p in self.products:
@@ -92,7 +106,7 @@ def load_business(path: Path) -> Business:
         for p in data.get("products", [])
     ]
     for p in products:
-        bad = [f.id for f in p.facts if f.status not in ALLOWED_STATUSES | {"unconfirmed"}]
+        bad = [f.id for f in p.facts if f.status not in STATUSES]
         if bad:
             raise ValueError(f"{p.id}: unknown fact status on {bad}")
     return Business(
@@ -107,4 +121,5 @@ def load_business(path: Path) -> Business:
         post_size=tuple(brand.get("post_size", [1080, 1350])),
         colors=brand.get("colors", {}),
         products=products,
+        limits=Limits(**data.get("limits", {})),
     )

@@ -8,6 +8,13 @@
     "allowed_ctas": ["Message us on Instagram or Facebook to know more"],
     "banned_phrases": []
   },
+  "limits": {
+    "caption_rounds": 3,
+    "agent_turns": 15,
+    "tool_failures": 3,
+    "max_colour_difference": 2.0,
+    "max_saturation_change": 0.02
+  },
   "brand": {
     "logo": null,
     "post_size": [1080, 1350],

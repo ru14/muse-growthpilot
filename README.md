@@ -55,6 +55,46 @@ The agent can't confirm facts; only the owner can.
 Business data is JSON. See [cases/input/demo_business.json](cases/input/demo_business.json) (synthetic).
 Facts are `confirmed`, `visible` or `unconfirmed`; copy may only state the first two.
 
+## Owner approval
+
+```bash
+.venv/bin/python -m approval.app --business cases/input/demo_business.json --owner "Owner"
+```
+
+Opens http://127.0.0.1:5000 (this computer only). For each campaign the owner sees the
+images with their product check, the captions for Instagram and Facebook, what
+verification caught, the agent's steps and every model call. The owner can:
+
+- **Approve** one image and one caption. The gate in [approval/gate.py](approval/gate.py)
+  only accepts an image that passed the product check and a caption that still passes
+  today's rules and facts. Approval exports the image, `instagram.txt`, `facebook.txt` and
+  `approval.json` to `cases/output/<run>/export/` for the owner to post.
+- **Reject** with a note, and optionally ask the agent for a new draft that follows it.
+- **Answer questions**: say whether an unconfirmed claim is true, or add a fact in their
+  own words. Answers are saved to the business file and used from the next draft on.
+
+```mermaid
+flowchart TD
+    P[Product photo + facts] --> A[Muse Spark reads the photo]
+    A --> C[Muse Spark writes captions]
+    C --> V{Rule check + Muse Spark fact check}
+    V -- refused --> R[Rewrite with the reasons, up to 3 rounds] --> V
+    R -- still refused --> O[Owner decides]
+    P --> S[SAM 3.1 masks the product]
+    S --> I[Muse Image makes the background; original product placed on it]
+    I --> K{Colour check: product unchanged?}
+    K -- no --> X[Image not usable]
+    V -- passed --> G{Owner approval gate}
+    K -- yes --> G
+    G -- reject with note --> C
+    G -- approve --> E[Export image + captions]
+    E --> Post[Owner posts on Facebook and Instagram]
+    Post --> M[Results and next-campaign recommendation: next]
+```
+
+Limits (rewrite rounds, agent turns, failures before escalating, colour tolerance) are
+set per business under `limits` in the business file.
+
 ## Tests
 
 ```bash
@@ -81,7 +121,7 @@ Outputs go to `scripts/smoke_out/` (not committed).
 | `agent_kit/` | Reusable pieces: `meta_api.py` (Meta Model API client), `progress.py` (checklist and step log) and `tools/` (business data, product profile, captions, creative, verification) |
 | `cases/` | Campaign inputs (`input/`, synthetic examples) and generated runs (`output/`, not committed) |
 | `growthpilot/` | Coordinates the application: `campaign.py` CLI, `config.py`, `trace.py` |
-| `ui/` | Owner approval screen with the trace view (coming) |
+| `approval/` | Owner approval: `gate.py` (what may be exported) and `app.py` (the approval screen) |
 | `tests/` | Offline tests |
 | `docs/` | Plan, checklist, submission and demo script |
 
@@ -103,6 +143,6 @@ from it is included; GrowthPilot's implementation was written during the hackath
 
 - [openai](https://github.com/openai/openai-python) Python SDK (Apache 2.0), pointed at the Meta Model API
 - [meta-sam-parser](https://pypi.org/project/meta-sam-parser/) (Meta), decodes SAM 3.1 masks
-- [requests](https://github.com/psf/requests) (Apache 2.0), [Pillow](https://python-pillow.org) (HPND), [NumPy](https://numpy.org) (BSD), [pytest](https://pytest.org) (MIT)
+- [Flask](https://flask.palletsprojects.com) (BSD), [requests](https://github.com/psf/requests) (Apache 2.0), [Pillow](https://python-pillow.org) (HPND), [NumPy](https://numpy.org) (BSD), [pytest](https://pytest.org) (MIT)
 - Meta Model API: Muse Spark 1.3, Muse Image 1.0, SAM 3.1
 - `cases/input/demo_business.json` is synthetic data written for this project

@@ -20,8 +20,6 @@ from agent_kit.tools.creative import make_creatives
 from agent_kit.tools.profile import analyze_product
 
 INSTRUCTIONS = Path(__file__).with_name("system_instructions.md")
-MAX_TURNS = 15
-MAX_TOOL_FAILURES = 3
 
 TURN_PROMPT = """{system}
 
@@ -73,12 +71,13 @@ class CampaignAgent:
         images: int = 2,
         scene: str = "",
         category: str = "",
-        max_turns: int = MAX_TURNS,
+        max_turns: int | None = None,
     ) -> None:
         self.api, self.business, self.product, self.brief = api, business, product, brief
         self.run_dir, self.scene, self.category = run_dir, scene, category
         self.required_captions, self.required_images = captions, images
-        self.max_turns = max_turns
+        self.max_turns = max_turns or business.limits.agent_turns
+        self.max_failures = business.limits.tool_failures
         self.case = Case()
         self.finished = False
         self.tools = {
@@ -129,7 +128,7 @@ class CampaignAgent:
             if self.finished:
                 break
             failures = self.progress.failures(tool)
-            if failures >= MAX_TOOL_FAILURES:
+            if failures >= self.max_failures:
                 self._escalate(f"{tool} failed {failures} times in a row: {observation[:200]}")
                 break
         else:

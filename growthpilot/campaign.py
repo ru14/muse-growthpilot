@@ -43,19 +43,27 @@ def run(
     category: str = "Indian silk saree",
     images: bool = True,
     agent: bool = False,
+    owner_notes: list[str] = (),
+    revises: str = "",
 ) -> Path:
     photo = product.photos[0]
     run_dir = out_root / f"{time.strftime('%Y%m%d-%H%M%S')}_{product.id}"
     run_dir.mkdir(parents=True)
     trace = Trace(run_dir / "trace.jsonl")
     api = MetaAPI(trace=trace)
+    owner_notes = [n for n in owner_notes if n.strip()]
+    model_brief = brief
+    if owner_notes:
+        model_brief += "\nThe owner rejected the last draft. Follow every note:\n" + "\n".join(
+            f"- {n}" for n in owner_notes
+        )
 
     agent_record = None
     questions: list[str] = []
     if agent:
         print("Campaign agent: Muse Spark chooses each step")
         case = CampaignAgent(
-            api, business, product, brief, run_dir,
+            api, business, product, model_brief, run_dir,
             captions=variants, images=backgrounds if images else 0, scene=scene, category=category,
         ).run()
         profile, accepted, rounds, creatives = case.profile, case.variants, case.rounds, case.creatives
@@ -70,7 +78,7 @@ def run(
         profile = analyze_product(api, product, photo)
 
         print(f"[2/3] Writing {variants} caption variants and verifying every claim")
-        accepted, rounds = verified_variants(api, business, product, profile, brief, n=variants)
+        accepted, rounds = verified_variants(api, business, product, profile, model_brief, n=variants)
 
         creatives = []
         if images:
@@ -84,6 +92,8 @@ def run(
         "business": business.name,
         "product": product.id,
         "brief": brief,
+        "owner_notes": owner_notes,
+        "revises": revises,
         "photo": photo.name,
         "profile": profile,
         "variants": [
@@ -190,6 +200,8 @@ def main() -> None:
     parser.add_argument("--category", default="Indian silk saree")
     parser.add_argument("--no-images", action="store_true", help="captions only")
     parser.add_argument("--agent", action="store_true", help="let the campaign agent choose each step")
+    parser.add_argument("--owner-notes", action="append", default=[], help="owner feedback to follow (repeatable)")
+    parser.add_argument("--revises", default="", help="run id this draft rewrites")
     parser.add_argument("--out", type=Path, default=config.ROOT / "cases" / "output")
     args = parser.parse_args()
 
@@ -210,6 +222,8 @@ def main() -> None:
         category=args.category,
         images=not args.no_images,
         agent=args.agent,
+        owner_notes=args.owner_notes,
+        revises=args.revises,
     )
 
 
