@@ -104,7 +104,14 @@ def verified_variants(
         drafts = write_variants(api, business, product, profile, brief, needed, feedback)
         problems = {i: rule_check(v, business, product) for i, v in enumerate(drafts)}
         rule_clean = [i for i, p in problems.items() if not p]
-        judged = claim_check(api, [drafts[i] for i in rule_clean], product, business.allowed_ctas)
+        judged = claim_check(
+            api,
+            [drafts[i] for i in rule_clean],
+            product,
+            business.allowed_ctas,
+            observed=json.dumps(profile.get("observed", {}), ensure_ascii=False),
+            business_name=business.name,
+        )
         for j, i in enumerate(rule_clean):
             problems[i] += judged.get(j, [])
         refused = {i: p for i, p in problems.items() if p}

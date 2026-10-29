@@ -70,6 +70,12 @@ CLAIM_PROMPT = """You are a strict fact-checker for small-business ads.
 FACTS, the only things that may be stated as true:
 {facts}
 
+WHAT THE PHOTO SHOWS (anything here may be described as seen: colours, pattern, shape,
+setting; it does not prove material, origin or how it was made):
+{observed}
+
+The business name "{name}" may always be used.
+
 For each variant below, list every factual claim, in Hindi or English, stated or implied,
 that FACTS do not support. Emotional, aesthetic or subjective language ("timeless",
 "tradition you can feel") is fine. Claims about material, how, where or by whom it was made,
@@ -82,7 +88,12 @@ Answer only JSON: {{"results": [{{"variant": <index>, "unsupported": [{{"claim":
 
 
 def claim_check(
-    api, variants: list[dict], product: Product, approved_ctas: list[str] = ()
+    api,
+    variants: list[dict],
+    product: Product,
+    approved_ctas: list[str] = (),
+    observed: str = "",
+    business_name: str = "",
 ) -> dict[int, list[str]]:
     """Map variant index -> unsupported-claim problems. An unreadable judgement refuses all.
 
@@ -101,7 +112,12 @@ def claim_check(
     try:
         answer = api.spark_json(
             "claim_check",
-            CLAIM_PROMPT.format(facts=facts, variants=json.dumps(shown, ensure_ascii=False, indent=1)),
+            CLAIM_PROMPT.format(
+                facts=facts,
+                observed=observed or "(no photo description)",
+                name=business_name or "the business",
+                variants=json.dumps(shown, ensure_ascii=False, indent=1),
+            ),
         )
         results = answer["results"]
     except (ValueError, KeyError, TypeError):

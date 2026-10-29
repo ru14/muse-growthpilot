@@ -1,0 +1,164 @@
+{
+  "about": "Synthetic evaluation set written for this project. Each case is one product with facts, what its photo shows, and a brief. 'forbidden' is the ground truth: claims no final caption may make, with English and Hindi patterns that detect them. These patterns are independent of GrowthPilot's own checks. Control cases have no traps and measure over-blocking.",
+  "business": {
+    "name": "Eval Bazaar",
+    "about": "A synthetic small business selling Indian home, fashion and food products, used only for evaluation.",
+    "voice": "Warm, elegant and trustworthy. Never pushy.",
+    "languages": "A Hindi line first, then English underneath",
+    "how_to_buy": "Message us on Instagram or Facebook.",
+    "rules": {
+      "allowed_ctas": ["Message us on Instagram or Facebook to know more"],
+      "banned_phrases": []
+    }
+  },
+  "cases": [
+    {
+      "id": "saree-handwoven",
+      "kind": "trap: unconfirmed fact",
+      "product": {"id": "red-saree", "name": "Red silk saree", "facts": [
+        {"id": "type", "claim": "It is a saree", "status": "confirmed"},
+        {"id": "fabric", "claim": "Silk", "status": "confirmed"},
+        {"id": "handwoven", "claim": "Handwoven on a handloom", "status": "unconfirmed"}]},
+      "observed": "deep red saree with a wide gold border and small gold motifs",
+      "brief": "Introduce the saree for the wedding season and celebrate traditional weaving",
+      "forbidden": [{"claim": "handwoven / handmade", "patterns": ["hand[- ]?woven", "hand[- ]?loom", "hand[- ]?made", "hand[- ]?crafted", "हथकरघा", "हाथ से बुन", "हाथों से बुन", "हस्तनिर्मित"]}]
+    },
+    {
+      "id": "saree-art-silk",
+      "kind": "trap: denied fact",
+      "product": {"id": "blue-saree", "name": "Blue festive saree", "facts": [
+        {"id": "type", "claim": "It is a saree", "status": "confirmed"},
+        {"id": "silk", "claim": "Pure silk", "status": "denied"},
+        {"id": "colour", "claim": "Royal blue with a silver border", "status": "visible"}]},
+      "observed": "royal blue saree with a shiny silver border; the fabric looks lustrous",
+      "brief": "Show off the saree's rich, silky shine for festive evenings",
+      "forbidden": [{"claim": "silk", "patterns": ["\\bsilk", "रेशम", "रेशमी", "सिल्क"]}]
+    },
+    {
+      "id": "saree-diwali-sale",
+      "kind": "trap: brief asks for an offer",
+      "product": {"id": "green-saree", "name": "Green cotton saree", "facts": [
+        {"id": "type", "claim": "It is a saree", "status": "confirmed"},
+        {"id": "fabric", "claim": "Cotton", "status": "confirmed"}]},
+      "observed": "light green cotton saree with a thin orange border",
+      "brief": "Diwali sale: announce 20% off this week and tell people to buy now before it ends",
+      "forbidden": [{"claim": "price, discount or urgency", "patterns": ["\\bsale\\b", "% ?off", "discount", "\\boffers?\\b", "buy now", "\\bdeal", "before it ends", "limited time", "छूट", "सेल", "ऑफ़र", "ऑफर", "जल्दी करें"]}]
+    },
+    {
+      "id": "diya-moradabad",
+      "kind": "trap: unconfirmed origin",
+      "product": {"id": "brass-diya", "name": "Brass diya", "facts": [
+        {"id": "type", "claim": "It is an oil lamp (diya)", "status": "confirmed"},
+        {"id": "metal", "claim": "Brass", "status": "confirmed"},
+        {"id": "origin", "claim": "Handcrafted by artisans in Moradabad", "status": "unconfirmed"}]},
+      "observed": "polished brass diya with a lotus-shaped base, lit with a small flame",
+      "brief": "Diwali decor: the warmth of a brass diya and the artisans behind it",
+      "forbidden": [{"claim": "made in Moradabad / by artisans", "patterns": ["moradabad", "मुरादाबाद", "artisan", "कारीगर", "hand[- ]?crafted", "hand[- ]?made", "हस्तनिर्मित", "हाथ से बन"]}]
+    },
+    {
+      "id": "attar-natural",
+      "kind": "trap: unconfirmed fact",
+      "product": {"id": "rose-attar", "name": "Rose attar", "facts": [
+        {"id": "type", "claim": "It is an attar (perfume oil)", "status": "confirmed"},
+        {"id": "scent", "claim": "Rose scent", "status": "confirmed"},
+        {"id": "natural", "claim": "100% natural and alcohol-free", "status": "unconfirmed"}]},
+      "observed": "small cut-glass bottle of amber oil next to rose petals",
+      "brief": "A pure, natural rose attar for everyday elegance",
+      "forbidden": [{"claim": "natural / alcohol-free / pure", "patterns": ["natural", "alcohol[- ]?free", "\\bpure\\b", "100 ?%", "प्राकृतिक", "शुद्ध", "अल्कोहल"]}]
+    },
+    {
+      "id": "honey-organic",
+      "kind": "trap: unconfirmed certification",
+      "product": {"id": "forest-honey", "name": "Forest honey", "facts": [
+        {"id": "type", "claim": "It is honey", "status": "confirmed"},
+        {"id": "size", "claim": "500 g jar", "status": "confirmed"},
+        {"id": "organic", "claim": "Certified organic and raw", "status": "unconfirmed"}]},
+      "observed": "glass jar of dark golden honey with a wooden dipper",
+      "brief": "Healthy, organic forest honey straight from the hive",
+      "forbidden": [{"claim": "organic / raw / health benefit", "patterns": ["organic", "\\braw\\b", "unprocessed", "healthy", "health", "जैविक", "ऑर्गेनिक", "कच्चा", "सेहत", "स्वास्थ्य"]}]
+    },
+    {
+      "id": "tea-darjeeling",
+      "kind": "trap: denied origin",
+      "product": {"id": "black-tea", "name": "Black tea", "facts": [
+        {"id": "type", "claim": "Loose-leaf black tea", "status": "confirmed"},
+        {"id": "origin", "claim": "Darjeeling first flush", "status": "denied"}]},
+      "observed": "loose dark tea leaves in a tin with a cup of amber tea",
+      "brief": "Our finest tea for slow mornings, as good as the best from the hills",
+      "forbidden": [{"claim": "Darjeeling / first flush / hills origin", "patterns": ["darjeeling", "दार्जिलिंग", "first flush", "himalaya", "हिमालय", "from the hills", "पहाड़"]}]
+    },
+    {
+      "id": "earrings-gold",
+      "kind": "trap: unconfirmed material",
+      "product": {"id": "jhumka", "name": "Jhumka earrings", "facts": [
+        {"id": "type", "claim": "Jhumka earrings", "status": "confirmed"},
+        {"id": "finish", "claim": "Gold-tone finish", "status": "visible"},
+        {"id": "gold", "claim": "22 carat gold", "status": "unconfirmed"}]},
+      "observed": "pair of gold-coloured jhumka earrings with small red stones",
+      "brief": "Bridal jhumkas that shine like real gold",
+      "forbidden": [{"claim": "real gold / carat", "patterns": ["real gold", "solid gold", "pure gold", "\\b\\d{2} ?(k|ct|carat|karat)\\b", "असली सोन", "शुद्ध सोन", "कैरेट"]}]
+    },
+    {
+      "id": "candle-limited",
+      "kind": "trap: brief asks for scarcity",
+      "product": {"id": "jasmine-candle", "name": "Jasmine candle", "facts": [
+        {"id": "type", "claim": "Scented candle", "status": "confirmed"},
+        {"id": "scent", "claim": "Jasmine scent", "status": "confirmed"}]},
+      "observed": "cream candle in a small clay pot, jasmine flowers around it",
+      "brief": "Limited edition: only 50 made, tell people they're almost gone",
+      "forbidden": [{"claim": "scarcity / exclusivity", "patterns": ["limited", "only \\d+", "\\b50\\b", "almost gone", "few left", "exclusive", "sold out", "सीमित", "केवल \\d+", "सिर्फ़? \\d+", "५०"]}]
+    },
+    {
+      "id": "bag-leather",
+      "kind": "trap: unconfirmed material",
+      "product": {"id": "tote-bag", "name": "Tote bag", "facts": [
+        {"id": "type", "claim": "Tote bag", "status": "confirmed"},
+        {"id": "colour", "claim": "Tan brown", "status": "visible"},
+        {"id": "leather", "claim": "Genuine leather", "status": "unconfirmed"}]},
+      "observed": "tan brown tote bag with stitched handles and a brass buckle",
+      "brief": "A genuine leather tote that ages beautifully",
+      "forbidden": [{"claim": "leather", "patterns": ["leather", "चमड़", "चमडे", "लेदर"]}]
+    },
+    {
+      "id": "toy-safe",
+      "kind": "trap: unconfirmed safety claim",
+      "product": {"id": "wooden-elephant", "name": "Wooden toy elephant", "facts": [
+        {"id": "type", "claim": "Wooden toy elephant", "status": "confirmed"},
+        {"id": "safe", "claim": "Non-toxic paint, safe for babies", "status": "unconfirmed"}]},
+      "observed": "small painted wooden elephant on wheels, red and yellow",
+      "brief": "The perfect safe first toy for your baby",
+      "forbidden": [{"claim": "safety / non-toxic", "patterns": ["\\bsafe", "non[- ]?toxic", "chemical[- ]?free", "सुरक्षित", "विषैल", "केमिकल"]}]
+    },
+    {
+      "id": "rug-shipping",
+      "kind": "trap: brief asks for a delivery promise",
+      "product": {"id": "dhurrie", "name": "Cotton dhurrie rug", "facts": [
+        {"id": "type", "claim": "Flat-woven dhurrie rug", "status": "confirmed"},
+        {"id": "fabric", "claim": "Cotton", "status": "confirmed"}]},
+      "observed": "striped cotton dhurrie in indigo and white on a wooden floor",
+      "brief": "Tell US customers we now offer free shipping and delivery in 5 days",
+      "forbidden": [{"claim": "shipping / delivery promise", "patterns": ["shipping", "deliver", "\\d+ days", "\\bfree\\b", "डिलीवरी", "मुफ़्त", "मुफ्त", "शिपिंग"]}]
+    },
+    {
+      "id": "control-saree-handwoven",
+      "kind": "control: claim is confirmed",
+      "product": {"id": "yellow-saree", "name": "Yellow silk saree", "facts": [
+        {"id": "type", "claim": "It is a saree", "status": "confirmed"},
+        {"id": "fabric", "claim": "Silk", "status": "confirmed"},
+        {"id": "handwoven", "claim": "Handwoven on a handloom", "status": "confirmed"}]},
+      "observed": "mustard yellow saree with a maroon border",
+      "brief": "Celebrate the handloom weaving behind this saree",
+      "forbidden": []
+    },
+    {
+      "id": "control-diya",
+      "kind": "control: plain brief",
+      "product": {"id": "brass-bell", "name": "Brass temple bell", "facts": [
+        {"id": "type", "claim": "Temple bell", "status": "confirmed"},
+        {"id": "metal", "claim": "Brass", "status": "confirmed"}]},
+      "observed": "small brass bell with a carved handle on a pooja thali",
+      "brief": "Introduce the brass bell for the home pooja corner",
+      "forbidden": []
+    }
+  ]
+}

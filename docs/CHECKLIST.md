@@ -4,7 +4,7 @@
 
 ### Impact (30%)
 - [ ] Problem statement from the hackathon list chosen and named in the demo
-- [ ] Target user (small businesses like Nidhaye) is clear
+- [x] Target user (small businesses like Nidhaye) is clear (PLAN overview)
 - [ ] Time saved or other benefit is measured, not just claimed
 - [ ] Complete workflow works: create → approve → publish/export → measure → recommend
 
@@ -20,18 +20,18 @@
       (0.0 difference on the pink saree, 28 Oct)
 - [x] Caption variants with rule check and Muse Spark claim check, rewritten with
       feedback (caught an unsupported "first offering" claim, 28 Oct)
-- [ ] Muse Spark powers product understanding, Facebook/Instagram copy and recommendation
-- [ ] Muse Image produces platform-sized ad creatives
-- [ ] SAM mask keeps the real product untouched in edits by Oct 31, or dropped
-- [ ] Meta AI is essential to at least one core step, not bolted on
-- [ ] Integration goes beyond a basic API call
+- [x] Muse Spark powers product understanding, Facebook/Instagram copy and recommendation (29 Oct)
+- [x] Muse Image produces platform-sized ad creatives (1080×1350)
+- [x] SAM mask keeps the real product untouched in edits by Oct 31, or dropped (0.0 colour difference)
+- [x] Meta AI is essential to at least one core step, not bolted on
+- [x] Integration goes beyond a basic API call (agent loop, SAM masks, LLM judge)
 - [ ] Meta AI's role is visible in the demo video
 
 ### Technical Depth & Execution (20%)
-- [ ] Inputs are validated
+- [x] Inputs are validated (business file, results, approval gate)
 - [x] Human approval is required before external publishing (approval gate, 29 Oct)
 - [x] Metric sources are shown and honest (results page, 29 Oct)
-- [ ] Error cases handled; core flow tested
+- [x] Error cases handled; core flow tested (54 tests)
 
 ### Demo (25%)
 - [ ] Live product holds up end to end
@@ -42,7 +42,7 @@
 
 See [PLAN.md](PLAN.md#architecture).
 
-- [ ] Nothing copied from legal-agent-workshop; credit line in README
+- [x] Nothing copied from legal-agent-workshop; credit line in README
 - [x] Campaign agent loop: model picks tools, progress saved per turn, turn limit (28 Oct)
 - [x] Tools built: `analyze_product`, `write_captions`, `make_creatives`, `ask_owner`,
       `submit_campaign`, `stop` (28 Oct). `record_fact` is owner-only, for the approval screen
@@ -50,7 +50,7 @@ See [PLAN.md](PLAN.md#architecture).
 - [x] 3 failures in a row escalate to the owner
 - [x] Owner rejection notes go back to the agent (29 Oct)
 - [x] Trace view (plan → act → observe) on the approval screen (29 Oct)
-- [ ] Evaluation set run; unsupported-claim and time numbers in the README
+- [x] Evaluation set run; unsupported-claim and time numbers in the README (29 Oct: 89% → 0%)
 
 ## Winning Edge
 
@@ -71,7 +71,7 @@ See [PLAN.md](PLAN.md#winning-edge).
 - [x] Recommendations show evidence and a confidence level; both checked in code (29 Oct)
 - [ ] **First real campaign posts live by October 30**
 - [ ] Real results collected from the live posts
-- [ ] Product-truth check working: SAM mask keeps product unchanged, unsupported
+- [x] Product-truth check working: SAM mask keeps product unchanged, unsupported
       claims flagged
 - [ ] One full cycle shown: campaign A → results → recommendation → campaign B
 - [ ] Owner clip recorded (about 10 seconds, with permission)
@@ -81,16 +81,16 @@ See [PLAN.md](PLAN.md#winning-edge).
 ## Submission Deadline and Final Verification
 
 ### Deadline
-- [ ] Official deadline recorded: November 4, 2026, at 9:00 p.m. EST
-- [ ] Seattle deadline recorded: November 4, 2026, at 6:00 p.m. PST
-- [ ] Internal completion deadline set to November 3
+- [x] Official deadline recorded: November 4, 2026, at 9:00 p.m. EST
+- [x] Seattle deadline recorded: November 4, 2026, at 6:00 p.m. PST
+- [x] Internal completion deadline set to November 3
 - [ ] Official hackathon instructions checked again before submission
 
 ### Repository and access
 - [ ] GitHub repository is public and accessible without special permission
 - [ ] Repo is a fresh repo with only work done since kickoff (Oct 19)
 - [ ] No pre-hackathon code or git history pushed; any earlier scaffolding rewritten
-- [ ] Open-source dependencies and pre-existing datasets are labeled
+- [x] Open-source dependencies and pre-existing datasets are labeled
 - [ ] Repo has everything needed to run and verify the demo (setup steps,
       `.env.example`, sample data)
 - [ ] Nidhaye campaign data committed only with owner permission; otherwise a labeled

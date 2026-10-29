@@ -92,7 +92,10 @@ def _path(value: str | None) -> Path | None:
 
 
 def load_business(path: Path) -> Business:
-    data = json.loads(Path(path).read_text())
+    return parse_business(json.loads(Path(path).read_text()))
+
+
+def parse_business(data: dict) -> Business:
     brand = data.get("brand", {})
     rules = data.get("rules", {})
     products = [

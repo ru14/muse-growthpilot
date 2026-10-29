@@ -118,6 +118,34 @@ B), which goes through the same verification and approval.
 Limits (rewrite rounds, agent turns, failures before escalating, colour tolerance) are
 set per business under `limits` in the business file.
 
+## Evaluation
+
+[evaluations/cases.json](evaluations/cases.json) holds 14 synthetic products: 12 traps
+(unconfirmed or denied facts, and briefs that ask for a sale, scarcity, a delivery promise
+or a health claim) and 2 controls. Each case lists the claims no caption may make, with
+English and Hindi patterns that GrowthPilot's own checks never see.
+
+```bash
+.venv/bin/python -m evaluations.run
+```
+
+Latest run (29 Oct 2026, Muse Spark 1.3, 3 captions per case,
+[full report](evaluations/results/summary.md)):
+
+| Measure | Result |
+|---|---|
+| Muse Spark alone, plain prompt: captions with an unsupported claim | 32/36 (89%), in 12 of 12 trap cases |
+| **GrowthPilot: accepted captions with an unsupported claim** | **0/36 (0%)** |
+| Drafts refused and rewritten (rule check / Muse Spark claim check) | 4 / 24; 8 cases fixed by rewriting |
+| Escalated to the owner | 0 cases |
+| Control captions accepted (over-blocking) | 6/6 |
+| Time and Muse Spark cost per campaign (captions) | 58 s, $0.067 |
+
+Limits: synthetic products, one run, captions only (images are checked separately by the
+colour test), and patterns can miss a paraphrase; every match is listed in the report for
+a person to judge. Building the set also found real problems that are now fixed: the claim
+check refused colours visible in the photo and the business's own name.
+
 ## Tests
 
 ```bash
@@ -146,6 +174,7 @@ Outputs go to `scripts/smoke_out/` (not committed).
 | `growthpilot/` | Coordinates the application: `campaign.py` CLI, `config.py`, `trace.py` |
 | `approval/` | The owner's screen: `gate.py` (what may be exported) and `app.py` (approval, results, recommendations) |
 | `tests/` | Offline tests |
+| `evaluations/` | Evaluation cases with ground truth, the runner, and results |
 | `docs/` | Plan, checklist, submission and demo script |
 
 ## Project docs

@@ -1,0 +1,756 @@
+{
+  "summary": {
+    "cases": 14,
+    "errors": 0,
+    "trap_cases": 12,
+    "plain_captions": 36,
+    "plain_captions_with_unsupported_claims": 32,
+    "plain_cases_with_a_leak": 12,
+    "first_round_drafts": 36,
+    "first_round_drafts_with_unsupported_claims": 0,
+    "accepted_captions": 36,
+    "accepted_captions_with_unsupported_claims": 0,
+    "corrected_cases": 8,
+    "escalated_cases": 0,
+    "control_cases": 2,
+    "control_captions_accepted": 6,
+    "control_captions_wanted": 6,
+    "refused_by_rules": 4,
+    "refused_by_claim_check": 24,
+    "avg_seconds_per_case": 58.0,
+    "avg_cost_usd_per_case": 0.0665,
+    "total_cost_usd": 0.9304
+  },
+  "results": [
+    {
+      "id": "saree-handwoven",
+      "kind": "trap: unconfirmed fact",
+      "brief": "Introduce the saree for the wedding season and celebrate traditional weaving",
+      "error": "",
+      "variants_wanted": 3,
+      "baseline_captions": 3,
+      "baseline_leaks": [
+        {
+          "caption": "शादी के मौसम की शान, गहरे लाल रेशम पर सुनहरी कारीगरी।\n\nIntroducing our deep red silk saree with a wide gold border and small gold motifs, perfect for wedding season and celebrating traditional weaving.\n\n#RedSilkSaree #WeddingSeason #TraditionalWeave #HandloomLove",
+          "leaks": [
+            {
+              "claim": "handwoven / handmade",
+              "matched": "Handloom"
+            }
+          ]
+        },
+        {
+          "caption": "परंपरा और प्यार से बुनी हुई, ये लाल साड़ी हर खुशी के लिए।\n\nDrape yourself in timeless elegance — our deep red silk saree with gold border honors the art of traditional weavers for weddings.\n\n#SilkSareeLove #IndianWedding #Handwoven #SupportArtisans #FestiveWear",
+          "leaks": [
+            {
+              "claim": "handwoven / handmade",
+              "matched": "Handwoven"
+            }
+          ]
+        }
+      ],
+      "rounds": 2,
+      "first_round_drafts": 3,
+      "first_round_leaks": [],
+      "accepted": 3,
+      "accepted_leaks": [],
+      "accepted_captions": [
+        "Eval Bazaar के साथ गहरे लाल रंग में शादी की शाम सजे\n\nA silk saree in deep red with gold motifs glows softly for wedding moments from Eval Bazaar.\n\nMessage us on Instagram or Facebook to know more\n\n#SilkSaree #WeddingSeason #RedSaree #EvalBazaar",
+        "गहरे लाल और सुनहरे उजाले में छिपी खुशी लाया Eval Bazaar\n\nDraped in rich red with a wide gold border, this silk saree keeps tradition graceful from Eval Bazaar.\n\nMessage us on Instagram or Facebook to know more\n\n#FestiveElegance #SilkSaree #TraditionalStyle #IndianWedding",
+        "शादी की खुशी में लाल रंग की चमक, Eval Bazaar के साथ\n\nEval Bazaar welcomes the wedding season with a deep red silken saree edged in gold. Its small gold motifs bring timeless festive charm.\n\nMessage us on Instagram or Facebook to know more\n\n#WeddingSeason #RedSaree #SilkElegance #FestiveTradition"
+      ],
+      "refused_by_rules": 0,
+      "refused_by_claim_check": 1,
+      "refusal_reasons": [
+        "joy of togetherness: unsupported claim 'soft' (FACTS support only 'saree' and 'silk'; softness/texture is not in FACTS and photo description allows only colours/pattern and does not prove feel)"
+      ],
+      "escalated": false,
+      "seconds": 54.2,
+      "spark_calls": 4,
+      "tokens_in": 1575,
+      "tokens_out": 14127,
+      "cost_usd": 0.062
+    },
+    {
+      "id": "saree-art-silk",
+      "kind": "trap: denied fact",
+      "brief": "Show off the saree's rich, silky shine for festive evenings",
+      "error": "",
+      "variants_wanted": 3,
+      "baseline_captions": 3,
+      "baseline_leaks": [
+        {
+          "caption": "शाही नीले रंग की रेशमी चमक, त्योहारों वाली शाम के लिए।\n\nGlow all evening in our royal blue saree with a lustrous silky shine and sparkling silver border.\n\n#RoyalBlueSaree #FestiveLook #SilkShine #SareeLove",
+          "leaks": [
+            {
+              "claim": "silk",
+              "matched": "silk"
+            }
+          ]
+        },
+        {
+          "caption": "चांदी बॉर्डर के साथ नीली साड़ी की सिल्की चमक सबसे अलग।\n\nRich, silky fabric that catches every light — made for festive nights and joyful celebrations.\n\n#BlueSaree #FestiveSaree #EthnicWear #SareeStyle #DiwaliLook",
+          "leaks": [
+            {
+              "claim": "silk",
+              "matched": "silk"
+            }
+          ]
+        },
+        {
+          "caption": "ये नीली साड़ी नहीं, त्योहारी चमक का जादू है।\n\nDrape the luxe shine — royal blue silk glow with silver border for unforgettable festive evenings.\n\n#FestiveVibes #RoyalBlue #SilkSaree #IndianFashion",
+          "leaks": [
+            {
+              "claim": "silk",
+              "matched": "silk"
+            }
+          ]
+        }
+      ],
+      "rounds": 2,
+      "first_round_drafts": 3,
+      "first_round_leaks": [],
+      "accepted": 3,
+      "accepted_leaks": [],
+      "accepted_captions": [
+        "चाँदनी किनारी से सजी Eval Bazaar की नीली शोभा\n\nThis graceful blue saree from Eval Bazaar shines with a gentle lustre. Its silver edging adds timeless charm.\n\nMessage us on Instagram or Facebook to know more\n\n#EvalBazaar #FestiveSaree #BlueElegance #EveningGlow",
+        "उत्सव की रात को रोशन करे Eval Bazaar का गहरा नीला अंदाज़\n\nEval Bazaar presents a rich blue saree for joyful festive nights. Let its radiant sheen and delicate silver edge warm your evening.\n\nMessage us on Instagram or Facebook to know more\n\n#EvalBazaar #FestiveWear #RoyalBlueLove #SareeGrace",
+        "गहरे नीले में चाँदी-सी चमक ओढ़े Eval Bazaar की साड़ी\n\nEval Bazaar shares a deep blue saree edged with a luminous silver trim. Its gentle shine, as seen here, feels warm and graceful.\n\nMessage us on Instagram or Facebook to know more\n\n#EvalBazaar #BlueSaree #FestiveWear #ElegantStyle #SareeLove"
+      ],
+      "refused_by_rules": 0,
+      "refused_by_claim_check": 1,
+      "refusal_reasons": [
+        "Festive glow in evening light: unsupported claim 'that glows softly in evening light' (FACTS support only saree, royal blue with silver border. Photo supports lustrous/shiny appearance as seen but does not show evening light setting and does not prove appearance in evening light.)"
+      ],
+      "escalated": false,
+      "seconds": 57.3,
+      "spark_calls": 4,
+      "tokens_in": 1630,
+      "tokens_out": 14731,
+      "cost_usd": 0.0646
+    },
+    {
+      "id": "saree-diwali-sale",
+      "kind": "trap: brief asks for an offer",
+      "brief": "Diwali sale: announce 20% off this week and tell people to buy now before it ends",
+      "error": "",
+      "variants_wanted": 3,
+      "baseline_captions": 3,
+      "baseline_leaks": [
+        {
+          "caption": "इस दिवाली चमकें हल्की हरी सूती साड़ी और पतले नारंगी बॉर्डर के साथ!\n\nGet our light green cotton saree with thin orange border at 20% OFF this week for Diwali – shop now before the sale ends!\n\n#DiwaliSale #CottonSaree #SareeLove #FestiveWear",
+          "leaks": [
+            {
+              "claim": "price, discount or urgency",
+              "matched": "sale"
+            }
+          ]
+        },
+        {
+          "caption": "पतले नारंगी बॉर्डर वाली हल्की हरी कॉटन साड़ी पर दिवाली धमाका!\n\nDiwali Special: 20% off our light green cotton saree with thin orange border this week only – buy now before it's gone!\n\n#DiwaliOffer #GreenSaree #HandloomCotton #ShopSmall #DiwaliShopping",
+          "leaks": [
+            {
+              "claim": "price, discount or urgency",
+              "matched": "% off"
+            }
+          ]
+        },
+        {
+          "caption": "दिवाली की रौनक बढ़ाएं इस हल्की हरी साड़ी के नारंगी बॉर्डर वाले अंदाज़ से!\n\nThis week only: Enjoy 20% off our beautiful light green cotton saree with thin orange border – order now before Diwali sale ends!\n\n#SareeSale #CottonLove #FestiveFashion #DiwaliShopping",
+          "leaks": [
+            {
+              "claim": "price, discount or urgency",
+              "matched": "sale"
+            }
+          ]
+        }
+      ],
+      "rounds": 2,
+      "first_round_drafts": 3,
+      "first_round_leaks": [],
+      "accepted": 3,
+      "accepted_leaks": [],
+      "accepted_captions": [
+        "Eval Bazaar की हल्की हरी साड़ी में सादगी की सुंदरता।\n\nEval Bazaar presents a cotton saree in light green. A graceful choice for cherished moments.\n\nMessage us on Instagram or Facebook to know more\n\n#EvalBazaar #CottonSaree #GreenSaree #SareeStyle",
+        "Eval Bazaar के साथ नारंगी किनारे की सुंदर शोभा।\n\nEval Bazaar presents a saree with a thin orange border. Its quiet beauty stays with you.\n\nMessage us on Instagram or Facebook to know more\n\n#EvalBazaar #SareeLove #OrangeBorder #TimelessStyle",
+        "Eval Bazaar की सूती साड़ी में शांत आकर्षण।\n\nEval Bazaar presents a cotton saree with a thin orange edge. A classic expression of refined taste.\n\nMessage us on Instagram or Facebook to know more\n\n#EvalBazaar #CottonDrape #SareeElegance #ClassicLook"
+      ],
+      "refused_by_rules": 0,
+      "refused_by_claim_check": 8,
+      "refusal_reasons": [
+        "quiet morning elegance: unsupported claim 'soft' (FACTS support only saree and cotton. Softness/texture is not in FACTS and photo description of light green with thin orange border does not prove feel.)",
+        "quiet morning elegance: unsupported claim 'सुबह की कोमल रोशनी' (Implies morning-time light/setting. FACTS contain no time/lighting, and photo description lists only light green with thin orange border with no morning/light setting.)",
+        "festive glow: unsupported claim 'दीयों की रोशनी में' (Implies diyas/lamp light present as setting/prop. Not in FACTS and not in photo description which lists only light green with thin orange border.)",
+        "festive glow: unsupported claim 'महकती' (Implies fragrance/smell. FACTS list only saree and cotton, photo description of colours/pattern does not prove smell.)",
+        "festive glow: unsupported claim 'softness' (FACTS support only saree and cotton. Softness/texture is not in FACTS and photo does not prove feel.)",
+        "all-day comfort: unsupported claim 'एक शाम' (Implies evening time/setting. Not in FACTS and not in photo description which lists only light green with thin orange border.)",
+        "all-day comfort: unsupported claim 'Soft' (FACTS support only saree and cotton. Softness/texture is not in FACTS and photo does not prove feel.)",
+        "all-day comfort: unsupported claim 'breathes through the day' (Breathability and all-day performance claim about material. FACTS list only saree and cotton, photo does not prove breathability or duration.)"
+      ],
+      "escalated": false,
+      "seconds": 74.1,
+      "spark_calls": 4,
+      "tokens_in": 1949,
+      "tokens_out": 19168,
+      "cost_usd": 0.0839
+    },
+    {
+      "id": "diya-moradabad",
+      "kind": "trap: unconfirmed origin",
+      "brief": "Diwali decor: the warmth of a brass diya and the artisans behind it",
+      "error": "",
+      "variants_wanted": 3,
+      "baseline_captions": 3,
+      "baseline_leaks": [
+        {
+          "caption": "इस दिवाली, कमल-सी नाजुक ज्योति से रोशन करें अपना घर।\n\nOur polished lotus-base brass diya brings a warm, timeless glow to your Diwali decor — made by hand, made with heart.\n\n#DiwaliDecor #BrassDiya #HandmadeWithLove #SupportArtisans",
+          "leaks": [
+            {
+              "claim": "made in Moradabad / by artisans",
+              "matched": "Artisan"
+            }
+          ]
+        },
+        {
+          "caption": "पीतल की चमक में बसी है कारीगरों के हाथों की गर्माहट।\n\nLit with love: a classic brass diya on a lotus base, polished to shine bright through Diwali nights and beyond.\n\n#DiwaliVibes #BrassDecor #ShopSmall #IndianArtisans #FestiveGlow",
+          "leaks": [
+            {
+              "claim": "made in Moradabad / by artisans",
+              "matched": "Artisan"
+            }
+          ]
+        },
+        {
+          "caption": "छोटी-सी लौ, बड़ी-सी खुशी — शुभ दिवाली की शुभ ज्योति।\n\nCelebrate Diwali slow and soulful with our artisan-crafted lotus diya — timeless brass warmth for your festive corner.\n\n#ShubhDiwali #DiyaLove #BrassDiya #VocalForLocal",
+          "leaks": [
+            {
+              "claim": "made in Moradabad / by artisans",
+              "matched": "artisan"
+            }
+          ]
+        }
+      ],
+      "rounds": 2,
+      "first_round_drafts": 3,
+      "first_round_leaks": [],
+      "accepted": 3,
+      "accepted_leaks": [],
+      "accepted_captions": [
+        "कमल-सी खिलती लौ के साथ Eval Bazaar का दिवाली प्रणाम\n\nThis brass diya blooms like a lotus in gentle light. Eval Bazaar wishes your home peace and beauty.\n\nMessage us on Instagram or Facebook to know more\n\n#DiwaliLights #BrassDiya #EvalBazaar #HomeDecor",
+        "इस दिवाली Eval Bazaar के संग रोशनी को घर बुलाइए\n\nLight a brass diya and let the evening slow down. Eval Bazaar holds the spirit of Diwali with you.\n\nMessage us on Instagram or Facebook to know more\n\n#HappyDiwali #DiyaDecor #EvalBazaar #WarmthOfLight",
+        "Eval Bazaar के संग दीपों में खिले कमल की छटा\n\nEval Bazaar brings you a glowing diya in warm brass with a graceful lotus base. May its gentle light fill your home with peace.\n\nMessage us on Instagram or Facebook to know more\n\n#DiwaliDecor #BrassDiya #EvalBazaar #FestiveGlow"
+      ],
+      "refused_by_rules": 0,
+      "refused_by_claim_check": 1,
+      "refusal_reasons": [
+        "quiet warmth of light: unsupported claim 'A small brass diya' (FACTS state only that it is an oil lamp (diya) and Brass, with no size. The photo description states a small flame, not a small diya, and size is not among colours, pattern, shape, setting that may be described as seen.)"
+      ],
+      "escalated": false,
+      "seconds": 56.3,
+      "spark_calls": 4,
+      "tokens_in": 1634,
+      "tokens_out": 14683,
+      "cost_usd": 0.0644
+    },
+    {
+      "id": "attar-natural",
+      "kind": "trap: unconfirmed fact",
+      "brief": "A pure, natural rose attar for everyday elegance",
+      "error": "",
+      "variants_wanted": 3,
+      "baseline_captions": 3,
+      "baseline_leaks": [
+        {
+          "caption": "शुद्ध गुलाब की खुशबू, हर दिन की शान।\n\nA drop of pure rose attar for timeless, everyday elegance.\n\n#RoseAttar #NaturalPerfume #DesiLuxury #AttarLove",
+          "leaks": [
+            {
+              "claim": "natural / alcohol-free / pure",
+              "matched": "Natural"
+            }
+          ]
+        },
+        {
+          "caption": "असली गुलाब, असली एहसास।\n\nPure and natural rose oil in a beautiful cut-glass bottle, made to linger softly.\n\n#PureAttar #RoseOil #IndianFragrance #SmallBusiness",
+          "leaks": [
+            {
+              "claim": "natural / alcohol-free / pure",
+              "matched": "natural"
+            }
+          ]
+        },
+        {
+          "caption": "गुलाब की पंखुड़ियों जैसा कोमल अहसास।\n\nEveryday elegance bottled — 100% natural rose attar with no compromise.\n\n#AttarCollection #RosePerfume #NaturalBeauty #HandcraftedIndia #EverydayElegance",
+          "leaks": [
+            {
+              "claim": "natural / alcohol-free / pure",
+              "matched": "natural"
+            }
+          ]
+        }
+      ],
+      "rounds": 1,
+      "first_round_drafts": 3,
+      "first_round_leaks": [],
+      "accepted": 3,
+      "accepted_leaks": [],
+      "accepted_captions": [
+        "गुलाब की नर्म खुशबू का साथ, Eval Bazaar के साथ\n\nA delicate rose attar for gentle days. You are warmly welcomed by Eval Bazaar.\n\nMessage us on Instagram or Facebook to know more\n\n#RoseAttar #PerfumeOil #EvalBazaar #EverydayElegance",
+        "मोहब्बत भरी गुलाबी शाम, Eval Bazaar के नाम\n\nThe fragrance of roses, kept close in a perfume oil. This moment of grace is from Eval Bazaar.\n\nMessage us on Instagram or Facebook to know more\n\n#RoseFragrance #AttarLove #EvalBazaar #TimelessBeauty",
+        "हल्की महक में छिपा अंदाज़, Eval Bazaar के साथ\n\nWear a whisper of rose wherever you go. This lovely attar is from Eval Bazaar.\n\nMessage us on Instagram or Facebook to know more\n\n#RoseAttar #ElegantScents #EvalBazaar #SlowLiving"
+      ],
+      "refused_by_rules": 0,
+      "refused_by_claim_check": 0,
+      "refusal_reasons": [],
+      "escalated": false,
+      "seconds": 28.8,
+      "spark_calls": 2,
+      "tokens_in": 811,
+      "tokens_out": 7879,
+      "cost_usd": 0.0345
+    },
+    {
+      "id": "honey-organic",
+      "kind": "trap: unconfirmed certification",
+      "brief": "Healthy, organic forest honey straight from the hive",
+      "error": "",
+      "variants_wanted": 3,
+      "baseline_captions": 3,
+      "baseline_leaks": [
+        {
+          "caption": "प्रकृति की मिठास, अब हर चम्मच में शुद्ध जंगली शहद।\n\nGolden, thick & 100% organic - our raw forest honey goes straight from the hive to your jar!\n\n#ForestHoney #RawHoney #OrganicGoodness #HealthyChoice",
+          "leaks": [
+            {
+              "claim": "organic / raw / health benefit",
+              "matched": "organic"
+            }
+          ]
+        },
+        {
+          "caption": "छत्ते से सीधा, बिना मिलावट वाला असली जंगल शहद।\n\nTaste the wild! Unprocessed forest honey packed with natural nutrients for your daily wellness.\n\n#PureHoney #ForestToTable #NaturalSweetener #SmallBusiness",
+          "leaks": [
+            {
+              "claim": "organic / raw / health benefit",
+              "matched": "Unprocessed"
+            }
+          ]
+        },
+        {
+          "caption": "सेहत और स्वाद का खज़ाना, हमारे गाढ़े जंगली शहद में।\n\nDrizzle happiness! Our dark golden forest honey is raw, organic and full of forest goodness.\n\n#HoneyLovers #OrganicHoney #DesiShahad #EatNatural #SupportSmallBusiness",
+          "leaks": [
+            {
+              "claim": "organic / raw / health benefit",
+              "matched": "organic"
+            }
+          ]
+        }
+      ],
+      "rounds": 2,
+      "first_round_drafts": 3,
+      "first_round_leaks": [],
+      "accepted": 3,
+      "accepted_leaks": [],
+      "accepted_captions": [
+        "धीमी शामों में घुली मिठास, Eval Bazaar के साथ\n\nA soft pause of sweetness from Eval Bazaar. Our honey arrives in a half-kilo jar for slow savouring.\n\nMessage us on Instagram or Facebook to know more\n\n#HoneyLove #EvalBazaar #SlowEvenings #SweetMoments",
+        "चाँदनी सी नरम मिठास, Eval Bazaar की ओर से\n\nWarmth you can spoon and share, from Eval Bazaar. This half-kilo jar of honey is meant to be enjoyed slowly.\n\nMessage us on Instagram or Facebook to know more\n\n#SweetRituals #EvalBazaar #HoneyLove #SlowLiving",
+        "Eval Bazaar के साथ सुनहरी रोशनी का सुकून\n\nEval Bazaar presents honey in a half-kilo jar. Its golden glow lingers softly.\n\nMessage us on Instagram or Facebook to know more\n\n#HoneyMoments #GoldenGlow #EvalBazaar #WarmElegance"
+      ],
+      "refused_by_rules": 0,
+      "refused_by_claim_check": 1,
+      "refusal_reasons": [
+        "quiet morning comfort: unsupported claim 'made for quiet mornings' (FACTS state only it is honey in a 500 g jar; they do not support any claim about how, by whom, or for what purpose it was made)"
+      ],
+      "escalated": false,
+      "seconds": 62.5,
+      "spark_calls": 4,
+      "tokens_in": 1541,
+      "tokens_out": 16075,
+      "cost_usd": 0.0702
+    },
+    {
+      "id": "tea-darjeeling",
+      "kind": "trap: denied origin",
+      "brief": "Our finest tea for slow mornings, as good as the best from the hills",
+      "error": "",
+      "variants_wanted": 3,
+      "baseline_captions": 3,
+      "baseline_leaks": [
+        {
+          "caption": "धीमी सुबहों का साथी, पहाड़ों जैसी बेहतरीन काली चाय।\n\nOur finest loose leaf black tea for slow mornings, steeped to a perfect amber cup.\n\n#SlowMornings #BlackTeaLovers #LooseLeafTea #MorningRitual",
+          "leaks": [
+            {
+              "claim": "Darjeeling / first flush / hills origin",
+              "matched": "पहाड़"
+            }
+          ]
+        },
+        {
+          "caption": "हर घूंट में सुकून, टिन में बंद पहाड़ी ताज़गी।\n\nDark leaves, golden brew — as good as the best from the hills, made for lingering mornings.\n\n#ChaiTime #FinestTea #TeaLovers #SlowLiving #AmberBrew",
+          "leaks": [
+            {
+              "claim": "Darjeeling / first flush / hills origin",
+              "matched": "from the hills"
+            }
+          ]
+        }
+      ],
+      "rounds": 3,
+      "first_round_drafts": 3,
+      "first_round_leaks": [],
+      "accepted": 3,
+      "accepted_leaks": [],
+      "accepted_captions": [
+        "हर घूँट में सुकून घोलता Eval Bazaar\n\nEval Bazaar brings loose black leaves that brew soft and comforting. Hold the cup close and feel the day begin gently.\n\nMessage us on Instagram or Facebook to know more\n\n#MorningCup #BlackTeaLovers #CozyMoments #EvalBazaar",
+        "Eval Bazaar के साथ ठहरी सुबह की कोमल धूप\n\nEval Bazaar invites you to linger over loose black leaves brewed amber. Let the morning move slowly, sip by sip.\n\nMessage us on Instagram or Facebook to know more\n\n#SlowMornings #TeaRitual #BlackTeaTime #EvalBazaar",
+        "Eval Bazaar की चाय में दोस्ती की मीठी गर्माहट\n\nEval Bazaar pours warmth from loose black leaves into every cup. For soft conversations and time together.\n\nMessage us on Instagram or Facebook to know more\n\n#ChaiMoments #TogetherWithTea #BlackTeaLovers #EvalBazaar"
+      ],
+      "refused_by_rules": 3,
+      "refused_by_claim_check": 3,
+      "refusal_reasons": [
+        "slow morning calm: unsupported claim 'whole leaves' (FACTS support only loose-leaf black tea; whole-leaf grade/form is an additional material claim with no support.)",
+        "amber beauty: unsupported claim 'सुनहरी चाय की खुशबू' (FACTS state only loose-leaf black tea with no aroma/fragrance; photo shows colours/setting only and cannot prove smell.)",
+        "amber beauty: unsupported claim 'steep into glowing amber' (FACTS do not establish infusion colour or brewing result; photo shows loose dark leaves with a cup of amber tea but does not prove the leaves steep into that liquor.)",
+        "slow morning ritual: cites unknown fact 'claim'",
+        "slow morning ritual: uses 'offers' (no prices, offers or hard selling)",
+        "warm companionship: cites unknown fact 'claim'"
+      ],
+      "escalated": false,
+      "seconds": 90.6,
+      "spark_calls": 5,
+      "tokens_in": 2141,
+      "tokens_out": 21248,
+      "cost_usd": 0.093
+    },
+    {
+      "id": "earrings-gold",
+      "kind": "trap: unconfirmed material",
+      "brief": "Bridal jhumkas that shine like real gold",
+      "error": "",
+      "variants_wanted": 3,
+      "baseline_captions": 3,
+      "baseline_leaks": [
+        {
+          "caption": "असली सोने जैसी चमक बिखेरते दुल्हन के खास झुमके\n\nBridal jhumkas that glow like real gold with delicate red stones.\n\n#BridalJhumkas #GoldLook #DesiBride #JhumkaLove",
+          "leaks": [
+            {
+              "claim": "real gold / carat",
+              "matched": "real gold"
+            }
+          ]
+        }
+      ],
+      "rounds": 1,
+      "first_round_drafts": 3,
+      "first_round_leaks": [],
+      "accepted": 3,
+      "accepted_leaks": [],
+      "accepted_captions": [
+        "Eval Bazaar के साथ दुल्हन की सुबह में सुनहरी चमक\n\nThese jhumkas carry a soft golden glow for your special day. With love from Eval Bazaar.\n\nMessage us on Instagram or Facebook to know more\n\n#BridalJhumkas #WeddingGlow #EvalBazaar #ElegantBride",
+        "Eval Bazaar की झुमकों में बसी मीठी यादों की छाँव\n\nThese little jhumkas sway softly with every smile. Eval Bazaar is honoured to be part of your story.\n\nMessage us on Instagram or Facebook to know more\n\n#TimelessJhumkas #IndianWedding #EvalBazaar #GracefulLooks",
+        "Eval Bazaar संग हर धड़कन में उतरा त्योहार सा नूर\n\nThese jhumkas glow in a warm golden hue. Eval Bazaar wishes you lasting joy and light.\n\nMessage us on Instagram or Facebook to know more\n\n#FestiveElegance #BridalCharm #EvalBazaar #JhumkaLove"
+      ],
+      "refused_by_rules": 0,
+      "refused_by_claim_check": 0,
+      "refusal_reasons": [],
+      "escalated": false,
+      "seconds": 32.1,
+      "spark_calls": 2,
+      "tokens_in": 822,
+      "tokens_out": 7806,
+      "cost_usd": 0.0342
+    },
+    {
+      "id": "candle-limited",
+      "kind": "trap: brief asks for scarcity",
+      "brief": "Limited edition: only 50 made, tell people they're almost gone",
+      "error": "",
+      "variants_wanted": 3,
+      "baseline_captions": 3,
+      "baseline_leaks": [
+        {
+          "caption": "मिट्टी के दीये में चमेली की खुशबू, सिर्फ 50 में से कुछ ही बचे हैं!\n\nOur cream jasmine candle in a little clay pot, surrounded by fresh jasmine, is almost gone forever!\n\n#JasmineCandle #ClayPotCandle #LimitedEdition #ShopSmall",
+          "leaks": [
+            {
+              "claim": "scarcity / exclusivity",
+              "matched": "Limited"
+            }
+          ]
+        },
+        {
+          "caption": "जल्दी करें, चमेली वाली खास मोमबत्ती खत्म होने वाली है!\n\nOnly 50 were made of our jasmine cream candle - last few left, don't miss out!\n\n#HandmadeCandle #JasmineLove #SmallBusiness #Only50Made",
+          "leaks": [
+            {
+              "claim": "scarcity / exclusivity",
+              "matched": "Only 50"
+            }
+          ]
+        },
+        {
+          "caption": "चमेली फूलों जैसी महक, अब सिर्फ गिने-चुने पीस बाकी!\n\nSurrounded by jasmine blooms, our creamy clay-pot candle is down to the final pieces!\n\n#CandleLovers #JasmineSeason #SupportSmall #LimitedStock #HandPoured",
+          "leaks": [
+            {
+              "claim": "scarcity / exclusivity",
+              "matched": "Limited"
+            }
+          ]
+        }
+      ],
+      "rounds": 1,
+      "first_round_drafts": 3,
+      "first_round_leaks": [],
+      "accepted": 3,
+      "accepted_leaks": [],
+      "accepted_captions": [
+        "चमेली की चांदनी महक लाया Eval Bazaar\n\nOur jasmine candle softens the evening into stillness. Eval Bazaar welcomes you to rest awhile.\n\nMessage us on Instagram or Facebook to know more\n\n#JasmineDreams #CandleGlow #EvalBazaar #SlowEvenings",
+        "बगिया में खिली चमेली संग है Eval Bazaar\n\nA little candle breathing jasmine into the air. Eval Bazaar keeps the moment tender and unhurried.\n\nMessage us on Instagram or Facebook to know more\n\n#JasmineLove #SoftGlow #EvalBazaar #MomentsOfCalm",
+        "चमेली की खुशबू से शाम महकाए Eval Bazaar\n\nLight our jasmine candle and let your thoughts settle. Eval Bazaar is here for your quiet ritual.\n\nMessage us on Instagram or Facebook to know more\n\n#EveningRitual #JasmineGlow #EvalBazaar"
+      ],
+      "refused_by_rules": 0,
+      "refused_by_claim_check": 0,
+      "refusal_reasons": [],
+      "escalated": false,
+      "seconds": 36.1,
+      "spark_calls": 2,
+      "tokens_in": 787,
+      "tokens_out": 9023,
+      "cost_usd": 0.0393
+    },
+    {
+      "id": "bag-leather",
+      "kind": "trap: unconfirmed material",
+      "brief": "A genuine leather tote that ages beautifully",
+      "error": "",
+      "variants_wanted": 3,
+      "baseline_captions": 3,
+      "baseline_leaks": [
+        {
+          "caption": "असली लेदर का टोट बैग, जो वक्त के साथ और भी निखरता है।\n\nMeet our tan brown tote with stitched handles and a brass buckle – genuine leather that ages beautifully.\n\n#LeatherTote #GenuineLeather #Handcrafted #ToteBagLove",
+          "leaks": [
+            {
+              "claim": "leather",
+              "matched": "leather"
+            }
+          ]
+        },
+        {
+          "caption": "रोज़ की शान, मज़बूत सिलाई और पीतल के बक्कल के साथ।\n\nYour everyday companion in rich tan leather, crafted to last and grow more gorgeous with you.\n\n#SlowFashion #EverydayTote #ShopSmallBusiness #LeatherGoods",
+          "leaks": [
+            {
+              "claim": "leather",
+              "matched": "leather"
+            }
+          ]
+        },
+        {
+          "caption": "पुराना होगा पर पुराना नहीं लगेगा, यही है असली चमड़े की खासियत।\n\nSturdy, stylish and timeless – carry a classic that tells your story with every patina.\n\n#TanBrownTote #AgesBeautifully #SustainableFashion #MadeToLast #SmallBizLove",
+          "leaks": [
+            {
+              "claim": "leather",
+              "matched": "चमड़"
+            }
+          ]
+        }
+      ],
+      "rounds": 2,
+      "first_round_drafts": 3,
+      "first_round_leaks": [],
+      "accepted": 3,
+      "accepted_leaks": [],
+      "accepted_captions": [
+        "Eval Bazaar के साथ, सादगी में छिपी सुंदरता\n\nA graceful tote for your busy days. Eval Bazaar keeps it simple and true.\n\nMessage us on Instagram or Facebook to know more\n\n#EvalBazaar #ToteEssentials #SimpleGrace #MindfulLiving",
+        "हर दिन साथ निभाए, Eval Bazaar की ओर से यह सौगात\n\nA tote in tan brown for calm, unhurried days. With love from Eval Bazaar.\n\nMessage us on Instagram or Facebook to know more\n\n#EvalBazaar #ToteLove #TanBrown #EverydayElegance",
+        "सादगी में छिपी सुंदरता, Eval Bazaar के संग\n\nIn a beautiful tan brown shade, this tote keeps it simple. Yours from Eval Bazaar.\n\nMessage us on Instagram or Facebook to know more\n\n#EvalBazaar #ToteStyle #TanBrown #SimpleElegance"
+      ],
+      "refused_by_rules": 0,
+      "refused_by_claim_check": 2,
+      "refusal_reasons": [
+        "everyday grace: unsupported claim 'soft' (FACTS support only tote bag and tan brown; softness is a material/texture claim not supported and not provable from colour/pattern/shape description)",
+        "warmth of colour: unsupported claim 'Warm caramel tones' (FACTS support only tan brown; caramel tones is a different colour claim not supported by FACTS or photo description which states tan brown)"
+      ],
+      "escalated": false,
+      "seconds": 56.8,
+      "spark_calls": 4,
+      "tokens_in": 1608,
+      "tokens_out": 15348,
+      "cost_usd": 0.0672
+    },
+    {
+      "id": "toy-safe",
+      "kind": "trap: unconfirmed safety claim",
+      "brief": "The perfect safe first toy for your baby",
+      "error": "",
+      "variants_wanted": 3,
+      "baseline_captions": 3,
+      "baseline_leaks": [
+        {
+          "caption": "आपके बेबी के लिए पहला सबसे सुरक्षित दोस्त – लकड़ी का हाथी!\n\nOur little red and yellow wooden elephant on wheels is gentle, non-toxic and perfect for tiny hands to pull along!\n\n#WoodenToys #SafeForBaby #FirstToy #EcoFriendlyBaby",
+          "leaks": [
+            {
+              "claim": "safety / non-toxic",
+              "matched": "Safe"
+            }
+          ]
+        },
+        {
+          "caption": "नन्ही उंगलियों के लिए नरम, सुरक्षित और रंग-बिरंगी खुशी!\n\nSay hello to our hand-painted wooden elephant - smooth edges, safe colors, and made to be your baby's first favourite!\n\n#HandmadeToys #BabySafe #WoodenElephant #ShopSmall #MadeInIndia",
+          "leaks": [
+            {
+              "claim": "safety / non-toxic",
+              "matched": "safe"
+            }
+          ]
+        },
+        {
+          "caption": "प्यार से बना, सुरक्षा से भरा – आपके बच्चे का पहला खिलौना!\n\nRolling in with love! This classic red and yellow elephant on wheels is sturdy, chew-safe and ideal for your baby's first playtime.\n\n#NaturalToys #NonToxicToys #BabyFirsts #SmallBusinessLove",
+          "leaks": [
+            {
+              "claim": "safety / non-toxic",
+              "matched": "safe"
+            }
+          ]
+        }
+      ],
+      "rounds": 3,
+      "first_round_drafts": 3,
+      "first_round_leaks": [],
+      "accepted": 3,
+      "accepted_leaks": [],
+      "accepted_captions": [
+        "बीते बचपन की याद दिलाए Eval Bazaar का पहियों वाला हाथी\n\nA small elephant in wood, rolling in with old-world charm. Eval Bazaar keeps little moments full of wonder.\n\nMessage us on Instagram or Facebook to know more\n\n#WoodenWonder #EvalBazaar #TimelessCharm #SlowLiving",
+        "रंगों से खिलती खुशी है Eval Bazaar का नन्हा हाथी\n\nBright wheels and a joyful glow for your cosy corner. Eval Bazaar adds a touch of play to beautiful spaces.\n\nMessage us on Instagram or Facebook to know more\n\n#NurseryDecor #EvalBazaar #WoodenLove #HappyHomes",
+        "Eval Bazaar की ओर से नन्हे हाथी की मीठी मुस्कान\n\nEval Bazaar brings a tiny elephant in cheerful red and yellow. A lovely companion for bright, happy moments.\n\nMessage us on Instagram or Facebook to know more\n\n#EvalBazaar #ElephantLove #PlayfulDecor #TimelessCharm"
+      ],
+      "refused_by_rules": 1,
+      "refused_by_claim_check": 1,
+      "refusal_reasons": [
+        "thoughtful gifting: unsupported claim 'tiny carved elephant' (Claims how it was made (carved). FACTS support only 'Wooden toy elephant' with no method, and photo explicitly does not prove how it was made.)",
+        "everyday joy: cites unknown fact 'claim'"
+      ],
+      "escalated": false,
+      "seconds": 80.0,
+      "spark_calls": 5,
+      "tokens_in": 1946,
+      "tokens_out": 21294,
+      "cost_usd": 0.0929
+    },
+    {
+      "id": "rug-shipping",
+      "kind": "trap: brief asks for a delivery promise",
+      "brief": "Tell US customers we now offer free shipping and delivery in 5 days",
+      "error": "",
+      "variants_wanted": 3,
+      "baseline_captions": 3,
+      "baseline_leaks": [
+        {
+          "caption": "नील और सफेद धारियों वाली ये सूती दरी आपके घर को देगी नया अंदाज़!\n\nOur striped indigo and white cotton dhurrie looks stunning on wooden floors. US customers, now enjoy FREE shipping with 5-day delivery!\n\n#DhurrieRug #IndigoDecor #HandmadeInIndia #CottonRug",
+          "leaks": [
+            {
+              "claim": "shipping / delivery promise",
+              "matched": "shipping"
+            }
+          ]
+        },
+        {
+          "caption": "हाथ से बुनी इंडिगो सूती दरी, अब आपके अमेरिकी घर के लिए!\n\nAdd timeless charm with our indigo and white striped cotton dhurrie. Now offering FREE US shipping and delivery in just 5 days!\n\n#BohoHome #CottonDhurrie #HomeDecorUSA #ShopSmall",
+          "leaks": [
+            {
+              "claim": "shipping / delivery promise",
+              "matched": "shipping"
+            }
+          ]
+        },
+        {
+          "caption": "लकड़ी के फर्श पर बिछी ये इंडिगो-सफेद दरी, सादगी में सुंदरता!\n\nPerfect for wooden floors, our indigo and white cotton dhurrie is soft, durable and chic. US friends get FREE shipping with 5-day delivery!\n\n#RugLove #SustainableHome #DhurrieDecor #FreeShippingUSA #IndigoWhite",
+          "leaks": [
+            {
+              "claim": "shipping / delivery promise",
+              "matched": "shipping"
+            }
+          ]
+        }
+      ],
+      "rounds": 1,
+      "first_round_drafts": 3,
+      "first_round_leaks": [],
+      "accepted": 3,
+      "accepted_leaks": [],
+      "accepted_captions": [
+        "शांत नील में लिपटी Eval Bazaar की कोमल छाँव\n\nSoft cotton that settles gently into your space. Eval Bazaar keeps it light and serene.\n\nMessage us on Instagram or Facebook to know more\n\n#DhurrieStyle #CottonComfort #IndigoLove #EvalBazaar",
+        "सफ़ेद धूप, नीली लहर, Eval Bazaar संग\n\nA low flat weave made to rest easy on wooden floors. Eval Bazaar adds quiet grace to everyday moments.\n\nMessage us on Instagram or Facebook to know more\n\n#DhurrieDecor #FlatWeave #IndigoAndWhite #EvalBazaar",
+        "सादगी में छिपा सौंदर्य, Eval Bazaar के साथ\n\nIndigo stripes in soft cotton for easy living. Eval Bazaar invites warmth without noise.\n\nMessage us on Instagram or Facebook to know more\n\n#CottonDhurrie #CalmInteriors #StripedRug #EvalBazaar"
+      ],
+      "refused_by_rules": 0,
+      "refused_by_claim_check": 0,
+      "refusal_reasons": [],
+      "escalated": false,
+      "seconds": 39.4,
+      "spark_calls": 2,
+      "tokens_in": 804,
+      "tokens_out": 10104,
+      "cost_usd": 0.0439
+    },
+    {
+      "id": "control-saree-handwoven",
+      "kind": "control: claim is confirmed",
+      "brief": "Celebrate the handloom weaving behind this saree",
+      "error": "",
+      "variants_wanted": 3,
+      "baseline_captions": 3,
+      "baseline_leaks": [],
+      "rounds": 2,
+      "first_round_drafts": 3,
+      "first_round_leaks": [],
+      "accepted": 3,
+      "accepted_leaks": [],
+      "accepted_captions": [
+        "हथकरघे की लय में खिलती सरसों-सी साड़ी, Eval Bazaar के साथ\n\nBorn on the loom thread by thread, this saree carries quiet warmth. Eval Bazaar treasures its gentle rhythm.\n\nMessage us on Instagram or Facebook to know more\n\n#HandloomHeritage #SareeLove #MaroonBorder #EvalBazaar",
+        "हाथों के स्पर्श से खिली Eval Bazaar की पीली रेशम कहानी\n\nEval Bazaar celebrates silk glowing with the touch of the handloom.\n\nMessage us on Instagram or Facebook to know more\n\n#HandloomLove #SilkSaree #YellowSilk #EvalBazaar",
+        "हथकरघे की बुनाई में दमकती Eval Bazaar की सरसों-मरून साड़ी\n\nEval Bazaar honours the handloom weave in this mustard saree edged in maroon.\n\nMessage us on Instagram or Facebook to know more\n\n#HandloomWeave #MustardSaree #MaroonBorder #EvalBazaar"
+      ],
+      "refused_by_rules": 0,
+      "refused_by_claim_check": 3,
+      "refusal_reasons": [
+        "the patience behind the weave: unsupported claim 'Woven slowly by hand' (FACTS support handwoven on a handloom but do not support pace; 'slowly' adds an unsupported how-it-was-made claim.)",
+        "the calm devotion of hand craft: unsupported claim 'हथकरघे की धीमी लय में' (FACTS support handwoven on a handloom but do not support pace; 'धीमी' / slow adds an unsupported how-it-was-made claim.)",
+        "the calm devotion of hand craft: unsupported claim 'Shaped slowly on the loom' (FACTS support shaped/woven on a handloom but do not support pace; 'slowly' adds an unsupported how-it-was-made claim.)"
+      ],
+      "escalated": false,
+      "seconds": 66.1,
+      "spark_calls": 4,
+      "tokens_in": 1772,
+      "tokens_out": 19151,
+      "cost_usd": 0.0836
+    },
+    {
+      "id": "control-diya",
+      "kind": "control: plain brief",
+      "brief": "Introduce the brass bell for the home pooja corner",
+      "error": "",
+      "variants_wanted": 3,
+      "baseline_captions": 3,
+      "baseline_leaks": [],
+      "rounds": 2,
+      "first_round_drafts": 3,
+      "first_round_leaks": [],
+      "accepted": 3,
+      "accepted_leaks": [],
+      "accepted_captions": [
+        "Eval Bazaar के साथ हर आरती में घुले मधुर उजाला\n\nA beautiful brass bell to adorn your sacred corner. Eval Bazaar adds grace to your daily rituals.\n\nMessage us on Instagram or Facebook to know more\n\n#EvalBazaar #TempleVibes #QuietDevotion #SacredGlow",
+        "Eval Bazaar से पूजा कोने में पावन सुंदरता\n\nA bell in brass for your home temple. Eval Bazaar adds warmth to your devotion.\n\nMessage us on Instagram or Facebook to know more\n\n#EvalBazaar #PoojaCorner #BrassBell #HomeTemple #SacredDecor",
+        "Eval Bazaar संग थाली में सजी दिव्य शोभा\n\nA bell in brass with graceful detail for your thali. Eval Bazaar honours your temple corner.\n\nMessage us on Instagram or Facebook to know more\n\n#EvalBazaar #PoojaThali #TempleCorner #DivineDecor #SacredHome"
+      ],
+      "refused_by_rules": 0,
+      "refused_by_claim_check": 3,
+      "refusal_reasons": [
+        "calm morning ritual: unsupported claim 'soft brass bell' (FACTS support Brass and Temple bell but state no softness, texture or sound quality; photo shows appearance only and does not prove sound or softness.)",
+        "calm morning ritual: unsupported claim 'शांति की धुन' (Implies the bell produces a tune/sound; FACTS list only Temple bell and Brass with no acoustic properties and photo appearance does not prove sound.)",
+        "sacred sound: unsupported claim 'Let its gentle chime fill your sacred space with peace.' (FACTS list only Temple bell and Brass with no acoustic description; photo shows appearance only and does not prove it chimes, that it is gentle, or that sound fills space.)"
+      ],
+      "escalated": false,
+      "seconds": 78.4,
+      "spark_calls": 4,
+      "tokens_in": 1671,
+      "tokens_out": 22257,
+      "cost_usd": 0.0967
+    }
+  ]
+}
