@@ -15,8 +15,11 @@
 - [ ] Hackathon page checked for approved Meta tools, required APIs or credits
 - [x] Meta Model API key obtained; all models available (28 Oct)
 - [x] Test calls work for `muse-spark-1.3`, `muse-image-1.0` and `sam-3.1` (28 Oct)
-- [ ] SAM mask decoded into a usable image mask
-- [ ] Original product pixels composited back onto Muse Image backgrounds
+- [x] SAM mask decoded into a usable image mask (meta-sam-parser)
+- [x] Original product pixels placed on Muse Image backgrounds; colour check passes
+      (0.0 difference on the pink saree, 28 Oct)
+- [x] Caption variants with rule check and Muse Spark claim check, rewritten with
+      feedback (caught an unsupported "first offering" claim, 28 Oct)
 - [ ] Muse Spark powers product understanding, Facebook/Instagram copy and recommendation
 - [ ] Muse Image produces platform-sized ad creatives
 - [ ] SAM mask keeps the real product untouched in edits by Oct 31, or dropped
