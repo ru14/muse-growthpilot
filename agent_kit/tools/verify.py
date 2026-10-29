@@ -52,6 +52,10 @@ def rule_check(variant: dict, business: Business, product: Product) -> list[str]
         if match:
             problems.append(f"{angle}: uses '{match.group(0)}' (no prices, offers or hard selling)")
 
+    hindi = str(variant.get("hindi", "")).strip()
+    if hindi and not re.search(r"[\u0900-\u097F]", hindi):
+        problems.append(f"{angle}: the Hindi line must be in Devanagari script, not romanised")
+
     hashtags = variant.get("hashtags") or []
     bad_tags = [h for h in hashtags if not re.fullmatch(r"#\w+", str(h))]
     if bad_tags:
@@ -77,15 +81,23 @@ VARIANTS:
 Answer only JSON: {{"results": [{{"variant": <index>, "unsupported": [{{"claim": "", "reason": ""}}]}}]}}"""
 
 
-def claim_check(api, variants: list[dict], product: Product) -> dict[int, list[str]]:
-    """Map variant index -> unsupported-claim problems. An unreadable judgement refuses all."""
+def claim_check(
+    api, variants: list[dict], product: Product, approved_ctas: list[str] = ()
+) -> dict[int, list[str]]:
+    """Map variant index -> unsupported-claim problems. An unreadable judgement refuses all.
+
+    A call to action the owner approved word for word is not judged again.
+    """
     if not variants:
         return {}
     facts = "\n".join(f"- {f.claim}" for f in product.allowed_facts)
-    shown = [
-        {"variant": i, "hindi": v.get("hindi", ""), "english": v.get("english", ""), "cta": v.get("cta", "")}
-        for i, v in enumerate(variants)
-    ]
+    approved = {_normal(c) for c in approved_ctas}
+    shown = []
+    for i, v in enumerate(variants):
+        item = {"variant": i, "hindi": v.get("hindi", ""), "english": v.get("english", "")}
+        if _normal(v.get("cta", "")) not in approved:
+            item["cta"] = v.get("cta", "")
+        shown.append(item)
     try:
         answer = api.spark_json(
             "claim_check",
@@ -109,6 +121,10 @@ def claim_check(api, variants: list[dict], product: Product) -> dict[int, list[s
                     f"{angle}: unsupported claim '{item['claim']}' ({item.get('reason', '')})"
                 )
     return problems
+
+
+def _normal(text) -> str:
+    return " ".join(str(text).lower().strip(" .!").split())
 
 
 def format_post(variant: dict, platform: str) -> str:
