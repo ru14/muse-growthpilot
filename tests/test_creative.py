@@ -3,10 +3,10 @@ from pathlib import Path
 import numpy as np
 from PIL import Image
 
-from growthpilot.business import load_business
-from growthpilot.creative import color_shift, compose, cutout, product_unchanged
+from agent_kit.tools.business import load_business
+from agent_kit.tools.creative import color_shift, compose, cutout, product_unchanged
 
-EXAMPLE = Path(__file__).resolve().parent.parent / "examples" / "demo_business.json"
+EXAMPLE = Path(__file__).resolve().parent.parent / "cases" / "input" / "demo_business.json"
 
 
 def photo_and_mask():

@@ -3,7 +3,7 @@
     python -m growthpilot.campaign --business data/private/nidhaye.json \\
         --product pink-silk-saree --brief "Festive season, introduce the saree"
 
-Output goes to output/<timestamp>_<product>/: report.md (what the owner reviews),
+Output goes to cases/output/<timestamp>_<product>/: report.md (what the owner reviews),
 campaign.json, the images, and trace.jsonl (every model call and check).
 Nothing is published: the owner approves and posts.
 """
@@ -15,14 +15,15 @@ import json
 import time
 from pathlib import Path
 
+from agent_kit.meta_api import MetaAPI
+from agent_kit.tools.business import Business, Product, load_business
+from agent_kit.tools.captions import verified_variants
+from agent_kit.tools.creative import make_creatives
+from agent_kit.tools.profile import analyze_product
+from agent_kit.tools.verify import format_post
+
 from . import config
-from .business import Business, Product, load_business
-from .captions import verified_variants
-from .creative import make_creatives
-from .meta_api import MetaAPI
-from .profile import analyze_product
 from .trace import Trace
-from .verify import format_post
 
 DEFAULT_SCENE = "warm cream textured surface, a few marigold petals and a small brass diya near the edges"
 
@@ -153,7 +154,7 @@ def main() -> None:
     parser.add_argument("--scene", default=DEFAULT_SCENE, help="background scene description")
     parser.add_argument("--category", default="Indian silk saree")
     parser.add_argument("--no-images", action="store_true", help="captions only")
-    parser.add_argument("--out", type=Path, default=config.ROOT / "output")
+    parser.add_argument("--out", type=Path, default=config.ROOT / "cases" / "output")
     args = parser.parse_args()
 
     business = load_business(args.business)
