@@ -41,6 +41,17 @@ For each product, GrowthPilot:
    `campaign.json`, and `trace.jsonl` with every model call and check. Nothing is
    published.
 
+### Agent mode
+
+Add `--agent` and Muse Spark plans each step itself (plan → act → observe) using the
+instructions in [agent/system_instructions.md](agent/system_instructions.md). Its tools are
+`analyze_product`, `write_captions`, `make_creatives`, `ask_owner`, `submit_campaign` and
+`stop`. It can't skip verification: captions only come from `write_captions`, which returns
+verified ones, and `submit_campaign` refuses an incomplete campaign. A tool that fails 3
+times in a row, or the 15-turn limit, stops the run and hands it to the owner. The
+checklist and every step are saved to `progress.json` each turn and shown in `report.md`.
+The agent can't confirm facts; only the owner can.
+
 Business data is JSON. See [cases/input/demo_business.json](cases/input/demo_business.json) (synthetic).
 Facts are `confirmed`, `visible` or `unconfirmed`; copy may only state the first two.
 
@@ -66,8 +77,8 @@ Outputs go to `scripts/smoke_out/` (not committed).
 
 | Folder | Responsibility |
 |---|---|
-| `agent/` | Decides what to do and when to stop (campaign agent loop, coming next) |
-| `agent_kit/` | Reusable pieces: `meta_api.py` (Meta Model API client) and `tools/` (business data, product profile, captions, creative, verification) |
+| `agent/` | Decides what to do and when to stop: `loop.py` and `system_instructions.md` |
+| `agent_kit/` | Reusable pieces: `meta_api.py` (Meta Model API client), `progress.py` (checklist and step log) and `tools/` (business data, product profile, captions, creative, verification) |
 | `cases/` | Campaign inputs (`input/`, synthetic examples) and generated runs (`output/`, not committed) |
 | `growthpilot/` | Coordinates the application: `campaign.py` CLI, `config.py`, `trace.py` |
 | `ui/` | Owner approval screen with the trace view (coming) |

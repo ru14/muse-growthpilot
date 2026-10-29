@@ -140,6 +140,7 @@ def make_creatives(
     category: str,
     count: int,
     out_dir: Path,
+    start: int = 1,
 ) -> list[dict]:
     photo = Image.open(photo_path).convert("RGB")
     segmentation = api.segment("segment_product", photo_path, sam_prompt)
@@ -153,7 +154,7 @@ def make_creatives(
     backgrounds = api.generate_images("generate_background", prompt, count, business.post_size)
 
     creatives = []
-    for i, raw in enumerate(backgrounds, start=1):
+    for i, raw in enumerate(backgrounds, start=start):
         background = Image.open(io.BytesIO(raw))
         background.save(out_dir / f"background_{i}.png")
         final, placement = compose(background, product, business)

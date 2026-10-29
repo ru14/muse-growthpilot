@@ -68,6 +68,21 @@ def test_priceless_is_not_a_price():
     assert rule_check(variant(english="A priceless feeling of tradition."), business, product) == []
 
 
+def test_romanised_hindi_is_refused():
+    business, product = demo()
+    problems = rule_check(variant(hindi="Parampara jo mehsoos hoti hai"), business, product)
+    assert any("Devanagari" in p for p in problems)
+
+
+def test_approved_cta_is_not_sent_to_the_claim_judge():
+    business, product = demo()
+    api = FakeAPI({"claim_check": [{"results": []}]})
+    claim_check(api, [variant(), variant(cta="Only 3 left, message us")], product, business.allowed_ctas)
+    prompt = api.calls[0][1]
+    assert "Message us on Instagram or Facebook to know more" not in prompt
+    assert "Only 3 left" in prompt
+
+
 def test_malformed_hashtag_is_refused():
     business, product = demo()
     assert rule_check(variant(hashtags=["#silk saree"]), business, product)

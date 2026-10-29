@@ -29,7 +29,7 @@ Rules:
   availability must come from FACTS.
 - Write like a premium brand, not a product listing: express facts naturally in your own
   words and never paste fact text verbatim. Mention only the one or two details that matter.
-- Hindi: one short, poetic line. English: at most two short sentences.
+- Hindi: one short, poetic line in Devanagari script, never romanised. English: at most two short sentences.
 - Always write the brand name in Latin script exactly as "{name}", in both languages.
 - Check spelling, including inside hashtags.
 - Never mention prices, discounts, offers, sales or "buy now".
@@ -102,7 +102,7 @@ def verified_variants(
         drafts = write_variants(api, business, product, profile, brief, needed, feedback)
         problems = {i: rule_check(v, business, product) for i, v in enumerate(drafts)}
         rule_clean = [i for i, p in problems.items() if not p]
-        judged = claim_check(api, [drafts[i] for i in rule_clean], product)
+        judged = claim_check(api, [drafts[i] for i in rule_clean], product, business.allowed_ctas)
         for j, i in enumerate(rule_clean):
             problems[i] += judged.get(j, [])
         refused = {i: p for i, p in problems.items() if p}

@@ -52,6 +52,7 @@ class Product:
 @dataclass
 class Business:
     name: str
+    about: str
     voice: str
     languages: str
     how_to_buy: str
@@ -96,6 +97,7 @@ def load_business(path: Path) -> Business:
             raise ValueError(f"{p.id}: unknown fact status on {bad}")
     return Business(
         name=data["name"],
+        about=data.get("about", ""),
         voice=data.get("voice", ""),
         languages=data.get("languages", "English"),
         how_to_buy=data.get("how_to_buy", ""),
