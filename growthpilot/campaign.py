@@ -45,6 +45,7 @@ def run(
     agent: bool = False,
     owner_notes: list[str] = (),
     revises: str = "",
+    based_on: str = "",
 ) -> Path:
     photo = product.photos[0]
     run_dir = out_root / f"{time.strftime('%Y%m%d-%H%M%S')}_{product.id}"
@@ -94,6 +95,7 @@ def run(
         "brief": brief,
         "owner_notes": owner_notes,
         "revises": revises,
+        "based_on": based_on,
         "photo": photo.name,
         "profile": profile,
         "variants": [
@@ -202,6 +204,7 @@ def main() -> None:
     parser.add_argument("--agent", action="store_true", help="let the campaign agent choose each step")
     parser.add_argument("--owner-notes", action="append", default=[], help="owner feedback to follow (repeatable)")
     parser.add_argument("--revises", default="", help="run id this draft rewrites")
+    parser.add_argument("--based-on", default="", help="the recommendation this campaign follows")
     parser.add_argument("--out", type=Path, default=config.ROOT / "cases" / "output")
     args = parser.parse_args()
 
@@ -224,6 +227,7 @@ def main() -> None:
         agent=args.agent,
         owner_notes=args.owner_notes,
         revises=args.revises,
+        based_on=args.based_on,
     )
 
 

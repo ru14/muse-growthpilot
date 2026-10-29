@@ -3,7 +3,7 @@
 {% block content %}
 {% set awaiting = c.status == 'awaiting_owner_approval' %}
 <h1>{{ product.name if product else c.product }}</h1>
-<p class="muted">Brief: {{ c.brief }} · run {{ run_id }}{% if c.revises %} · rewrite of <a href="{{ url_for('run_page', run_id=c.revises) }}">{{ c.revises[:15] }}</a>{% endif %}</p>
+<p class="muted">Brief: {{ c.brief }} · run {{ run_id }}{% if c.revises %} · rewrite of <a href="{{ url_for('run_page', run_id=c.revises) }}">{{ c.revises[:15] }}</a>{% endif %}{% if c.based_on %} · follows <a href="{{ url_for('results_page') }}#recommendations">{{ c.based_on }}</a>{% endif %}</p>
 <p><span class="badge {{ c.status }}">{{ c.status.replace('_', ' ') }}</span></p>
 
 {% if c.owner_notes %}

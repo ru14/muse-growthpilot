@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% block title %}Results · GrowthPilot{% endblock %}
+{% block content %}
+<h1>Results</h1>
+<p class="muted">Numbers the owner read from Meta Business Suite or Ads Manager. GrowthPilot never estimates a number; blank means not read.</p>
+
+{% if results %}
+<div style="overflow-x:auto">
+<table>
+  <tr><th>Id</th><th>Post or ad</th><th>Type</th><th>Reach</th><th>Engagement</th><th>Messages</th><th>Follows</th><th>Spend</th><th>Rates</th><th>Source</th></tr>
+  {% for r, d in results %}
+  <tr>
+    <td>{{ r.id }}</td>
+    <td>{{ r.label }}{% if r.run %}<br><a href="{{ url_for('run_page', run_id=r.run) }}" class="muted">{{ r.run[:15] }}</a>{% endif %}{% if r.angle %}<br><span class="muted">angle: {{ r.angle }}</span>{% endif %}</td>
+    <td>{{ r.kind }}, {{ r.platform }}<br><span class="muted">{{ r.posted_at }}{% if r.period %} · {{ r.period }}{% endif %}</span></td>
+    <td>{{ d.reach }}</td>
+    <td>{{ d.engagement if d.engagement is defined else '–' }}</td>
+    <td>{{ d.messages if d.messages is defined else '–' }}</td>
+    <td>{{ d.follows if d.follows is defined else '–' }}</td>
+    <td>{{ '$%.2f' % d.spend if d.spend is defined else '–' }}</td>
+    <td class="muted">
+      {% if d.engagement_rate is defined %}engagement {{ '%.1f' % (d.engagement_rate * 100) }}%<br>{% endif %}
+      {% if d.message_rate is defined %}messages {{ '%.2f' % (d.message_rate * 100) }}%<br>{% endif %}
+      {% if d.cost_per_1000_reach is defined %}${{ '%.2f' % d.cost_per_1000_reach }} per 1,000 reached<br>{% endif %}
+      {% if d.cost_per_message is defined %}${{ '%.2f' % d.cost_per_message }} per message{% endif %}
+    </td>
+    <td class="muted">{{ r.source }}<br>{{ r.recorded_by }}, {{ r.recorded_at }}</td>
+  </tr>
+  {% endfor %}
+</table>
+</div>
+{% else %}
+<p>No results recorded yet.</p>
+{% endif %}
+
+<h2>Record a result</h2>
+<form method="post" action="{{ url_for('add_result') }}" class="card">
+  <div class="grid" style="grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px">
+    <label>Post or ad<input type="text" name="label" placeholder="Post 1: launch post" required></label>
+    <label>Campaign (optional)
+      <select name="run" style="width:100%;padding:8px"><option value="">Not made by GrowthPilot</option>
+        {% for r in runs %}<option value="{{ r.id }}">{{ r.id[:15] }} · {{ r.status.replace('_', ' ') }}</option>{% endfor %}
+      </select></label>
+    <label>Platform<select name="platform" style="width:100%;padding:8px">{% for p in platforms %}<option>{{ p }}</option>{% endfor %}</select></label>
+    <label>Type<select name="kind" style="width:100%;padding:8px">{% for k in kinds %}<option>{{ k }}</option>{% endfor %}</select></label>
+    <label>Posted<input type="text" name="posted_at" placeholder="Oct 28, 3:48 pm PT"></label>
+    <label>Period<input type="text" name="period" placeholder="first 24 hours"></label>
+    {% for name in counts %}
+    <label>{{ name.replace('_', ' ').capitalize() }}{% if name == 'reach' %} (required){% endif %}<input type="text" inputmode="numeric" name="{{ name }}"></label>
+    {% endfor %}
+    <label>Spend ($, paid only)<input type="text" inputmode="decimal" name="spend"></label>
+  </div>
+  <label style="display:block;margin-top:10px">Source<input type="text" name="source" placeholder="Meta Business Suite post insights, read Oct 29" required></label>
+  <div style="margin-top:10px"><button>Record result</button></div>
+</form>
+
+<h2 id="recommendations">Next campaign</h2>
+<form method="post" action="{{ url_for('make_recommendation') }}">
+  <button {{ 'disabled' if not results }}>Recommend the next campaign</button>
+  <span class="muted">Muse Spark reads the results; code checks every number it cites and caps its confidence to what the data supports.</span>
+</form>
+
+{% for i, rec in recommendations %}
+<div class="card" style="margin-top:16px">
+  <div class="row">
+    <strong>Recommendation {{ i + 1 }}</strong>
+    <span class="badge {{ 'passed' if rec.confidence == 'high' else 'awaiting_owner_approval' if rec.confidence == 'medium' else 'failed' }}">confidence {{ rec.confidence }}</span>
+    <span class="muted">{{ rec.made_at }} · from {{ rec.based_on | join(', ') }}</span>
+  </div>
+  <p>{{ rec.summary }}</p>
+  {% set n = rec.next_campaign %}
+  <p><strong>Next:</strong> {{ n.brief }}<br>
+    <span class="muted">product {{ n.product }} · {{ n.kind }} on {{ n.platform }} · change: {{ n.change }}</span></p>
+  <p><strong>Experiment:</strong> {{ rec.experiment }}</p>
+  {% if rec.evidence %}
+  <p><strong>Evidence</strong> (each number checked against the recorded results):</p>
+  <ul>{% for e in rec.evidence %}<li>{{ e.result }} {{ e.metric.replace('_', ' ') }} = {{ e.value }}: {{ e.meaning }}</li>{% endfor %}</ul>
+  {% endif %}
+  {% if rec.dropped_evidence %}
+  <p class="muted">Dropped because the number didn't match: {{ rec.dropped_evidence | join('; ') }}</p>
+  {% endif %}
+  <p class="muted">Confidence: Muse Spark said {{ rec.model_confidence }} ({{ rec.confidence_reason }}). Allowed by the data: {{ rec.confidence_cap }}.</p>
+  {% if rec.problems %}
+  <div class="flash error">Can't be used: {{ rec.problems | join('; ') }}</div>
+  {% elif rec.started %}
+  <p class="muted">Campaign started from this on {{ rec.started }}; see the <a href="{{ url_for('index') }}">campaign list</a>.</p>
+  {% else %}
+  <form method="post" action="{{ url_for('start_from_recommendation', index=i) }}">
+    <button>Make this campaign</button> <span class="muted">The agent drafts it; you still approve it.</span>
+  </form>
+  {% endif %}
+</div>
+{% endfor %}
+{% endblock %}
