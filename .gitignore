@@ -6,6 +6,8 @@
 # Smoke test and generated output
 scripts/smoke_out/
 cases/output/
+# Results recorded on the screen (real numbers stay with the business file)
+*.results.json
 
 # Real Nidhaye data and third-party inspiration screenshots stay out of git
 data/private/

@@ -30,7 +30,7 @@
 ### Technical Depth & Execution (20%)
 - [ ] Inputs are validated
 - [x] Human approval is required before external publishing (approval gate, 29 Oct)
-- [ ] Metric sources are shown and honest
+- [x] Metric sources are shown and honest (results page, 29 Oct)
 - [ ] Error cases handled; core flow tested
 
 ### Demo (25%)
@@ -67,8 +67,8 @@ See [PLAN.md](PLAN.md#winning-edge).
 - [ ] Brand kickoff inputs collected: product photos, owner interview, 5–10 inspiration
       screenshots
 - [ ] Brand kickoff working: brand voice guide and first experiment plan generated
-- [ ] Each campaign's results are added to brand memory
-- [ ] Recommendations show evidence and a confidence level
+- [x] Each campaign's results are added to brand memory (results ledger, 29 Oct)
+- [x] Recommendations show evidence and a confidence level; both checked in code (29 Oct)
 - [ ] **First real campaign posts live by October 30**
 - [ ] Real results collected from the live posts
 - [ ] Product-truth check working: SAM mask keeps product unchanged, unsupported

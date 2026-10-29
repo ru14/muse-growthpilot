@@ -47,8 +47,9 @@ Nidhaye's brand voice: elegant, warm, heritage-inspired and trustworthy; never p
 
 ### Status (29 Oct)
 
-Done: requirements 1–8 (CLI, campaign agent, approval screen with export). Next: results
-and recommendations (9–10).
+Done: requirements 1–10 (CLI, campaign agent, approval screen with export, results and
+recommendations). Next: real results from the first posts, the evaluation set, then the
+full A → results → recommendation → B cycle on Nidhaye.
 
 ### Future capabilities
 

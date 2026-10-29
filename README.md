@@ -89,8 +89,31 @@ flowchart TD
     G -- reject with note --> C
     G -- approve --> E[Export image + captions]
     E --> Post[Owner posts on Facebook and Instagram]
-    Post --> M[Results and next-campaign recommendation: next]
+    Post --> M[Owner records results]
+    M --> N{Muse Spark recommendation; evidence and confidence checked in code}
+    N -- next brief --> C
 ```
+
+### Results and the next campaign
+
+The **Results** page records each post's or ad's numbers as read from Meta Business Suite
+or Ads Manager, with the source and who recorded them (blank means not read; nothing is
+estimated). Rates such as engagement rate and cost per message are computed from them.
+Results are kept next to the business file in `<name>.results.json`.
+
+**Recommend the next campaign** asks Muse Spark what the results show and what to try
+next, then checks the answer in code
+([agent_kit/tools/recommend.py](agent_kit/tools/recommend.py)):
+
+- Every piece of evidence must name a recorded result and a number that matches it;
+  anything else is dropped and shown as dropped.
+- Confidence is capped by the data: low below 3 results or reach under 300, medium below
+  5 results or reach under 1,000.
+- The suggested campaign must follow the business rules (no prices or offers) and name a
+  real product.
+
+**Make this campaign** sends the recommendation to the agent as the next brief (campaign
+B), which goes through the same verification and approval.
 
 Limits (rewrite rounds, agent turns, failures before escalating, colour tolerance) are
 set per business under `limits` in the business file.
@@ -118,10 +141,10 @@ Outputs go to `scripts/smoke_out/` (not committed).
 | Folder | Responsibility |
 |---|---|
 | `agent/` | Decides what to do and when to stop: `loop.py` and `system_instructions.md` |
-| `agent_kit/` | Reusable pieces: `meta_api.py` (Meta Model API client), `progress.py` (checklist and step log) and `tools/` (business data, product profile, captions, creative, verification) |
+| `agent_kit/` | Reusable pieces: `meta_api.py` (Meta Model API client), `progress.py` (checklist and step log) and `tools/` (business data, product profile, captions, creative, verification, results, recommendation) |
 | `cases/` | Campaign inputs (`input/`, synthetic examples) and generated runs (`output/`, not committed) |
 | `growthpilot/` | Coordinates the application: `campaign.py` CLI, `config.py`, `trace.py` |
-| `approval/` | Owner approval: `gate.py` (what may be exported) and `app.py` (the approval screen) |
+| `approval/` | The owner's screen: `gate.py` (what may be exported) and `app.py` (approval, results, recommendations) |
 | `tests/` | Offline tests |
 | `docs/` | Plan, checklist, submission and demo script |
 

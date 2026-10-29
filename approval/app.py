@@ -1,4 +1,4 @@
-"""The approval screen: the owner reviews a campaign, answers questions, then approves or rejects.
+"""The owner's screen: review and approve campaigns, record results, get the next recommendation.
 
     python -m approval.app --business data/private/nidhaye.json --owner "Nidhaye owner"
 
@@ -13,17 +13,24 @@ import json
 import os
 import subprocess
 import sys
+import time
 from pathlib import Path
 
 from flask import Flask, abort, flash, redirect, render_template, request, send_from_directory, url_for
 
+from agent_kit.meta_api import MetaAPI
+from agent_kit.tools import results as ledger_tools
 from agent_kit.tools.business import load_business
+from agent_kit.tools.recommend import RecommendError, recommend
 from growthpilot import config
+from growthpilot.trace import Trace
 
 from . import gate
 
 
-def create_app(business_file: Path, out_root: Path, owner: str) -> Flask:
+def create_app(business_file: Path, out_root: Path, owner: str, make_api=None) -> Flask:
+    """make_api(trace) builds the model client; tests pass a fake."""
+    make_api = make_api or (lambda trace: MetaAPI(trace=trace))
     app = Flask(__name__)
     app.secret_key = os.urandom(16)  # only for the one-line messages after each action
 
@@ -116,6 +123,81 @@ def create_app(business_file: Path, out_root: Path, owner: str) -> Flask:
             flash(str(e), "error")
         return redirect(url_for("run_page", run_id=run_id) + "#questions")
 
+    @app.get("/results")
+    def results_page():
+        business = load_business(business_file)
+        ledger = ledger_tools.load_ledger(business_file)
+        runs = [r for r in gate.list_runs(out_root) if _belongs(out_root / r["id"], business.name)]
+        recs = list(enumerate(ledger["recommendations"]))[::-1]
+        return render_template(
+            "results.html",
+            business=business,
+            results=[(r, ledger_tools.derived(r)) for r in ledger["results"]],
+            runs=runs,
+            recommendations=recs,
+            counts=ledger_tools.COUNTS,
+            platforms=ledger_tools.PLATFORMS,
+            kinds=ledger_tools.KINDS,
+        )
+
+    @app.post("/results")
+    def add_result():
+        entry = {k: request.form.get(k, "") for k in ("label", "run", "platform", "kind", "posted_at", "period", "source")}
+        entry["metrics"] = {k: request.form.get(k, "") for k in ledger_tools.COUNTS + ["spend"]}
+        if entry["run"]:
+            try:
+                c = gate.load_campaign(gate.run_path(out_root, entry["run"]))
+            except gate.ApprovalError as e:
+                flash(str(e), "error")
+                return redirect(url_for("results_page"))
+            entry["product"] = c.get("product", "")
+            entry["angle"] = (c.get("approval") or {}).get("caption", {}).get("angle", "")
+        try:
+            r = ledger_tools.add_result(business_file, entry, owner)
+            flash(f"Recorded {r['id']}: {r['label']}", "ok")
+        except ledger_tools.ResultError as e:
+            flash(f"Not recorded: {e}", "error")
+        return redirect(url_for("results_page"))
+
+    @app.post("/recommend")
+    def make_recommendation():
+        business = load_business(business_file)
+        ledger = ledger_tools.load_ledger(business_file)
+        try:
+            api = make_api(Trace(out_root / "recommendations.trace.jsonl"))
+            rec = recommend(api, business, ledger["results"])
+        except (RecommendError, config.MissingKeyError) as e:
+            flash(f"No recommendation: {e}", "error")
+            return redirect(url_for("results_page"))
+        except Exception as e:  # API or network trouble: say so, keep the page working
+            flash(f"Muse Spark call failed ({type(e).__name__}); try again.", "error")
+            return redirect(url_for("results_page"))
+        ledger["recommendations"].append(rec)
+        ledger_tools.save_ledger(business_file, ledger)
+        flash(f"New recommendation, confidence {rec['confidence']}", "ok")
+        return redirect(url_for("results_page") + "#recommendations")
+
+    @app.post("/recommendations/<int:index>/start")
+    def start_from_recommendation(index: int):
+        ledger = ledger_tools.load_ledger(business_file)
+        if not 0 <= index < len(ledger["recommendations"]):
+            abort(404)
+        rec = ledger["recommendations"][index]
+        if rec["problems"]:
+            flash("This recommendation breaks a rule and can't be used: " + "; ".join(rec["problems"]), "error")
+        elif rec.get("started"):
+            flash("A campaign was already started from this recommendation.", "error")
+        else:
+            nxt = rec["next_campaign"]
+            _start_run(
+                business_file, out_root, f"recommendation-{index + 1}",
+                ["--product", nxt["product"], "--brief", nxt["brief"], "--based-on", f"recommendation {index + 1}"],
+            )
+            rec["started"] = time.strftime("%Y-%m-%d %H:%M")
+            ledger_tools.save_ledger(business_file, ledger)
+            flash("The agent is making the next campaign; it appears in the campaign list in a few minutes.", "ok")
+        return redirect(url_for("results_page") + "#recommendations")
+
     return app
 
 
@@ -125,21 +207,21 @@ def _belongs(run: Path, business_name: str) -> bool:
 
 def _start_rewrite(business_file: Path, out_root: Path, run_id: str, campaign: dict, note: str) -> None:
     """Run the campaign agent again in the background with every owner note so far."""
-    notes = campaign.get("owner_notes", []) + [note]
+    args = ["--product", campaign["product"], "--brief", campaign["brief"], "--revises", run_id]
+    for n in campaign.get("owner_notes", []) + [note]:
+        args += ["--owner-notes", n]
+    if not campaign.get("creatives"):
+        args.append("--no-images")
+    _start_run(business_file, out_root, f"{run_id}.rewrite", args)
+
+
+def _start_run(business_file: Path, out_root: Path, log_name: str, args: list[str]) -> None:
+    """Start the campaign agent in the background; its output goes to <log_name>.log."""
     cmd = [
         sys.executable, "-m", "growthpilot.campaign",
-        "--business", str(business_file),
-        "--product", campaign["product"],
-        "--brief", campaign["brief"],
-        "--agent",
-        "--revises", run_id,
-        "--out", str(out_root),
+        "--business", str(business_file), "--agent", "--out", str(out_root), *args,
     ]
-    for n in notes:
-        cmd += ["--owner-notes", n]
-    if not campaign.get("creatives"):
-        cmd.append("--no-images")
-    with open(out_root / f"{run_id}.rewrite.log", "w") as log:
+    with open(out_root / f"{log_name}.log", "w") as log:
         subprocess.Popen(cmd, cwd=config.ROOT, stdout=log, stderr=subprocess.STDOUT)
 
 

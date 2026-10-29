@@ -51,7 +51,8 @@
 </style>
 </head>
 <body>
-<header><a href="{{ url_for('index') }}">GrowthPilot approval</a><span>{{ business.name }}</span></header>
+<header><a href="{{ url_for('index') }}">GrowthPilot</a><span>{{ business.name }}</span>
+  <nav style="float:right"><a href="{{ url_for('index') }}">Campaigns</a> &nbsp; <a href="{{ url_for('results_page') }}">Results</a></nav></header>
 <main>
   {% for kind, message in get_flashed_messages(with_categories=true) %}
     <div class="flash {{ kind }}">{{ message }}</div>
