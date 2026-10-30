@@ -96,6 +96,14 @@ def test_claim_check_maps_unsupported_claims_to_variants():
     assert "handwoven" in problems[1][0]
 
 
+def test_claim_check_sees_the_photo_and_business_name():
+    _, product = demo()
+    api = FakeAPI({"claim_check": [{"results": []}]})
+    claim_check(api, [variant()], product, observed="deep red with a gold border", business_name="Demo Weaves")
+    prompt = api.calls[0][1]
+    assert "deep red with a gold border" in prompt and '"Demo Weaves" may always be used' in prompt
+
+
 def test_unreadable_claim_check_refuses_everything():
     _, product = demo()
     api = FakeAPI({"claim_check": [{"unexpected": True}]})
