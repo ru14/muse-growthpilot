@@ -31,17 +31,26 @@ Rubric it has to earn: Impact 30%, Meta AI Tooling 25%, Technical Depth 20%, Dem
 
 ## Shots
 
+The story: open on the real post, show what GrowthPilot stopped before it went live, then
+how. About 360 words of voice-over: 2:30 at a calm 145 words a minute, leaving room for
+pauses. If it runs long, cut the bracketed phrases. Say "confidence is low" only if the
+screen shows it.
+
 | Time | On screen | Voice-over |
 |---|---|---|
-| 0:00–0:05 | Title card on the approval screen | "Nothing pre-existing. Everything you'll see in GrowthPilot was built during this hackathon. Indie developer track, Build for Your World." |
-| 0:05–0:20 | Nidhaye's Facebook Page (one post of its own, 28 Oct) and the 10 saree folders | "Nidhaye sells sarees. The owner has beautiful photos and no time or marketing team. And with AI copy there's a real risk: it invents things. Silk, handwoven, 20% off." |
-| 0:20–0:45 | Terminal: `--agent` run for a saree; agent turns scroll by | "GrowthPilot is an agent on Meta's Muse models. Muse Spark looks at the photo, plans each step and calls tools: understand the product, write captions, make images, submit for approval." |
-| 0:45–1:10 | Run page: captions with their cited facts; **Verification** section showing refused drafts and reasons | "Every caption must cite a fact the owner confirmed or the photo shows. Plain code blocks prices and offers; a second Muse Spark call refuses unsupported claims. Here it refused a claim the owner hasn't confirmed, and the agent rewrote it." |
-| 1:10–1:35 | Images: original photo → SAM mask → final ad. Then the rejected background with the extra saree | "SAM 3.1 cuts out the real saree. Muse Image only paints the background, and code checks the colours are unchanged: zero difference. Muse Image sometimes draws a second saree, so Muse Spark checks every background. This one is rejected." |
-| 1:35–2:00 | Navy: owner picks an image and caption, clicks **Approve**; the **Post** section with its confirmation box. Then the live bottle-green post on Nidhaye's Facebook Page. Briefly: a question ("Is it handwoven?") | "Nothing is posted without the owner. The owner approves, then posts with one click, or by hand. These are Nidhaye's first GrowthPilot posts, live on its Page. Answers to questions become facts for every future campaign." |
-| 2:00–2:25 | **Results**: record Post 1 numbers with source "Business Suite insights"; computed rates | "After posting, the owner records the numbers from Business Suite, with the source. Nothing is estimated." |
-| 2:25–2:45 | **Recommend the next campaign**: evidence, dropped evidence, confidence **low**, **Make this campaign** | "Muse Spark recommends what to try next. Code checks every number it cites against the records and caps confidence by how much data there is: one post means low confidence, and it says so. One click starts campaign B." |
-| 2:45–3:00 | Evaluation table: 89% → 0% | "We tested this on 14 trap products. Muse Spark alone made unsupported claims in 89% of captions. GrowthPilot's accepted captions: zero. Fifty-eight seconds and seven cents per campaign." |
+| 0:00–0:05 | Approval screen, title | "Nothing pre-existing: everything you'll see in GrowthPilot was built during this hackathon." |
+| 0:05–0:20 | **Hook.** The live bottle-green post on Nidhaye's Facebook Page; zoom on the caption | "This is Nidhaye's first post made with GrowthPilot. Before it went live, the AI's draft said this saree was 'for wedding-season evenings', and, in Hindi, that it was fragrant. Neither is in the owner's facts. GrowthPilot refused both." |
+| 0:20–0:35 | Nidhaye's Page (the owner's own 28 Oct post), then the 10 saree folders | "Nidhaye is a small saree brand: ten sarees, beautiful photos, no marketing team. Generic AI copy invents things: silk, handwoven, twenty percent off. And one false claim costs a small brand trust it can't buy back." |
+| 0:35–0:55 | Terminal: the agent run (sped up), then **Agent steps** on the run page | "GrowthPilot is an agent on Meta's Muse models. Muse Spark reads the photo, plans each step and calls tools: analyse the product, write captions, make images, ask the owner, submit. It can't skip verification: captions only come out of the tool that checks them." |
+| 0:55–1:20 | Green run: captions with **facts used**, then **What verification caught** (5 refused), then the **Model calls** table | "Every caption cites the facts it uses. Code blocks prices and offers, and a second Muse Spark call refuses claims the facts don't support. Here, five drafts were refused, and the agent rewrote them with the reasons. Every model call is logged: Muse Spark, Muse Image, SAM 3.1." |
+| 1:20–1:45 | Original photo → cutout → background → final ad. Then the hosted demo's "Background shows folded blue saree: cannot use" | "For the image, SAM 3.1 cuts out the real saree. Muse Image paints only the background, and the original pixels go back on top, so the colour check shows the product unchanged. Muse Image sometimes draws a second saree, so Muse Spark checks every background. (In our demo,) this one is rejected." |
+| 1:45–2:10 | Navy: pick an image and caption, **Approve**; a question ("Is it handwoven?"); the **Post** section with its confirmation box | "Nothing goes out without the owner. The owner picks an image and a caption, approves, then posts with one click, or by hand. Questions like 'is it handwoven?' become facts for every future campaign." |
+| 2:10–2:40 | **Results** with the posts' numbers and source; **Recommend the next campaign**: evidence, confidence, **Make this campaign** | "After posting, the owner records the numbers from Business Suite, with their source. Muse Spark recommends the next campaign. Code checks every number it cites against the records and caps its confidence by how much data there is. (With two posts, confidence is low, and it says so.) One click starts campaign B." |
+| 2:40–3:00 | Evaluation table: 89% → 0%; end on Nidhaye's Page with the posts | "On our test set of fourteen trap products, Muse Spark alone made unsupported claims in 89 percent of captions. GrowthPilot's accepted captions: zero. Fifty-eight seconds and seven cents per campaign's captions. Nidhaye's first posts are live, and each one makes the next campaign better." |
+
+Recording tips: record the screen without talking, then the voice-over in one calm take;
+speed up waits (the agent run, page loads) instead of cutting them, so it stays honest;
+add subtitles, as judges may watch muted.
 
 ## Lines to keep honest
 
