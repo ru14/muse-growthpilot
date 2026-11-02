@@ -2,6 +2,8 @@
 
 **Status:** Not submitted
 
+**Track:** Indie developer · **Theme:** Build for Your World
+
 ## Official Submission Details
 
 **Deadline:** November 4, 2026, at 9:00 p.m. EST
@@ -31,14 +33,14 @@ is in the repo.
 
 ### Mandatory submission checks
 
-- [ ] Public GitHub repository URL provided and verified.
+- [x] Public GitHub repository URL provided and verified.
 - [ ] Accessible three-minute demo video provided.
 - [ ] Demo highlights the features, code, and functionality built during the hackathon.
 - [x] Working live product/demo link provided.
 - [ ] Everyone who worked on the project is listed on the submission page.
-- [ ] One team/startup representative is designated, if applicable.
+- [x] One team/startup representative is designated, if applicable (not applicable: Indie developer track).
 - [ ] Only one submission is made for the team/startup.
-- [ ] Repo is a fresh repo with only work done during the event, with no
+- [x] Repo is a fresh repo with only work done during the event, with no
       pre-hackathon code or history.
 - [ ] Video opens with the pre-existing work statement.
 - [ ] Submission is completed before the official deadline.
@@ -50,7 +52,7 @@ Demo 25%.
 
 ### Final submission links
 
-- Repository: [INSERT PUBLIC GITHUB URL]
+- Repository: https://github.com/ru14/muse-growthpilot
 - Three-minute demo video: [INSERT ACCESSIBLE VIDEO URL]
 - Live product/demo: https://muse-growthpilot-demo.onrender.com (hosted demo on synthetic data; the free plan sleeps when idle, so the first load can take about a minute)
 - Architecture documentation: README.md (flow diagram) and docs/PLAN.md
