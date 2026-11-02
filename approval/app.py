@@ -2,7 +2,7 @@
 
     python -m approval.app --business data/private/nidhaye.json --owner "Nidhaye owner"
 
-Serves http://127.0.0.1:5000 on this computer only. Every decision goes through
+Serves http://127.0.0.1:5057 on this computer only. Every decision goes through
 approval/gate.py; this file only shows things and passes the owner's choices on.
 """
 
@@ -230,7 +230,7 @@ def main() -> None:
     parser.add_argument("--business", required=True, type=Path, help="business JSON file")
     parser.add_argument("--owner", default="Owner", help="name recorded with each decision")
     parser.add_argument("--out", type=Path, default=config.ROOT / "cases" / "output")
-    parser.add_argument("--port", type=int, default=5000)
+    parser.add_argument("--port", type=int, default=5057)
     args = parser.parse_args()
     app = create_app(args.business.resolve(), args.out.resolve(), args.owner)
     app.run(host="127.0.0.1", port=args.port)

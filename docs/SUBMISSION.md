@@ -25,7 +25,9 @@ This line opens the video and should match the README.
 All GrowthPilot work started after the Oct 19 kickoff. Open-source dependencies and any
 datasets are listed below.
 
-Labeled dependencies and datasets: [LIST]
+Labeled dependencies and datasets: see the README's
+[Dependencies and datasets](../README.md#dependencies-and-datasets). Only synthetic data
+is in the repo.
 
 ### Mandatory submission checks
 
@@ -51,8 +53,8 @@ Demo 25%.
 - Repository: [INSERT PUBLIC GITHUB URL]
 - Three-minute demo video: [INSERT ACCESSIBLE VIDEO URL]
 - Live product/demo: [INSERT URL]
-- Architecture documentation: [INSERT URL OR REPOSITORY PATH]
-- Evaluation results: [INSERT URL OR REPOSITORY PATH]
+- Architecture documentation: README.md (flow diagram) and docs/PLAN.md
+- Evaluation results: evaluations/results/summary.md
 
 ### Contributors
 

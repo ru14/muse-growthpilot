@@ -19,12 +19,29 @@ python3 -m venv .venv
 cp .env.example .env   # then add your MODEL_API_KEY
 ```
 
+## Quick start (about 5 minutes, about $0.10 of API use)
+
+Everything needed is in the repo: a synthetic business and a synthetic product photo
+generated with Muse Image ([cases/input/](cases/input/)).
+
+```bash
+# 1. Make a verified campaign (about 2 minutes)
+.venv/bin/python -m growthpilot.campaign --business cases/input/demo_business.json \
+    --product demo-saree --agent --brief "Festive season: introduce this saree"
+
+# 2. Review and approve it as the owner at http://127.0.0.1:5057
+.venv/bin/python -m approval.app --business cases/input/demo_business.json --owner "Owner"
+```
+
+On the screen: pick an image and a caption and approve (the export folder is shown),
+then open **Results**, record some numbers, and click **Recommend the next campaign**.
+
 ## Make a verified campaign
 
 ```bash
 .venv/bin/python -m growthpilot.campaign --business cases/input/demo_business.json \
-    --product demo-saree --photo path/to/product.jpg \
-    --brief "Festive season: introduce this saree"
+    --product demo-saree --brief "Festive season: introduce this saree" \
+    [--photo path/to/another_photo.jpg] [--agent]
 ```
 
 For each product, GrowthPilot:
@@ -36,7 +53,10 @@ For each product, GrowthPilot:
    support. Refused drafts are rewritten with the reasons, up to 3 rounds.
 4. **SAM 3.1** masks the product. **Muse Image** generates only the background. The
    original product pixels are placed on it, so the image model never touches the
-   product, and a colour check proves it.
+   product, and a colour check proves it. **Muse Spark** then looks at each background
+   and rejects any that shows fabric, clothing, text or a logo (Muse Image sometimes
+   draws a second product, which would show customers something the business doesn't
+   sell).
 5. The output in `cases/output/<run>/` holds `report.md` for the owner to approve, the images,
    `campaign.json`, and `trace.jsonl` with every model call and check. Nothing is
    published.
@@ -53,7 +73,8 @@ checklist and every step are saved to `progress.json` each turn and shown in `re
 The agent can't confirm facts; only the owner can.
 
 Business data is JSON. See [cases/input/demo_business.json](cases/input/demo_business.json) (synthetic).
-Facts are `confirmed`, `visible` or `unconfirmed`; copy may only state the first two.
+Facts are `confirmed`, `visible`, `unconfirmed` or `denied`; copy may only state the
+first two.
 
 ## Owner approval
 
@@ -61,12 +82,12 @@ Facts are `confirmed`, `visible` or `unconfirmed`; copy may only state the first
 .venv/bin/python -m approval.app --business cases/input/demo_business.json --owner "Owner"
 ```
 
-Opens http://127.0.0.1:5000 (this computer only). For each campaign the owner sees the
+Opens http://127.0.0.1:5057 (this computer only; change it with `--port`). For each campaign the owner sees the
 images with their product check, the captions for Instagram and Facebook, what
 verification caught, the agent's steps and every model call. The owner can:
 
 - **Approve** one image and one caption. The gate in [approval/gate.py](approval/gate.py)
-  only accepts an image that passed the product check and a caption that still passes
+  only accepts an image that passed the product and background checks and a caption that still passes
   today's rules and facts. Approval exports the image, `instagram.txt`, `facebook.txt` and
   `approval.json` to `cases/output/<run>/export/` for the owner to post.
 - **Reject** with a note, and optionally ask the agent for a new draft that follows it.
@@ -82,7 +103,7 @@ flowchart TD
     R -- still refused --> O[Owner decides]
     P --> S[SAM 3.1 masks the product]
     S --> I[Muse Image makes the background; original product placed on it]
-    I --> K{Colour check: product unchanged?}
+    I --> K{Colour check: product unchanged? Muse Spark: background clean?}
     K -- no --> X[Image not usable]
     V -- passed --> G{Owner approval gate}
     K -- yes --> G
@@ -197,4 +218,7 @@ from it is included; GrowthPilot's implementation was written during the hackath
 - [meta-sam-parser](https://pypi.org/project/meta-sam-parser/) (Meta), decodes SAM 3.1 masks
 - [Flask](https://flask.palletsprojects.com) (BSD), [requests](https://github.com/psf/requests) (Apache 2.0), [Pillow](https://python-pillow.org) (HPND), [NumPy](https://numpy.org) (BSD), [pytest](https://pytest.org) (MIT)
 - Meta Model API: Muse Spark 1.3, Muse Image 1.0, SAM 3.1
-- `cases/input/demo_business.json` is synthetic data written for this project
+- `cases/input/demo_business.json` is synthetic data written for this project;
+  `cases/input/demo_saree.jpg` is a synthetic photo generated with Muse Image
+- No real customer data is in this repository. Nidhaye's photos and facts stay on the
+  owner's computer (`data/private/`, git-ignored)
