@@ -124,7 +124,7 @@ See [PLAN.md](PLAN.md#winning-edge).
 - [ ] Everyone who worked on the project is listed on the submission page
 - [x] One representative is designated if submitting as a team/startup (not applicable: Indie developer track)
 - [ ] Only one project submission is made per team/startup
-- [ ] Complete draft submitted by Nov 2 (editable until the deadline)
+- [x] Complete draft submitted by Nov 2 (editable until the deadline)
 - [ ] All required submission fields are complete
 - [ ] Repository, video, and live demo links are verified
 - [ ] Submission completed before the deadline

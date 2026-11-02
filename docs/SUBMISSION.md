@@ -1,6 +1,6 @@
 # Muse GrowthPilot — Submission
 
-**Status:** Not submitted
+**Status:** Draft submitted 2 Nov 2026 (editable until the deadline); video link still to add
 
 **Track:** Indie developer · **Theme:** Build for Your World
 
