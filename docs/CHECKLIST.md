@@ -102,7 +102,7 @@ See [PLAN.md](PLAN.md#winning-edge).
 - [ ] Required code and documentation are committed
 - [x] No API keys, passwords, or other secrets are exposed (full history scanned 2 Nov)
 - [ ] Demo video link opens successfully (test in a private/incognito window)
-- [ ] Live product/demo link works
+- [x] Live product/demo link works (https://muse-growthpilot-demo.onrender.com, checked 2 Nov: campaigns, background check, results and recommendation load)
 
 ### Three-minute demo
 - [x] Demo script completed ([DEMO_SCRIPT.md](DEMO_SCRIPT.md))

@@ -34,7 +34,7 @@ is in the repo.
 - [ ] Public GitHub repository URL provided and verified.
 - [ ] Accessible three-minute demo video provided.
 - [ ] Demo highlights the features, code, and functionality built during the hackathon.
-- [ ] Working live product/demo link provided.
+- [x] Working live product/demo link provided.
 - [ ] Everyone who worked on the project is listed on the submission page.
 - [ ] One team/startup representative is designated, if applicable.
 - [ ] Only one submission is made for the team/startup.
@@ -52,7 +52,7 @@ Demo 25%.
 
 - Repository: [INSERT PUBLIC GITHUB URL]
 - Three-minute demo video: [INSERT ACCESSIBLE VIDEO URL]
-- Live product/demo: [INSERT URL]
+- Live product/demo: https://muse-growthpilot-demo.onrender.com (hosted demo on synthetic data; the free plan sleeps when idle, so the first load can take about a minute)
 - Architecture documentation: README.md (flow diagram) and docs/PLAN.md
 - Evaluation results: evaluations/results/summary.md
 
