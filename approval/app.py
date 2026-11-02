@@ -28,11 +28,23 @@ from growthpilot.trace import Trace
 from . import gate
 
 
-def create_app(business_file: Path, out_root: Path, owner: str, make_api=None) -> Flask:
-    """make_api(trace) builds the model client; tests pass a fake."""
+def create_app(business_file: Path, out_root: Path, owner: str, make_api=None, demo: bool = False) -> Flask:
+    """make_api(trace) builds the model client; tests pass a fake.
+
+    demo=True is the hosted demo (approval/demo.py): steps that call Meta's models are off.
+    """
     make_api = make_api or (lambda trace: MetaAPI(trace=trace))
     app = Flask(__name__)
     app.secret_key = os.urandom(16)  # only for the one-line messages after each action
+
+    @app.context_processor
+    def mode():
+        return {"demo": demo}
+
+    def demo_refuses(what: str) -> bool:
+        if demo:
+            flash(f"{what} calls Meta's models, so it is off in the hosted demo. Run GrowthPilot locally with your own key to try it (see the README).", "error")
+        return demo
 
     def run_or_404(run_id: str) -> Path:
         try:
@@ -100,7 +112,7 @@ def create_app(business_file: Path, out_root: Path, owner: str, make_api=None) -
         except gate.ApprovalError as e:
             flash(f"Not rejected: {e}", "error")
             return redirect(url_for("run_page", run_id=run_id))
-        if request.form.get("rewrite"):
+        if request.form.get("rewrite") and not demo_refuses("A new draft"):
             _start_rewrite(business_file, out_root, run_id, campaign, note.strip())
             flash("Rejected. The agent is writing a new draft with your note; it appears in the list in a few minutes.", "ok")
         else:
@@ -161,6 +173,8 @@ def create_app(business_file: Path, out_root: Path, owner: str, make_api=None) -
 
     @app.post("/recommend")
     def make_recommendation():
+        if demo_refuses("A new recommendation"):
+            return redirect(url_for("results_page") + "#recommendations")
         business = load_business(business_file)
         ledger = ledger_tools.load_ledger(business_file)
         try:
@@ -185,6 +199,8 @@ def create_app(business_file: Path, out_root: Path, owner: str, make_api=None) -
         rec = ledger["recommendations"][index]
         if rec["problems"]:
             flash("This recommendation breaks a rule and can't be used: " + "; ".join(rec["problems"]), "error")
+        elif demo_refuses("Making the next campaign"):
+            pass
         elif rec.get("started"):
             flash("A campaign was already started from this recommendation.", "error")
         else:

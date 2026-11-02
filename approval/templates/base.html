@@ -54,6 +54,7 @@
 <header><a href="{{ url_for('index') }}">GrowthPilot</a><span>{{ business.name }}</span>
   <nav style="float:right"><a href="{{ url_for('index') }}">Campaigns</a> &nbsp; <a href="{{ url_for('results_page') }}">Results</a></nav></header>
 <main>
+  {% if demo %}<div class="flash" style="background:var(--wait-bg);color:var(--wait)"><strong>Hosted demo.</strong> A synthetic business and photo; campaigns were made by the real agent on Meta's Muse models. Results are sample numbers. Try approving, rejecting and answering questions: changes reset when the server restarts. Steps that call the models run locally with your own key. <a href="https://github.com/ru14/muse-growthpilot">Code and setup</a></div>{% endif %}
   {% for kind, message in get_flashed_messages(with_categories=true) %}
     <div class="flash {{ kind }}">{{ message }}</div>
   {% endfor %}

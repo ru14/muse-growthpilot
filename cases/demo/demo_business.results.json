@@ -1,0 +1,127 @@
+{
+  "results": [
+    {
+      "id": "r1",
+      "label": "SAMPLE Post 1: teal saree, festive evenings",
+      "run": "20261102-072308_demo-saree",
+      "product": "demo-saree",
+      "angle": "",
+      "platform": "instagram",
+      "kind": "organic",
+      "posted_at": "2026-10-30",
+      "period": "",
+      "source": "SAMPLE numbers made up for the hosted demo, not real results",
+      "recorded_by": "Demo data",
+      "recorded_at": "2026-11-02 07:43",
+      "metrics": {
+        "reach": 420,
+        "impressions": 610,
+        "reactions": 38,
+        "comments": 6,
+        "shares": 3,
+        "saves": 11,
+        "messages": 2,
+        "profile_visits": 19,
+        "follows": 5
+      }
+    },
+    {
+      "id": "r2",
+      "label": "SAMPLE Post 1: teal saree, festive evenings",
+      "run": "20261102-072308_demo-saree",
+      "product": "demo-saree",
+      "angle": "",
+      "platform": "facebook",
+      "kind": "organic",
+      "posted_at": "2026-10-30",
+      "period": "",
+      "source": "SAMPLE numbers made up for the hosted demo, not real results",
+      "recorded_by": "Demo data",
+      "recorded_at": "2026-11-02 07:43",
+      "metrics": {
+        "reach": 180,
+        "impressions": 240,
+        "reactions": 9,
+        "comments": 1,
+        "shares": 1,
+        "messages": 1
+      }
+    },
+    {
+      "id": "r3",
+      "label": "SAMPLE Post 2: teal saree, gold border close-up",
+      "run": "20261102-074106_demo-saree",
+      "product": "demo-saree",
+      "angle": "",
+      "platform": "instagram",
+      "kind": "organic",
+      "posted_at": "2026-11-01",
+      "period": "",
+      "source": "SAMPLE numbers made up for the hosted demo, not real results",
+      "recorded_by": "Demo data",
+      "recorded_at": "2026-11-02 07:43",
+      "metrics": {
+        "reach": 530,
+        "impressions": 790,
+        "reactions": 61,
+        "comments": 9,
+        "shares": 5,
+        "saves": 24,
+        "messages": 4,
+        "profile_visits": 31,
+        "follows": 9
+      }
+    }
+  ],
+  "recommendations": [
+    {
+      "made_at": "2026-11-02 07:44",
+      "based_on": [
+        "r1",
+        "r2",
+        "r3"
+      ],
+      "summary": "The gold border close-up on Instagram reached the most people and earned the highest engagement rate so far, with more saves and messages than the earlier festive evenings post. With only three posts that differ in creative, platform and posting date, we cannot tell which change caused the difference.",
+      "evidence": [
+        {
+          "result": "r3",
+          "metric": "reach",
+          "value": 530,
+          "meaning": "people reached by the gold border close-up on Instagram"
+        },
+        {
+          "result": "r1",
+          "metric": "reach",
+          "value": 420,
+          "meaning": "people reached by the earlier festive evenings post on Instagram"
+        },
+        {
+          "result": "r3",
+          "metric": "engagement_rate",
+          "value": 0.1868,
+          "meaning": "share of reach that engaged with the close-up"
+        },
+        {
+          "result": "r1",
+          "metric": "engagement_rate",
+          "value": 0.1381,
+          "meaning": "share of reach that engaged with the earlier post"
+        }
+      ],
+      "dropped_evidence": [],
+      "next_campaign": {
+        "product": "demo-saree",
+        "platform": "instagram",
+        "kind": "organic",
+        "change": "show the same teal silk saree in a full festive-evening drape instead of the gold border close-up, keeping platform and organic kind the same",
+        "brief": "Celebrate the craft behind our teal silk saree with its wide gold border, draped softly for festive evenings, and Message us on Instagram or Facebook if you would like to know more."
+      },
+      "experiment": "Compare the next full-drape Instagram organic post to r3 close-up Instagram organic post and decide by engagement_rate, with saves as supporting signal for craft interest",
+      "confidence": "low",
+      "model_confidence": "low",
+      "confidence_reason": "Only three organic posts exist and r1 and r3 differ in both creative focus and posting date, so no single cause can be isolated yet",
+      "confidence_cap": "low: only 3 result(s), smallest reach 180",
+      "problems": []
+    }
+  ]
+}

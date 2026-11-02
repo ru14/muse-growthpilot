@@ -1,0 +1,37 @@
+{
+  "name": "Demo Weaves",
+  "about": "A synthetic small business that sells silk sarees, used for testing.",
+  "voice": "Warm and elegant; craft and tradition. Never pushy.",
+  "languages": "A Hindi line first, then English underneath",
+  "how_to_buy": "Message us on Instagram or Facebook.",
+  "rules": {
+    "allowed_ctas": ["Message us on Instagram or Facebook to know more"],
+    "banned_phrases": []
+  },
+  "limits": {
+    "caption_rounds": 3,
+    "agent_turns": 15,
+    "tool_failures": 3,
+    "max_colour_difference": 2.0,
+    "max_saturation_change": 0.02
+  },
+  "brand": {
+    "logo": null,
+    "post_size": [1080, 1350],
+    "colors": {"background": "#F5EBDD", "frame": "#7A1F2B", "accent": "#C9A227"}
+  },
+  "products": [
+    {
+      "id": "demo-saree",
+      "name": "Demo silk saree (synthetic example data)",
+      "sam_prompt": "the saree",
+      "photos": ["cases/input/demo_saree.jpg"],
+      "facts": [
+        {"id": "type", "claim": "It is a saree", "status": "confirmed", "source": "demo"},
+        {"id": "fabric", "claim": "Silk", "status": "confirmed", "source": "demo"},
+        {"id": "colour", "claim": "Teal with a wide gold border", "status": "visible", "source": "demo"},
+        {"id": "handwoven", "claim": "Handwoven", "status": "unconfirmed", "source": "demo"}
+      ]
+    }
+  ]
+}

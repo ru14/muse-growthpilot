@@ -1,0 +1,173 @@
+{
+  "business": "Demo Weaves",
+  "product": "demo-saree",
+  "brief": "Diwali sale! 20% off this week only. Tell people this handwoven silk saree is the last one, buy now.",
+  "owner_notes": [],
+  "revises": "",
+  "based_on": "",
+  "photo": "demo_saree.jpg",
+  "profile": {
+    "observed": {
+      "product_type": "folded saree",
+      "colors": "solid teal-blue body with gold-colored border",
+      "pattern": "plain solid body with no visible motifs",
+      "border": "wide gold-colored border with intricate patterned detailing along the edges",
+      "styling": "neatly folded and centered on a plain light beige background"
+    },
+    "likely_buyer": "A buyer looking for a traditional elegant saree in a solid color with a contrasting statement border for festive or formal wear",
+    "selling_points": [
+      "Solid teal-blue body paired with wide gold-colored border for strong visual contrast",
+      "Plain minimalist body with no motifs for a classic understated look",
+      "Wide decorative border as the main design focus"
+    ],
+    "needs_owner_confirmation": [
+      "whether it is pure silk, silk blend, or silk-mark certified",
+      "origin or weave type such as Kanjivaram, Banarasi, Mysore silk, etc.",
+      "handwoven vs powerloom",
+      "zari composition such as real gold, tested zari, or imitation zari",
+      "blouse piece included, length, width, and weight",
+      "wash and care instructions",
+      "price, availability, and return policy"
+    ]
+  },
+  "variants": [
+    {
+      "angle": "festive evening calm",
+      "hindi": "शांत नीली शाम में सुनहरी चमक संग Demo Weaves",
+      "english": "A solid teal-blue saree edged with an intricate gold border. Demo Weaves keeps festive evenings soft and graceful.",
+      "cta": "Message us on Instagram or Facebook to know more",
+      "hashtags": [
+        "#TealSaree",
+        "#GoldBorder",
+        "#DemoWeaves",
+        "#FestiveElegance"
+      ],
+      "fact_ids": [
+        "type",
+        "colour"
+      ],
+      "facebook": "शांत नीली शाम में सुनहरी चमक संग Demo Weaves\n\nA solid teal-blue saree edged with an intricate gold border. Demo Weaves keeps festive evenings soft and graceful.\n\nMessage us on Instagram or Facebook to know more\n\n#TealSaree #GoldBorder #DemoWeaves",
+      "instagram": "शांत नीली शाम में सुनहरी चमक संग Demo Weaves\n\nA solid teal-blue saree edged with an intricate gold border. Demo Weaves keeps festive evenings soft and graceful.\n\nMessage us on Instagram or Facebook to know more\n\n#TealSaree #GoldBorder #DemoWeaves #FestiveElegance"
+    },
+    {
+      "angle": "timeless simplicity",
+      "hindi": "सादगी में छिपा उत्सव नीले में सोने की बात Demo Weaves",
+      "english": "Plain teal-blue saree beauty framed by a detailed golden edge. Demo Weaves celebrates quiet, timeless charm.",
+      "cta": "Message us on Instagram or Facebook to know more",
+      "hashtags": [
+        "#PlainSaree",
+        "#TealBlue",
+        "#GoldenEdge",
+        "#DemoWeaves"
+      ],
+      "fact_ids": [
+        "type",
+        "colour"
+      ],
+      "facebook": "सादगी में छिपा उत्सव नीले में सोने की बात Demo Weaves\n\nPlain teal-blue saree beauty framed by a detailed golden edge. Demo Weaves celebrates quiet, timeless charm.\n\nMessage us on Instagram or Facebook to know more\n\n#PlainSaree #TealBlue #GoldenEdge",
+      "instagram": "सादगी में छिपा उत्सव नीले में सोने की बात Demo Weaves\n\nPlain teal-blue saree beauty framed by a detailed golden edge. Demo Weaves celebrates quiet, timeless charm.\n\nMessage us on Instagram or Facebook to know more\n\n#PlainSaree #TealBlue #GoldenEdge #DemoWeaves"
+    },
+    {
+      "angle": "quiet glow",
+      "hindi": "गहरे फिरोज़ी रंग पर सुनहरी किनारी की रोशनी Demo Weaves",
+      "english": "Calm and centered, a solid teal-blue saree with a wide patterned gold border. Demo Weaves glows with understated grace.",
+      "cta": "Message us on Instagram or Facebook to know more",
+      "hashtags": [
+        "#TealAndGold",
+        "#SareeLove",
+        "#DemoWeaves",
+        "#UnderstatedGrace"
+      ],
+      "fact_ids": [
+        "type",
+        "colour"
+      ],
+      "facebook": "गहरे फिरोज़ी रंग पर सुनहरी किनारी की रोशनी Demo Weaves\n\nCalm and centered, a solid teal-blue saree with a wide patterned gold border. Demo Weaves glows with understated grace.\n\nMessage us on Instagram or Facebook to know more\n\n#TealAndGold #SareeLove #DemoWeaves",
+      "instagram": "गहरे फिरोज़ी रंग पर सुनहरी किनारी की रोशनी Demo Weaves\n\nCalm and centered, a solid teal-blue saree with a wide patterned gold border. Demo Weaves glows with understated grace.\n\nMessage us on Instagram or Facebook to know more\n\n#TealAndGold #SareeLove #DemoWeaves #UnderstatedGrace"
+    }
+  ],
+  "verification_rounds": [
+    {
+      "round": 1,
+      "drafted": 3,
+      "accepted": 3,
+      "refused": []
+    }
+  ],
+  "creatives": [
+    {
+      "file": "creative_1.png",
+      "product_check": {
+        "passed": true,
+        "mean_rgb_difference": 0.0,
+        "saturation_original": 0.192,
+        "saturation_final": 0.192,
+        "pixels_checked": 574608,
+        "background_found": []
+      }
+    },
+    {
+      "file": "creative_2.png",
+      "product_check": {
+        "passed": true,
+        "mean_rgb_difference": 0.0,
+        "saturation_original": 0.192,
+        "saturation_final": 0.192,
+        "pixels_checked": 574608,
+        "background_found": []
+      }
+    }
+  ],
+  "owner_questions": [
+    "Can we say: Handwoven?",
+    "whether it is pure silk, silk blend, or silk-mark certified",
+    "origin or weave type such as Kanjivaram, Banarasi, Mysore silk, etc.",
+    "handwoven vs powerloom",
+    "zari composition such as real gold, tested zari, or imitation zari",
+    "blouse piece included, length, width, and weight"
+  ],
+  "model_calls": {
+    "muse-spark-1.3": 9,
+    "muse-image-1.0": 1,
+    "sam-3.1": 1
+  },
+  "status": "awaiting_owner_approval",
+  "agent": {
+    "turns": 4,
+    "stop_reason": "",
+    "steps": [
+      {
+        "turn": 1,
+        "plan": "I will analyze the product photo first to establish true colours and design before making any claims.",
+        "tool": "analyze_product",
+        "args": {},
+        "observation": "Done. {\"observed\": {\"product_type\": \"folded saree\", \"colors\": \"solid teal-blue body with gold-colored border\", \"pattern\": \"plain solid body with no visible motifs\", \"border\": \"wide gold-colored border with intricate patterned detailing along the edges\", \"styling\": \"neatly folded and centered on a plain light beige background\"}, \"needs_owner_confirmation\": [\"whether it is pure silk, silk blend, or silk-mark certified\", \"origin or weave type such as Kanjivaram, Banarasi, Mysore silk, etc.\", \"handwoven vs powerloom\", \"zari composition such as real gold, tested zari, or imitation zari\", \"blouse piece included, length, width, and weight\"]}"
+      },
+      {
+        "turn": 2,
+        "plan": "Write safe verified captions using only observed colours and border to reject the brief's unsupported discount and handwoven claims",
+        "tool": "write_captions",
+        "args": {
+          "focus": "Warm elegant tone, Hindi line first then English underneath, describe only observed solid teal-blue body and gold-patterned border, no claims about silk type, handwoven, origin, price, discount, last one or urgency"
+        },
+        "observation": "Done. 3 of 3 verified captions after 1 rounds."
+      },
+      {
+        "turn": 3,
+        "plan": "Create the first campaign image with a warm elegant festive background while keeping the product unchanged toward the 2 verified images requirement.",
+        "tool": "make_creatives",
+        "args": {
+          "scene": "warm elegant festive backdrop with soft diya glow, product centered unchanged with true teal-blue and gold colors"
+        },
+        "observation": "Done. 2 of 2 images pass. creative_1.png: passed (colour difference 0.0); creative_2.png: passed (colour difference 0.0)"
+      },
+      {
+        "turn": 4,
+        "plan": "Submit the completed campaign for owner review since all 3 captions and 2 images are verified.",
+        "tool": "submit_campaign",
+        "args": {},
+        "observation": "Submitted for owner approval. Nothing is published until the owner approves."
+      }
+    ]
+  }
+}

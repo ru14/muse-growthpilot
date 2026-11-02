@@ -1,0 +1,209 @@
+{
+  "business": "Demo Weaves",
+  "product": "demo-saree",
+  "brief": "Festive season: introduce this saree",
+  "owner_notes": [],
+  "revises": "",
+  "based_on": "",
+  "photo": "demo_saree.jpg",
+  "profile": {
+    "observed": {
+      "product_type": "folded saree",
+      "colors": "teal-blue body with gold-toned border",
+      "pattern": "plain solid body with no visible motifs",
+      "border": "wide gold-toned border with intricate patterned bands along top and bottom edges",
+      "styling": "neatly folded and centered on a plain light beige background in top-down flat-lay view"
+    },
+    "likely_buyer": "someone looking for a traditional solid-color saree with a contrasting border for festive, wedding-guest, or formal occasions",
+    "selling_points": [
+      "Solid teal-blue body paired with high-contrast gold-toned border",
+      "Wide border with detailed edge patterning visible on the fold",
+      "Plain motif-free body for a minimalist traditional look",
+      "Smooth surface with subtle sheen presented in a neat folded flat-lay"
+    ],
+    "needs_owner_confirmation": [
+      "whether the gold-toned border is real zari, tested zari or imitation thread",
+      "specific weave origin or technique name",
+      "silk purity, blend, certification, weight and sheerness",
+      "saree length, width, blouse piece inclusion, and care instructions",
+      "price and occasion positioning the seller wants to claim"
+    ]
+  },
+  "variants": [
+    {
+      "angle": "festive glow",
+      "hindi": "त्योहार की रोशनी में Demo Weaves की नीली हरी शांति",
+      "english": "Demo Weaves presents a teal-blue saree with a warm gold border for the festive season. It rests neatly folded, ready for your moments of joy.",
+      "cta": "Message us on Instagram or Facebook to know more",
+      "hashtags": [
+        "#DemoWeaves",
+        "#FestiveSaree",
+        "#TealBlueSaree",
+        "#GoldBorder",
+        "#FestiveElegance"
+      ],
+      "fact_ids": [
+        "type",
+        "colour"
+      ],
+      "facebook": "त्योहार की रोशनी में Demo Weaves की नीली हरी शांति\n\nDemo Weaves presents a teal-blue saree with a warm gold border for the festive season. It rests neatly folded, ready for your moments of joy.\n\nMessage us on Instagram or Facebook to know more\n\n#DemoWeaves #FestiveSaree #TealBlueSaree",
+      "instagram": "त्योहार की रोशनी में Demo Weaves की नीली हरी शांति\n\nDemo Weaves presents a teal-blue saree with a warm gold border for the festive season. It rests neatly folded, ready for your moments of joy.\n\nMessage us on Instagram or Facebook to know more\n\n#DemoWeaves #FestiveSaree #TealBlueSaree #GoldBorder #FestiveElegance"
+    },
+    {
+      "angle": "quiet elegance",
+      "hindi": "सादगी में छिपी त्योहारों की शोभा Demo Weaves के संग",
+      "english": "This teal-blue saree edged in gold brings quiet grace to festive days from Demo Weaves. It lies neatly folded, simple and serene.",
+      "cta": "Message us on Instagram or Facebook to know more",
+      "hashtags": [
+        "#DemoWeaves",
+        "#SareeLove",
+        "#TealAndGold",
+        "#FestiveTradition",
+        "#ElegantDrape"
+      ],
+      "fact_ids": [
+        "type",
+        "colour"
+      ],
+      "facebook": "सादगी में छिपी त्योहारों की शोभा Demo Weaves के संग\n\nThis teal-blue saree edged in gold brings quiet grace to festive days from Demo Weaves. It lies neatly folded, simple and serene.\n\nMessage us on Instagram or Facebook to know more\n\n#DemoWeaves #SareeLove #TealAndGold",
+      "instagram": "सादगी में छिपी त्योहारों की शोभा Demo Weaves के संग\n\nThis teal-blue saree edged in gold brings quiet grace to festive days from Demo Weaves. It lies neatly folded, simple and serene.\n\nMessage us on Instagram or Facebook to know more\n\n#DemoWeaves #SareeLove #TealAndGold #FestiveTradition #ElegantDrape"
+    },
+    {
+      "angle": "warm tradition",
+      "hindi": "परंपरा की मिठास लिए Demo Weaves की उत्सव भेंट",
+      "english": "Demo Weaves shares a teal-blue saree with a glowing gold border for festive gatherings. Folded plainly, its beauty speaks softly.",
+      "cta": "Message us on Instagram or Facebook to know more",
+      "hashtags": [
+        "#DemoWeaves",
+        "#FestiveSeason",
+        "#TealSaree",
+        "#TraditionalElegance"
+      ],
+      "fact_ids": [
+        "type",
+        "colour"
+      ],
+      "facebook": "परंपरा की मिठास लिए Demo Weaves की उत्सव भेंट\n\nDemo Weaves shares a teal-blue saree with a glowing gold border for festive gatherings. Folded plainly, its beauty speaks softly.\n\nMessage us on Instagram or Facebook to know more\n\n#DemoWeaves #FestiveSeason #TealSaree",
+      "instagram": "परंपरा की मिठास लिए Demo Weaves की उत्सव भेंट\n\nDemo Weaves shares a teal-blue saree with a glowing gold border for festive gatherings. Folded plainly, its beauty speaks softly.\n\nMessage us on Instagram or Facebook to know more\n\n#DemoWeaves #FestiveSeason #TealSaree #TraditionalElegance"
+    }
+  ],
+  "verification_rounds": [
+    {
+      "round": 1,
+      "drafted": 3,
+      "accepted": 3,
+      "refused": []
+    }
+  ],
+  "creatives": [
+    {
+      "file": "creative_1.png",
+      "product_check": {
+        "passed": false,
+        "mean_rgb_difference": 0.0,
+        "saturation_original": 0.192,
+        "saturation_final": 0.192,
+        "pixels_checked": 574594,
+        "background_found": [
+          "folded blue saree with gold border in upper center"
+        ]
+      }
+    },
+    {
+      "file": "creative_2.png",
+      "product_check": {
+        "passed": false,
+        "mean_rgb_difference": 0.0,
+        "saturation_original": 0.192,
+        "saturation_final": 0.192,
+        "pixels_checked": 574594,
+        "background_found": [
+          "folded blue saree at the top center"
+        ]
+      }
+    },
+    {
+      "file": "creative_3.png",
+      "product_check": {
+        "passed": true,
+        "mean_rgb_difference": 0.0,
+        "saturation_original": 0.192,
+        "saturation_final": 0.192,
+        "pixels_checked": 574591,
+        "background_found": []
+      }
+    },
+    {
+      "file": "creative_4.png",
+      "product_check": {
+        "passed": true,
+        "mean_rgb_difference": 0.0,
+        "saturation_original": 0.192,
+        "saturation_final": 0.192,
+        "pixels_checked": 574591,
+        "background_found": []
+      }
+    }
+  ],
+  "owner_questions": [
+    "Can we say: Handwoven?",
+    "whether the gold-toned border is real zari, tested zari or imitation thread",
+    "specific weave origin or technique name",
+    "silk purity, blend, certification, weight and sheerness",
+    "saree length, width, blouse piece inclusion, and care instructions",
+    "price and occasion positioning the seller wants to claim"
+  ],
+  "model_calls": {
+    "muse-spark-1.3": 12,
+    "muse-image-1.0": 2,
+    "sam-3.1": 2
+  },
+  "status": "awaiting_owner_approval",
+  "agent": {
+    "turns": 5,
+    "stop_reason": "",
+    "steps": [
+      {
+        "turn": 1,
+        "plan": "Analyze the product photo first to ground all captions and creatives in its real colours and design",
+        "tool": "analyze_product",
+        "args": {},
+        "observation": "Done. {\"observed\": {\"product_type\": \"folded saree\", \"colors\": \"teal-blue body with gold-toned border\", \"pattern\": \"plain solid body with no visible motifs\", \"border\": \"wide gold-toned border with intricate patterned bands along top and bottom edges\", \"styling\": \"neatly folded and centered on a plain light beige background in top-down flat-lay view\"}, \"needs_owner_confirmation\": [\"whether the gold-toned border is real zari, tested zari or imitation thread\", \"specific weave origin or technique name\", \"silk purity, blend, certification, weight and sheerness\", \"saree length, width, blouse piece inclusion, and care instructions\", \"price and occasion positioning the seller wants to claim\"]}"
+      },
+      {
+        "turn": 2,
+        "plan": "Draft festive captions using only observed colours and pattern to get 3 verified variants.",
+        "tool": "write_captions",
+        "args": {
+          "focus": "Festive season introduce this saree, warm and elegant voice, Hindi line first then English underneath, only describe teal-blue body with gold-toned border and plain folded presentation, no claims about material, zari, origin, handmade, price or discounts"
+        },
+        "observation": "Done. 3 of 3 verified captions after 1 rounds."
+      },
+      {
+        "turn": 3,
+        "plan": "Create the first festive campaign image keeping the product unchanged to start the 2 verified images requirement.",
+        "tool": "make_creatives",
+        "args": {
+          "scene": "warm elegant festive background with soft light, folded teal-blue saree with gold-toned border kept centered and unchanged"
+        },
+        "observation": "FAILED: 0 of 2 images pass. creative_1.png: FAILED (colour difference 0.0; background shows folded blue saree with gold border in upper center); creative_2.png: FAILED (colour difference 0.0; background shows folded blue saree at the top center)"
+      },
+      {
+        "turn": 4,
+        "plan": "Retry creatives with background-only description to avoid the duplicate saree that caused failure.",
+        "tool": "make_creatives",
+        "args": {
+          "scene": "warm elegant festive blurred background with soft golden light and defocused diyas, empty backdrop only with no additional saree, clothing or patterns"
+        },
+        "observation": "Done. 2 of 2 images pass. creative_3.png: passed (colour difference 0.0); creative_4.png: passed (colour difference 0.0)"
+      },
+      {
+        "turn": 5,
+        "plan": "Submit the completed campaign for owner review because all 3 captions and 2 images are verified",
+        "tool": "submit_campaign",
+        "args": {},
+        "observation": "Submitted for owner approval. Nothing is published until the owner approves."
+      }
+    ]
+  }
+}
