@@ -118,6 +118,38 @@ def approve(run: Path, business_file: Path, image: str, variant: int, owner: str
     return export
 
 
+def publish(run: Path, owner: str, post) -> dict:
+    """The owner posts an approved campaign. post(export, done) does the posting and returns
+    what was posted; platforms already done are skipped, so a retry never posts twice."""
+    c = load_campaign(run)
+    if c.get("status") != APPROVED:
+        raise ApprovalError("only an approved campaign can be posted")
+    done = c.get("published") or {}
+    if done.get("facebook") and done.get("instagram"):
+        raise ApprovalError("this campaign is already posted on Facebook and Instagram")
+    result = post(run / "export", done)
+    c["published"] = {**result, "published_by": owner, "published_at": _now()}
+    _save_campaign(run, c)
+    return c["published"]
+
+
+def record_posted(run: Path, owner: str, url: str) -> dict:
+    """The owner posted it by hand; keep the link with the campaign."""
+    url = url.strip()
+    if not url.startswith("https://"):
+        raise ApprovalError("paste the post's link, starting with https://")
+    c = load_campaign(run)
+    if c.get("status") != APPROVED:
+        raise ApprovalError("only an approved campaign can be posted")
+    platform = "instagram" if "instagram.com" in url else "facebook"
+    published = c.get("published") or {}
+    published[platform] = {"url": url, "by_hand": True}
+    published.update(published_by=owner, published_at=_now())
+    c["published"] = published
+    _save_campaign(run, c)
+    return published
+
+
 def reject(run: Path, owner: str, note: str) -> dict:
     """Reject with a note. The note is what the agent gets if the owner asks for a rewrite."""
     note = note.strip()

@@ -16,6 +16,27 @@
   Approved by {{ c.approval.approved_by }} on {{ c.approval.approved_at }}.
   Ready to post: {% for f in export %}<a href="{{ url_for('run_file', run_id=run_id, name='export/' ~ f) }}">{{ f }}</a>{% if not loop.last %}, {% endif %}{% endfor %}
 </div>
+{% set pub = c.published or {} %}
+<div class="card" id="post" style="margin-bottom:16px">
+  <h2 style="margin-top:0">Post</h2>
+  {% for platform in ('facebook', 'instagram') if pub[platform] %}
+  <p><span class="badge passed">Posted on {{ platform|capitalize }}</span>
+    {% if pub[platform].url %}<a href="{{ pub[platform].url }}" target="_blank" rel="noopener">{{ pub[platform].url }}</a>{% endif %}
+    {% if pub[platform].by_hand %}<span class="muted">(posted by hand)</span>{% endif %}</p>
+  {% endfor %}
+  {% if pub.instagram_error and not pub.instagram %}<p><span class="badge failed">Instagram not posted</span> <span class="muted">{{ pub.instagram_error }}</span></p>{% endif %}
+  {% if not (pub.facebook and pub.instagram) %}
+  <form method="post" action="{{ url_for('publish', run_id=run_id) }}">
+    <label><input type="checkbox" name="confirm" value="1"> I'm the owner and I want this posted publicly{% if not pub.facebook %} on Facebook and Instagram{% else %} on Instagram{% endif %} now</label>
+    <div class="row" style="margin-top:8px"><button>Post{% if not pub.facebook %} to Facebook and Instagram{% else %} to Instagram{% endif %}</button>
+      <span class="muted">Posts the approved image and captions to the Page. No boost or paid spend.</span></div>
+  </form>
+  <form method="post" action="{{ url_for('posted_by_hand', run_id=run_id) }}" class="row" style="margin-top:12px">
+    <input type="text" name="url" placeholder="Posted it by hand? Paste the post's link" style="flex:1">
+    <button class="secondary">Save link</button>
+  </form>
+  {% endif %}
+</div>
 {% endif %}
 {% if c.rejection %}
 <div class="flash error">Rejected by {{ c.rejection.rejected_by }} on {{ c.rejection.rejected_at }}: {{ c.rejection.note }}

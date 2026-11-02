@@ -19,6 +19,7 @@ from pathlib import Path
 from flask import Flask, abort, flash, redirect, render_template, request, send_from_directory, url_for
 
 from agent_kit.meta_api import MetaAPI
+from agent_kit.tools import publish as publish_tools
 from agent_kit.tools import results as ledger_tools
 from agent_kit.tools.business import load_business
 from agent_kit.tools.recommend import RecommendError, recommend
@@ -28,12 +29,19 @@ from growthpilot.trace import Trace
 from . import gate
 
 
-def create_app(business_file: Path, out_root: Path, owner: str, make_api=None, demo: bool = False) -> Flask:
-    """make_api(trace) builds the model client; tests pass a fake.
+def _meta_publisher():
+    page_id, token = config.meta_page()
+    graph = publish_tools.Graph(token)
+    return lambda export, done: publish_tools.publish_export(export, done, page_id, graph)
 
-    demo=True is the hosted demo (approval/demo.py): steps that call Meta's models are off.
+
+def create_app(business_file: Path, out_root: Path, owner: str, make_api=None, demo: bool = False, make_publisher=None) -> Flask:
+    """make_api(trace) builds the model client and make_publisher() the poster; tests pass fakes.
+
+    demo=True is the hosted demo (approval/demo.py): steps that call Meta's models or post are off.
     """
     make_api = make_api or (lambda trace: MetaAPI(trace=trace))
+    make_publisher = make_publisher or _meta_publisher
     app = Flask(__name__)
     app.secret_key = os.urandom(16)  # only for the one-line messages after each action
 
@@ -43,7 +51,7 @@ def create_app(business_file: Path, out_root: Path, owner: str, make_api=None, d
 
     def demo_refuses(what: str) -> bool:
         if demo:
-            flash(f"{what} calls Meta's models, so it is off in the hosted demo. Run GrowthPilot locally with your own key to try it (see the README).", "error")
+            flash(f"{what} calls Meta's APIs, so it is off in the hosted demo. Run GrowthPilot locally with your own key to try it (see the README).", "error")
         return demo
 
     def run_or_404(run_id: str) -> Path:
@@ -102,6 +110,38 @@ def create_app(business_file: Path, out_root: Path, owner: str, make_api=None, d
         else:
             flash(f"Approved. Ready to post from {export}", "ok")
         return redirect(url_for("run_page", run_id=run_id))
+
+    @app.post("/run/<run_id>/publish")
+    def publish(run_id: str):
+        run = run_or_404(run_id)
+        if demo_refuses("Posting"):
+            return redirect(url_for("run_page", run_id=run_id) + "#post")
+        if not request.form.get("confirm"):
+            flash("Not posted: tick the box to confirm you want this posted publicly.", "error")
+            return redirect(url_for("run_page", run_id=run_id) + "#post")
+        try:
+            post = make_publisher()
+            done = gate.publish(run, owner, post)
+        except (gate.ApprovalError, publish_tools.PublishError, config.MissingKeyError) as e:
+            flash(f"Not posted: {e}", "error")
+        except Exception as e:  # network trouble: say so, keep the page working
+            flash(f"Posting failed ({type(e).__name__}); nothing new was recorded. Check the Page before trying again.", "error")
+        else:
+            if done.get("instagram_error"):
+                flash(f"Posted on Facebook. Instagram: {done['instagram_error']}. Fix it and click Post again to post only to Instagram.", "error")
+            else:
+                flash("Posted on Facebook and Instagram.", "ok")
+        return redirect(url_for("run_page", run_id=run_id) + "#post")
+
+    @app.post("/run/<run_id>/posted")
+    def posted_by_hand(run_id: str):
+        run = run_or_404(run_id)
+        try:
+            gate.record_posted(run, owner, request.form.get("url", ""))
+            flash("Post link saved.", "ok")
+        except gate.ApprovalError as e:
+            flash(f"Not saved: {e}", "error")
+        return redirect(url_for("run_page", run_id=run_id) + "#post")
 
     @app.post("/run/<run_id>/reject")
     def reject(run_id: str):

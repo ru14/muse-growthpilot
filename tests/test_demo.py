@@ -32,6 +32,8 @@ def test_demo_never_calls_the_models(monkeypatch):
     page = client.post(f"/run/{run}/reject", data={"note": "Warmer, please", "rewrite": "1"},
                        follow_redirects=True).get_data(as_text=True)
     assert "off in the hosted demo" in page and "Rejected." in page
+    page = client.post(f"/run/{run}/publish", data={"confirm": "1"}, follow_redirects=True).get_data(as_text=True)
+    assert "Posting calls Meta" in page
     assert started == []
 
 
