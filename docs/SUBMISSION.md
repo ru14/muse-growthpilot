@@ -60,7 +60,99 @@ Demo 25%.
 
 ### Contributors
 
-- [NAME] — [ROLE] (representative: yes/no)
+- Raginee Upadhyaya ([ru14](https://github.com/ru14)): sole developer (Indie developer track)
+
+## Form answers
+
+Ready to paste. Every number here comes from the repo or a live post; update the results
+line once Post 1's insights are read.
+
+**Project name:** Muse GrowthPilot
+
+**Track:** Indie developer · **Theme:** Build for Your World
+
+**Tagline (under 100 characters):**
+> Trustworthy Facebook and Instagram campaigns for small businesses, made by an agent on Meta's Muse models
+
+**Short description (about 300 characters):**
+> GrowthPilot turns a product photo into verified Hindi and English captions and ad images
+> for Facebook and Instagram. Every claim must trace to a fact the owner confirmed, the real
+> product is never altered, and nothing is posted until the owner approves. Its first
+> customer, the saree brand Nidhaye, is now posting with it.
+
+**What it does:**
+> Small businesses can't afford an agency, and generic AI copy invents things: "pure silk",
+> "handwoven", "20% off". For a small brand one false claim costs trust it can't buy back.
+>
+> GrowthPilot is an agent built on Meta's models for one real business, Nidhaye, an Indian
+> saree brand with no marketing history. From a product photo and the owner's facts it:
+>
+> 1. reads the photo with Muse Spark and lists what it can't verify;
+> 2. writes Hindi (Devanagari) and English captions in the brand voice, each citing the facts
+>    it uses; plain code blocks prices and offers, a second Muse Spark call refuses claims the
+>    facts don't support, and refused drafts are rewritten with the reasons;
+> 3. cuts out the real product with SAM 3.1, has Muse Image paint only the background, and
+>    puts the original product pixels back, so a colour check proves the product is unchanged;
+>    Muse Spark then rejects any background where Muse Image drew a second product, text or
+>    a logo;
+> 4. puts the campaign in front of the owner, who approves an image and a caption, rejects with
+>    a note (the agent redrafts), or answers questions that become facts for every later
+>    campaign; approved campaigns are exported, or posted to Facebook and Instagram by the
+>    owner's click;
+> 5. records each post's results with their source, and asks Muse Spark for the next campaign;
+>    code checks every number it cites against the records and caps its confidence by how much
+>    data there is.
+>
+> Nidhaye's first GrowthPilot campaigns (bottle-green and orange sarees) went live on its
+> Facebook Page on 2 Nov, approved by the owner.
+
+**How we used Meta's models:**
+> - **Muse Spark 1.3**: the agent's planner (plan → act → observe with tools: analyze_product,
+>   write_captions, make_creatives, ask_owner, submit_campaign, stop), photo understanding,
+>   bilingual captions, the claim check, the background check, and results-based
+>   recommendations.
+> - **Muse Image 1.0**: festive backgrounds around the real product.
+> - **SAM 3.1**: product masks, so the image model never touches the product.
+> - All through the Meta Model API, standard models only, since real business data is sent.
+
+**Technical depth / how it's built:**
+> Python, Flask and the Meta Model API. The agent can't skip verification: captions only
+> come from a tool that returns verified ones, and submit refuses an incomplete campaign.
+> Three failures in a row or 15 turns hand the run to the owner. The approval gate re-checks
+> each caption against today's facts before export. Every model call, check and agent step is
+> traced to a JSONL file and shown on the owner's screen. Posting goes through the Graph API
+> (Facebook first; Instagram gets the copy Facebook hosts), and a retry never posts twice.
+> 64 offline tests.
+
+**Results / impact:**
+> On 14 synthetic test products (12 traps, 2 controls), Muse Spark alone made an unsupported
+> claim in 32 of 36 captions (89%), in every trap case. GrowthPilot's accepted captions: 0 of
+> 36 (0%), with 6 of 6 control captions accepted (no over-blocking). 58 seconds and $0.07 of
+> Muse Spark per campaign. Product images: colour difference 0.00–0.01/255. Nidhaye now has
+> two GrowthPilot campaigns live on Facebook.
+> Limits: a synthetic test set, one run, and captions only; real post results are still
+> coming in.
+
+**Challenges:**
+> Muse Image sometimes drew a second saree into the background, which would show customers
+> something the business doesn't sell, and the colour check couldn't see it because it only
+> measures the product's pixels. We added a Muse Spark check of every background; the agent
+> retries when one fails. The claim check first refused true things (colours visible in the
+> photo, the brand's own name); the evaluation set found that, and it is fixed.
+
+**What's next:**
+> Real results from Nidhaye's posts feeding the next campaign, the owner's answers on fabric
+> and weave for the remaining sarees, Instagram posting by default, and more product types
+> (brass décor, fragrances).
+
+**Pre-existing work:** Nothing pre-existing. Everything was built during the hackathon
+(first commit 27 Oct 2026). Architecture inspired by Meta's legal-agent-workshop; no code from
+it is included.
+
+**Links:**
+- GitHub: https://github.com/ru14/muse-growthpilot
+- Live demo: https://muse-growthpilot-demo.onrender.com
+- Video: [add after upload]
 
 ### Submission record
 
