@@ -25,11 +25,11 @@
       "id": "demo-saree",
       "name": "Demo silk saree (synthetic example data)",
       "sam_prompt": "the saree",
-      "photos": [],
+      "photos": ["cases/input/demo_saree.jpg"],
       "facts": [
         {"id": "type", "claim": "It is a saree", "status": "confirmed", "source": "demo"},
         {"id": "fabric", "claim": "Silk", "status": "confirmed", "source": "demo"},
-        {"id": "colour", "claim": "Deep red with a gold border", "status": "visible", "source": "demo"},
+        {"id": "colour", "claim": "Teal with a wide gold border", "status": "visible", "source": "demo"},
         {"id": "handwoven", "claim": "Handwoven", "status": "unconfirmed", "source": "demo"}
       ]
     }
