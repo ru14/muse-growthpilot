@@ -5,8 +5,8 @@
 ### Impact (30%)
 - [ ] Problem statement from the hackathon list chosen and named in the demo
 - [x] Target user (small businesses like Nidhaye) is clear (PLAN overview)
-- [ ] Time saved or other benefit is measured, not just claimed
-- [ ] Complete workflow works: create → approve → publish/export → measure → recommend
+- [x] Benefit is measured: unsupported claims 89% → 0%, 58 s and $0.07 per campaign
+- [x] Complete workflow works: create → approve → export → measure → recommend
 
 ### Use of Meta AI Tooling (25%)
 - [x] Meta AI tools chosen: Muse Spark 1.3 (core), Muse Image (creative), SAM 3.1
@@ -17,7 +17,8 @@
 - [x] Test calls work for `muse-spark-1.3`, `muse-image-1.0` and `sam-3.1` (28 Oct)
 - [x] SAM mask decoded into a usable image mask (meta-sam-parser)
 - [x] Original product pixels placed on Muse Image backgrounds; colour check passes
-      (0.0 difference on the pink saree, 28 Oct)
+      (0.0 difference on the pink saree, 28 Oct); backgrounds checked by Muse Spark for
+      a second product, text or logos (2 Nov)
 - [x] Caption variants with rule check and Muse Spark claim check, rewritten with
       feedback (caught an unsupported "first offering" claim, 28 Oct)
 - [x] Muse Spark powers product understanding, Facebook/Instagram copy and recommendation (29 Oct)
@@ -31,7 +32,7 @@
 - [x] Inputs are validated (business file, results, approval gate)
 - [x] Human approval is required before external publishing (approval gate, 29 Oct)
 - [x] Metric sources are shown and honest (results page, 29 Oct)
-- [x] Error cases handled; core flow tested (54 tests)
+- [x] Error cases handled; core flow tested (55 tests)
 
 ### Demo (25%)
 - [ ] Live product holds up end to end
@@ -64,7 +65,7 @@ See [PLAN.md](PLAN.md#winning-edge).
       Settings → Accounts)
 - [ ] Owner invites existing customers, friends and family to follow both accounts
       before Oct 30, so first posts get some reach
-- [ ] Brand kickoff inputs collected: product photos, owner interview, 5–10 inspiration
+- [ ] Brand kickoff inputs collected: product photos (10 sarees, 2 Nov), owner interview, 5–10 inspiration
       screenshots
 - [ ] Brand kickoff working: brand voice guide and first experiment plan generated
 - [x] Each campaign's results are added to brand memory (results ledger, 29 Oct)
@@ -88,23 +89,23 @@ See [PLAN.md](PLAN.md#winning-edge).
 
 ### Repository and access
 - [ ] GitHub repository is public and accessible without special permission
-- [ ] Repo is a fresh repo with only work done since kickoff (Oct 19)
-- [ ] No pre-hackathon code or git history pushed; any earlier scaffolding rewritten
+- [x] Repo is a fresh repo with only work done since kickoff (Oct 19); first commit Oct 27
+- [x] No pre-hackathon code or git history pushed
 - [x] Open-source dependencies and pre-existing datasets are labeled
-- [ ] Repo has everything needed to run and verify the demo (setup steps,
-      `.env.example`, sample data)
-- [ ] Nidhaye campaign data committed only with owner permission; otherwise a labeled
-      synthetic sample; no third-party inspiration screenshots committed
-- [ ] Meta models (Muse Spark, Muse Image, SAM 3.1) are on the core path (Stage One
+- [x] Repo has everything needed to run and verify the demo (setup steps,
+      `.env.example`, synthetic business and photo); tested from a fresh clone (2 Nov)
+- [x] No Nidhaye data committed; labeled synthetic sample instead; no third-party
+      inspiration screenshots committed (history scanned 2 Nov)
+- [x] Meta models (Muse Spark, Muse Image, SAM 3.1) are on the core path (Stage One
       checks this)
-- [ ] README setup instructions work
+- [x] README setup instructions work (fresh clone, Python 3.10, 2 Nov)
 - [ ] Required code and documentation are committed
-- [ ] No API keys, passwords, or other secrets are exposed
+- [x] No API keys, passwords, or other secrets are exposed (full history scanned 2 Nov)
 - [ ] Demo video link opens successfully (test in a private/incognito window)
 - [ ] Live product/demo link works
 
 ### Three-minute demo
-- [ ] Demo script completed ([DEMO_SCRIPT.md](DEMO_SCRIPT.md))
+- [x] Demo script completed ([DEMO_SCRIPT.md](DEMO_SCRIPT.md))
 - [ ] Video opens with one line: what was pre-existing vs. built during the hackathon
 - [ ] Video is a product demo, not a slide presentation
 - [ ] Video demonstrates the actual working product

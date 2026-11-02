@@ -5,3 +5,4 @@ numpy>=1.26
 meta-sam-parser>=0.1
 pytest>=8
 flask>=3.0
+gunicorn>=22.0  # serves the hosted demo

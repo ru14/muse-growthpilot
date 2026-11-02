@@ -1,0 +1,12 @@
+# Hosted demo on Render (https://render.com): New > Blueprint, pick this repository.
+# Synthetic data only and no API key: steps that call Meta's models are off.
+services:
+  - type: web
+    name: muse-growthpilot-demo
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn --workers 1 --threads 4 --bind 0.0.0.0:$PORT approval.demo:app
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9

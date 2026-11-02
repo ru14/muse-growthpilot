@@ -26,7 +26,17 @@ Scene: {scene}
 Warm, soft natural light. Elegant and uncluttered, colours that suit {colors}.
 Keep the centre and lower middle of the frame completely empty: a product will be placed
 there later. Props only near the edges.
-No clothing, no fabric product, no people, no hands, no text, no letters, no logos, no watermark."""
+No clothing, no fabric product, no people, no hands, no text, no letters, no logos, no watermark.
+No saree, dupatta, folded cloth or textile of any kind: only the props named in the scene."""
+
+# Muse Image sometimes draws a second product anyway, which would show the customer
+# something the business doesn't sell. Muse Spark looks at every background before use.
+BACKGROUND_CHECK_PROMPT = """This image is meant to be an empty background for a product ad.
+List anything in it from this list: fabric, cloth, textile, saree, dupatta, clothing,
+garment, person, hands, text, letters, logo, watermark. Ignore flowers, leaves, lamps,
+bowls, brass items, petals and the plain surface itself.
+Return JSON: {"found": ["what you see and where, e.g. 'folded pink saree at the top'"]}
+Return {"found": []} if there is none."""
 
 
 def mask_from_segmentation(result: ImageSegmentationResult, size: tuple[int, int]) -> np.ndarray:
@@ -160,13 +170,22 @@ def make_creatives(
     for i, raw in enumerate(backgrounds, start=start):
         background = Image.open(io.BytesIO(raw))
         background.save(out_dir / f"background_{i}.png")
+        found = background_problems(api, out_dir / f"background_{i}.png")
         final, placement = compose(background, product, business)
         check = product_unchanged(final, placement, business.limits)
+        check["background_found"] = found
+        check["passed"] = check["passed"] and not found
         api.trace.add("check_product_unchanged", creative=i, **check)
         path = out_dir / f"creative_{i}.png"
         final.save(path)
         creatives.append({"file": path.name, "product_check": check})
     return creatives
+
+
+def background_problems(api: MetaAPI, background: Path) -> list[str]:
+    """What a background shows that it must not (a second product, text, a logo)."""
+    found = api.spark_json("check_background", BACKGROUND_CHECK_PROMPT, images=(background,)).get("found") or []
+    return [str(f) for f in found]
 
 
 def _cover(image: Image.Image, size: tuple[int, int]) -> Image.Image:

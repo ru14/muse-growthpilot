@@ -32,7 +32,8 @@
     {% set ok = cr.product_check.passed %}
     <label class="choice card {{ '' if ok else 'disabled' }}">
       <input type="radio" name="image" value="{{ cr.file }}" {{ 'disabled' if not ok or not awaiting }} {{ 'checked' if c.approval and c.approval.image == cr.file }}>
-      <span class="badge {{ 'passed' if ok else 'failed' }}">{{ 'Product unchanged' if ok else 'Product changed: cannot use' }}</span>
+      {% set found = cr.product_check.background_found %}
+      <span class="badge {{ 'passed' if ok else 'failed' }}">{{ 'Product unchanged' if ok else ('Background shows ' ~ found|join(', ') ~ ': cannot use' if found else 'Product changed: cannot use') }}</span>
       <span class="muted">colour difference {{ cr.product_check.mean_rgb_difference }}/255</span>
       <img src="{{ url_for('run_file', run_id=run_id, name=cr.file) }}" alt="{{ cr.file }}">
     </label>
