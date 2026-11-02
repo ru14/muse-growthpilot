@@ -43,7 +43,7 @@ A public, view-and-try version of the owner's screen, live at https://muse-growt
 two campaigns the real agent made on Meta's models (one from a brief that asks for a
 sale and unconfirmed claims), and **sample** results with a real Muse Spark
 recommendation. Visitors can approve, reject and answer questions; changes reset on
-restart. It has no API key, so steps that call the models are off there.
+restart. It has no API key, so steps that call the models, and posting, are off there.
 [render.yaml](render.yaml) deploys it on Render. To run it locally:
 
 ```bash
@@ -73,7 +73,7 @@ For each product, GrowthPilot:
    sell).
 5. The output in `cases/output/<run>/` holds `report.md` for the owner to approve, the images,
    `campaign.json`, and `trace.jsonl` with every model call and check. Nothing is
-   published.
+   published until the owner approves and clicks Post.
 
 ### Agent mode
 
@@ -104,6 +104,9 @@ verification caught, the agent's steps and every model call. The owner can:
   only accepts an image that passed the product and background checks and a caption that still passes
   today's rules and facts. Approval exports the image, `instagram.txt`, `facebook.txt` and
   `approval.json` to `cases/output/<run>/export/` for the owner to post.
+- **Post** an approved campaign to the business's Facebook Page and Instagram account,
+  after ticking a confirmation box (see below). Nothing is boosted or paid for. A post
+  made by hand can be recorded by pasting its link.
 - **Reject** with a note, and optionally ask the agent for a new draft that follows it.
 - **Answer questions**: say whether an unconfirmed claim is true, or add a fact in their
   own words. Answers are saved to the business file and used from the next draft on.
@@ -128,6 +131,39 @@ flowchart TD
     M --> N{Muse Spark recommendation; evidence and confidence checked in code}
     N -- next brief --> C
 ```
+
+### Posting to Facebook and Instagram
+
+Optional. Without it, the owner posts the export by hand in Meta Business Suite.
+[agent_kit/tools/publish.py](agent_kit/tools/publish.py) uses Meta's Graph API: the
+image goes to the Page with the Facebook caption, then Instagram gets the copy Facebook
+hosts (Instagram's API only takes an image by public URL) with the Instagram caption. If
+Instagram fails after Facebook succeeded, Facebook is kept and the next click posts only
+to Instagram, so nothing is posted twice.
+
+Setup, done once by someone who manages the Page:
+
+1. At [developers.facebook.com](https://developers.facebook.com/apps) create a Business
+   app. While it is in development mode its admins can post to their own Pages without
+   app review.
+2. In the [Graph API Explorer](https://developers.facebook.com/tools/explorer), pick the
+   app, add the permissions `pages_show_list`, `pages_read_engagement`,
+   `pages_manage_posts`, `business_management`, `instagram_basic` and
+   `instagram_content_publish`, click **Generate Access Token**, and allow the Page.
+   Then choose the Page under **User or Page** to get a Page access token.
+   Explorer tokens expire within hours; for a lasting one, extend the user token in the
+   [Access Token Debugger](https://developers.facebook.com/tools/debug/accesstoken) and
+   generate the Page token again from it.
+3. Put the Page's ID and the Page token in `.env` as `META_PAGE_ID` and
+   `META_PAGE_TOKEN`. Never commit them.
+4. Check where posts would go (this posts nothing):
+
+```bash
+.venv/bin/python -m agent_kit.tools.publish --check
+```
+
+The Instagram account must be a business or creator account linked to the Page.
+Instagram needs an image between 4:5 and 1.91:1; GrowthPilot's are 4:5.
 
 ### Results and the next campaign
 

@@ -33,7 +33,7 @@ Rubric it has to earn: Impact 30%, Meta AI Tooling 25%, Technical Depth 20%, Dem
 
 ## Lines to keep honest
 
-- Say "export, then the owner posts" — GrowthPilot does not publish to Meta.
+- Posting happens only when the owner clicks Post after approving; say so. Never boosted.
 - If results are sample numbers, the screen and the voice both say so.
 - The evaluation is synthetic, one run, captions only; say "on our test set".
 
