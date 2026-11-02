@@ -38,7 +38,7 @@ then open **Results**, record some numbers, and click **Recommend the next campa
 
 ## Hosted demo
 
-A public, view-and-try version of the owner's screen runs from
+A public, view-and-try version of the owner's screen, live at https://muse-growthpilot-demo.onrender.com, runs from
 [approval/demo.py](approval/demo.py) on [cases/demo/](cases/demo/): a synthetic business,
 two campaigns the real agent made on Meta's models (one from a brief that asks for a
 sale and unconfirmed claims), and **sample** results with a real Muse Spark
