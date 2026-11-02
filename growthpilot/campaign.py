@@ -139,7 +139,12 @@ def _report(c: dict, product: Product) -> str:
     ]
     for cr in c["creatives"]:
         check = cr["product_check"]
-        verdict = "✅ product unchanged" if check.get("passed") else "❌ product changed: do not use"
+        if check.get("passed"):
+            verdict = "✅ product unchanged, background clean"
+        elif check.get("background_found"):
+            verdict = "❌ background shows " + ", ".join(check["background_found"]) + ": do not use"
+        else:
+            verdict = "❌ product changed: do not use"
         lines += [
             f"![{cr['file']}]({cr['file']})",
             "",

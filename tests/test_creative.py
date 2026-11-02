@@ -1,3 +1,4 @@
+import io
 from pathlib import Path
 
 import numpy as np
@@ -45,3 +46,24 @@ def test_color_shift_catches_a_more_saturated_product():
     check = color_shift(photo, Image.fromarray(shifted), mask)
     assert not check["passed"]
     assert check["saturation_final"] > check["saturation_original"]
+
+
+def test_background_with_a_second_product_fails_the_check(tmp_path, monkeypatch):
+    import agent_kit.tools.creative as creative
+    from tests.test_verify import FakeAPI
+
+    business = load_business(EXAMPLE)
+    photo, mask = photo_and_mask()
+    photo.save(tmp_path / "photo.png")
+    monkeypatch.setattr(creative, "mask_from_segmentation", lambda seg, size: mask)
+    buf = io.BytesIO()
+    Image.new("RGB", (900, 1200), (245, 235, 221)).save(buf, "PNG")
+
+    api = FakeAPI({"check_background": [{"found": ["folded pink saree at the top"]}, {"found": []}]})
+    api.segment = lambda *a: None
+    api.generate_images = lambda *a: [buf.getvalue(), buf.getvalue()]
+    made = creative.make_creatives(api, business, tmp_path / "photo.png", "the product", "", "saree", 2, tmp_path)
+
+    assert not made[0]["product_check"]["passed"]
+    assert made[0]["product_check"]["background_found"] == ["folded pink saree at the top"]
+    assert made[1]["product_check"]["passed"]

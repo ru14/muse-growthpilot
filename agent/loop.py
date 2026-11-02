@@ -233,7 +233,10 @@ class CampaignAgent:
         passed += [c for c in made if c["product_check"].get("passed")]
         checks = [
             f"{c['file']}: {'passed' if c['product_check'].get('passed') else 'FAILED'} "
-            f"(colour difference {c['product_check'].get('mean_rgb_difference')})"
+            f"(colour difference {c['product_check'].get('mean_rgb_difference')}"
+            + (f"; background shows {', '.join(c['product_check']['background_found'])}"
+               if c["product_check"].get("background_found") else "")
+            + ")"
             for c in made
         ]
         result = f"{len(passed)} of {self.required_images} images pass. " + "; ".join(checks)
