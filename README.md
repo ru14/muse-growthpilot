@@ -36,6 +36,20 @@ generated with Muse Image ([cases/input/](cases/input/)).
 On the screen: pick an image and a caption and approve (the export folder is shown),
 then open **Results**, record some numbers, and click **Recommend the next campaign**.
 
+## Hosted demo
+
+A public, view-and-try version of the owner's screen runs from
+[approval/demo.py](approval/demo.py) on [cases/demo/](cases/demo/): a synthetic business,
+two campaigns the real agent made on Meta's models (one from a brief that asks for a
+sale and unconfirmed claims), and **sample** results with a real Muse Spark
+recommendation. Visitors can approve, reject and answer questions; changes reset on
+restart. It has no API key, so steps that call the models are off there.
+[render.yaml](render.yaml) deploys it on Render. To run it locally:
+
+```bash
+.venv/bin/gunicorn --workers 1 --bind 127.0.0.1:5099 approval.demo:app
+```
+
 ## Make a verified campaign
 
 ```bash
