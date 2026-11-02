@@ -70,7 +70,8 @@ See [PLAN.md](PLAN.md#winning-edge).
 - [ ] Brand kickoff working: brand voice guide and first experiment plan generated
 - [x] Each campaign's results are added to brand memory (results ledger, 29 Oct)
 - [x] Recommendations show evidence and a confidence level; both checked in code (29 Oct)
-- [ ] **First real campaign posts live by October 30** (approved by the owner 2 Nov, pink saree, image 2; posting pending)
+- [x] **First real campaign posts live** (2 Nov, later than the Oct 30 target): bottle-green and orange sarees on
+      Nidhaye's Facebook Page, approved by the owner in GrowthPilot; links saved with each campaign. Pink approved, not yet posted
 - [ ] Real results collected from the live posts
 - [x] Product-truth check working: SAM mask keeps product unchanged, unsupported
       claims flagged
