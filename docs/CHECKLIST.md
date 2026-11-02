@@ -3,7 +3,7 @@
 ## Rubric Readiness
 
 ### Impact (30%)
-- [ ] Problem statement from the hackathon list chosen and named in the demo
+- [x] Track and theme chosen (Indie developer, Build for Your World) and named in the demo
 - [x] Target user (small businesses like Nidhaye) is clear (PLAN overview)
 - [x] Benefit is measured: unsupported claims 89% → 0%, 58 s and $0.07 per campaign
 - [x] Complete workflow works: create → approve → export → measure → recommend
@@ -57,7 +57,7 @@ See [PLAN.md](PLAN.md#architecture).
 
 See [PLAN.md](PLAN.md#winning-edge).
 
-- [ ] Track / problem statement chosen
+- [x] Track chosen: Indie developer; theme: Build for Your World (2 Nov)
 - [x] Nidhaye has a Facebook Page and an Instagram business account (no posts yet,
       confirmed 27 Oct)
 - [x] Business Suite access to the Nidhaye Page confirmed (27 Oct)
@@ -70,7 +70,7 @@ See [PLAN.md](PLAN.md#winning-edge).
 - [ ] Brand kickoff working: brand voice guide and first experiment plan generated
 - [x] Each campaign's results are added to brand memory (results ledger, 29 Oct)
 - [x] Recommendations show evidence and a confidence level; both checked in code (29 Oct)
-- [ ] **First real campaign posts live by October 30**
+- [ ] **First real campaign posts live by October 30** (approved by the owner 2 Nov, pink saree, image 2; posting pending)
 - [ ] Real results collected from the live posts
 - [x] Product-truth check working: SAM mask keeps product unchanged, unsupported
       claims flagged
@@ -85,10 +85,10 @@ See [PLAN.md](PLAN.md#winning-edge).
 - [x] Official deadline recorded: November 4, 2026, at 9:00 p.m. EST
 - [x] Seattle deadline recorded: November 4, 2026, at 6:00 p.m. PST
 - [x] Internal completion deadline set to November 3
-- [ ] Official hackathon instructions checked again before submission
+- [x] Official hackathon instructions checked again before submission (event page, 2 Nov)
 
 ### Repository and access
-- [ ] GitHub repository is public and accessible without special permission
+- [x] GitHub repository is public and accessible without special permission (2 Nov)
 - [x] Repo is a fresh repo with only work done since kickoff (Oct 19); first commit Oct 27
 - [x] No pre-hackathon code or git history pushed
 - [x] Open-source dependencies and pre-existing datasets are labeled
@@ -99,7 +99,7 @@ See [PLAN.md](PLAN.md#winning-edge).
 - [x] Meta models (Muse Spark, Muse Image, SAM 3.1) are on the core path (Stage One
       checks this)
 - [x] README setup instructions work (fresh clone, Python 3.10, 2 Nov)
-- [ ] Required code and documentation are committed
+- [x] Required code and documentation are committed
 - [x] No API keys, passwords, or other secrets are exposed (full history scanned 2 Nov)
 - [ ] Demo video link opens successfully (test in a private/incognito window)
 - [x] Live product/demo link works (https://muse-growthpilot-demo.onrender.com, checked 2 Nov: campaigns, background check, results and recommendation load)
@@ -121,7 +121,7 @@ See [PLAN.md](PLAN.md#winning-edge).
 
 ### Team and submission
 - [ ] Everyone who worked on the project is listed on the submission page
-- [ ] One representative is designated if submitting as a team/startup
+- [x] One representative is designated if submitting as a team/startup (not applicable: Indie developer track)
 - [ ] Only one project submission is made per team/startup
 - [ ] Complete draft submitted by Nov 2 (editable until the deadline)
 - [ ] All required submission fields are complete

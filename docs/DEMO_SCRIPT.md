@@ -21,7 +21,7 @@ Rubric it has to earn: Impact 30%, Meta AI Tooling 25%, Technical Depth 20%, Dem
 
 | Time | On screen | Voice-over |
 |---|---|---|
-| 0:00–0:05 | Title card on the approval screen | "Nothing pre-existing. Everything you'll see in GrowthPilot was built during this hackathon." |
+| 0:00–0:05 | Title card on the approval screen | "Nothing pre-existing. Everything you'll see in GrowthPilot was built during this hackathon. Indie developer track, Build for Your World." |
 | 0:05–0:20 | Nidhaye's Instagram (no posts yet) and the 10 saree folders | "Nidhaye sells sarees. The owner has beautiful photos and no time or marketing team. And with AI copy there's a real risk: it invents things. Silk, handwoven, 20% off." |
 | 0:20–0:45 | Terminal: `--agent` run for a saree; agent turns scroll by | "GrowthPilot is an agent on Meta's Muse models. Muse Spark looks at the photo, plans each step and calls tools: understand the product, write captions, make images, submit for approval." |
 | 0:45–1:10 | Run page: captions with their cited facts; **Verification** section showing refused drafts and reasons | "Every caption must cite a fact the owner confirmed or the photo shows. Plain code blocks prices and offers; a second Muse Spark call refuses unsupported claims. Here it refused a claim the owner hasn't confirmed, and the agent rewrote it." |
