@@ -1,0 +1,46 @@
+{
+  "checklist": {
+    "analyze_product": "done",
+    "captions_verified": "done",
+    "creatives_verified": "done",
+    "submitted": "done"
+  },
+  "notes": {
+    "captions_verified": "3/3",
+    "creatives_verified": "4/4"
+  },
+  "log": [
+    {
+      "turn": 1,
+      "plan": "Analyze the product photo first to ground all captions and creatives in real colours and design",
+      "tool": "analyze_product",
+      "args": {},
+      "observation": "Done. {\"observed\": {\"product_type\": \"saree\", \"colors\": \"deep maroon body with gold-colored borders\", \"pattern\": \"solid plain body with no visible motifs on the shown folded portion\", \"border\": \"narrow gold-colored borders along the visible edges with fine detailed inner edging\", \"styling\": \"neatly folded and laid flat, photographed from above on a plain light background\"}, \"needs_owner_confirmation\": [\"fabric/material composition\", \"weave technique or saree type\", \"origin, handmade/handloom status\", \"length, width, and whether a blouse piece is included\", \"price, care instructions, and availability\"]}"
+    },
+    {
+      "turn": 2,
+      "plan": "Write festive-season captions using only observed product facts to get 3 verified variants.",
+      "tool": "write_captions",
+      "args": {
+        "focus": "Festive season introduction, warm and elegant tone, Hindi line first then English underneath, use only observed colours and design without inventing material origin or craftsmanship"
+      },
+      "observation": "Done. 3 of 3 verified captions after 2 rounds. Refused: timeless elegance: unsupported claim 'is finished with gold' (Implies material (real gold) and a finishing/manufacturing process. FACTS only support maroon saree with a wide gold border as a feature/colour, and photo only shows gold-colored borders which does not prove material gold or how it was made.)"
+    },
+    {
+      "turn": 3,
+      "plan": "Create festive campaign images next because captions are verified and 4 verified creatives are still pending.",
+      "tool": "make_creatives",
+      "args": {
+        "scene": "warm elegant festive season background to introduce the saree, keeping product colours and design unchanged"
+      },
+      "observation": "Done. 4 of 4 images pass. creative_1.png: passed (colour difference 0.0); creative_2.png: passed (colour difference 0.0); creative_3.png: passed (colour difference 0.0); creative_4.png: passed (colour difference 0.0)"
+    },
+    {
+      "turn": 4,
+      "plan": "Submit the completed campaign for owner review since all captions and images are verified",
+      "tool": "submit_campaign",
+      "args": {},
+      "observation": "Submitted for owner approval. Nothing is published until the owner approves."
+    }
+  ]
+}

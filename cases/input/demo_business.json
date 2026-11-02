@@ -32,6 +32,17 @@
         {"id": "colour", "claim": "Teal with a wide gold border", "status": "visible", "source": "demo"},
         {"id": "handwoven", "claim": "Handwoven", "status": "unconfirmed", "source": "demo"}
       ]
+    },
+    {
+      "id": "demo-maroon-saree",
+      "name": "Demo maroon saree (synthetic example data)",
+      "sam_prompt": "the saree",
+      "photos": ["cases/input/demo_saree_maroon.jpg"],
+      "facts": [
+        {"id": "type", "claim": "It is a saree", "status": "confirmed", "source": "demo"},
+        {"id": "colour", "claim": "Maroon with a wide gold border", "status": "visible", "source": "demo"},
+        {"id": "fabric", "claim": "Silk", "status": "unconfirmed", "source": "demo"}
+      ]
     }
   ]
 }

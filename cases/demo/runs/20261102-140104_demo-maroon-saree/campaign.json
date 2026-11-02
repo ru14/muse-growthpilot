@@ -1,0 +1,206 @@
+{
+  "business": "Demo Weaves",
+  "product": "demo-maroon-saree",
+  "brief": "Festive season: introduce this saree",
+  "owner_notes": [],
+  "revises": "",
+  "based_on": "",
+  "photo": "demo_saree_maroon.jpg",
+  "profile": {
+    "observed": {
+      "product_type": "saree",
+      "colors": "deep maroon body with gold-colored borders",
+      "pattern": "solid plain body with no visible motifs on the shown folded portion",
+      "border": "narrow gold-colored borders along the visible edges with fine detailed inner edging",
+      "styling": "neatly folded and laid flat, photographed from above on a plain light background"
+    },
+    "likely_buyer": "someone looking for a classic maroon and gold saree for festive, wedding-guest, or formal wear",
+    "selling_points": [
+      "deep maroon color paired with contrasting gold-colored border for a classic look",
+      "plain solid body that is visually versatile for different accessories",
+      "neat folded presentation shows smooth appearance with subtle sheen and drape"
+    ],
+    "needs_owner_confirmation": [
+      "fabric/material composition",
+      "weave technique or saree type",
+      "origin, handmade/handloom status",
+      "length, width, and whether a blouse piece is included",
+      "price, care instructions, and availability"
+    ]
+  },
+  "variants": [
+    {
+      "angle": "festive glow",
+      "hindi": "त्योहारों की रोशनी में Demo Weaves के साथ दमकिए",
+      "english": "Demo Weaves shares a deep maroon saree glowing with a golden border. A warm touch for festive evenings.",
+      "cta": "Message us on Instagram or Facebook to know more",
+      "hashtags": [
+        "#MaroonSaree",
+        "#FestiveLook",
+        "#GoldBorder",
+        "#ElegantDrape"
+      ],
+      "fact_ids": [
+        "type",
+        "colour"
+      ],
+      "facebook": "त्योहारों की रोशनी में Demo Weaves के साथ दमकिए\n\nDemo Weaves shares a deep maroon saree glowing with a golden border. A warm touch for festive evenings.\n\nMessage us on Instagram or Facebook to know more\n\n#MaroonSaree #FestiveLook #GoldBorder",
+      "instagram": "त्योहारों की रोशनी में Demo Weaves के साथ दमकिए\n\nDemo Weaves shares a deep maroon saree glowing with a golden border. A warm touch for festive evenings.\n\nMessage us on Instagram or Facebook to know more\n\n#MaroonSaree #FestiveLook #GoldBorder #ElegantDrape"
+    },
+    {
+      "angle": "quiet celebration",
+      "hindi": "सादगी में छिपी Demo Weaves की उत्सव शोभा",
+      "english": "Demo Weaves celebrates simplicity with this maroon saree edged in gold. Perfect for heartfelt festive moments.",
+      "cta": "Message us on Instagram or Facebook to know more",
+      "hashtags": [
+        "#SimpleElegance",
+        "#MaroonSaree",
+        "#FestiveVibes",
+        "#TraditionalCharm"
+      ],
+      "fact_ids": [
+        "type",
+        "colour"
+      ],
+      "facebook": "सादगी में छिपी Demo Weaves की उत्सव शोभा\n\nDemo Weaves celebrates simplicity with this maroon saree edged in gold. Perfect for heartfelt festive moments.\n\nMessage us on Instagram or Facebook to know more\n\n#SimpleElegance #MaroonSaree #FestiveVibes",
+      "instagram": "सादगी में छिपी Demo Weaves की उत्सव शोभा\n\nDemo Weaves celebrates simplicity with this maroon saree edged in gold. Perfect for heartfelt festive moments.\n\nMessage us on Instagram or Facebook to know more\n\n#SimpleElegance #MaroonSaree #FestiveVibes #TraditionalCharm"
+    },
+    {
+      "angle": "festive introduction",
+      "hindi": "त्योहार की रोशनी में खिलती Demo Weaves की गहरी मैरून साड़ी",
+      "english": "Demo Weaves welcomes the festive season with a deep maroon saree framed by a wide border in a gold tone. Its quiet glow feels warm and graceful.",
+      "cta": "Message us on Instagram or Facebook to know more",
+      "hashtags": [
+        "#DemoWeaves",
+        "#MaroonSaree",
+        "#FestiveDrape",
+        "#SareeLove"
+      ],
+      "fact_ids": [
+        "type",
+        "colour"
+      ],
+      "facebook": "त्योहार की रोशनी में खिलती Demo Weaves की गहरी मैरून साड़ी\n\nDemo Weaves welcomes the festive season with a deep maroon saree framed by a wide border in a gold tone. Its quiet glow feels warm and graceful.\n\nMessage us on Instagram or Facebook to know more\n\n#DemoWeaves #MaroonSaree #FestiveDrape",
+      "instagram": "त्योहार की रोशनी में खिलती Demo Weaves की गहरी मैरून साड़ी\n\nDemo Weaves welcomes the festive season with a deep maroon saree framed by a wide border in a gold tone. Its quiet glow feels warm and graceful.\n\nMessage us on Instagram or Facebook to know more\n\n#DemoWeaves #MaroonSaree #FestiveDrape #SareeLove"
+    }
+  ],
+  "verification_rounds": [
+    {
+      "round": 1,
+      "drafted": 3,
+      "accepted": 2,
+      "refused": [
+        {
+          "angle": "timeless elegance",
+          "problems": [
+            "timeless elegance: unsupported claim 'is finished with gold' (Implies material (real gold) and a finishing/manufacturing process. FACTS only support maroon saree with a wide gold border as a feature/colour, and photo only shows gold-colored borders which does not prove material gold or how it was made.)"
+          ]
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "drafted": 1,
+      "accepted": 1,
+      "refused": []
+    }
+  ],
+  "creatives": [
+    {
+      "file": "creative_1.png",
+      "product_check": {
+        "passed": true,
+        "mean_rgb_difference": 0.0,
+        "saturation_original": 0.613,
+        "saturation_final": 0.613,
+        "pixels_checked": 864493,
+        "background_found": []
+      }
+    },
+    {
+      "file": "creative_2.png",
+      "product_check": {
+        "passed": true,
+        "mean_rgb_difference": 0.0,
+        "saturation_original": 0.613,
+        "saturation_final": 0.613,
+        "pixels_checked": 864493,
+        "background_found": []
+      }
+    },
+    {
+      "file": "creative_3.png",
+      "product_check": {
+        "passed": true,
+        "mean_rgb_difference": 0.0,
+        "saturation_original": 0.613,
+        "saturation_final": 0.613,
+        "pixels_checked": 864493,
+        "background_found": []
+      }
+    },
+    {
+      "file": "creative_4.png",
+      "product_check": {
+        "passed": true,
+        "mean_rgb_difference": 0.0,
+        "saturation_original": 0.613,
+        "saturation_final": 0.613,
+        "pixels_checked": 864493,
+        "background_found": []
+      }
+    }
+  ],
+  "owner_questions": [
+    "Can we say: Silk?",
+    "fabric/material composition",
+    "weave technique or saree type",
+    "origin, handmade/handloom status",
+    "length, width, and whether a blouse piece is included",
+    "price, care instructions, and availability"
+  ],
+  "model_calls": {
+    "muse-spark-1.3": 13,
+    "muse-image-1.0": 1,
+    "sam-3.1": 1
+  },
+  "status": "awaiting_owner_approval",
+  "agent": {
+    "turns": 4,
+    "stop_reason": "",
+    "steps": [
+      {
+        "turn": 1,
+        "plan": "Analyze the product photo first to ground all captions and creatives in real colours and design",
+        "tool": "analyze_product",
+        "args": {},
+        "observation": "Done. {\"observed\": {\"product_type\": \"saree\", \"colors\": \"deep maroon body with gold-colored borders\", \"pattern\": \"solid plain body with no visible motifs on the shown folded portion\", \"border\": \"narrow gold-colored borders along the visible edges with fine detailed inner edging\", \"styling\": \"neatly folded and laid flat, photographed from above on a plain light background\"}, \"needs_owner_confirmation\": [\"fabric/material composition\", \"weave technique or saree type\", \"origin, handmade/handloom status\", \"length, width, and whether a blouse piece is included\", \"price, care instructions, and availability\"]}"
+      },
+      {
+        "turn": 2,
+        "plan": "Write festive-season captions using only observed product facts to get 3 verified variants.",
+        "tool": "write_captions",
+        "args": {
+          "focus": "Festive season introduction, warm and elegant tone, Hindi line first then English underneath, use only observed colours and design without inventing material origin or craftsmanship"
+        },
+        "observation": "Done. 3 of 3 verified captions after 2 rounds. Refused: timeless elegance: unsupported claim 'is finished with gold' (Implies material (real gold) and a finishing/manufacturing process. FACTS only support maroon saree with a wide gold border as a feature/colour, and photo only shows gold-colored borders which does not prove material gold or how it was made.)"
+      },
+      {
+        "turn": 3,
+        "plan": "Create festive campaign images next because captions are verified and 4 verified creatives are still pending.",
+        "tool": "make_creatives",
+        "args": {
+          "scene": "warm elegant festive season background to introduce the saree, keeping product colours and design unchanged"
+        },
+        "observation": "Done. 4 of 4 images pass. creative_1.png: passed (colour difference 0.0); creative_2.png: passed (colour difference 0.0); creative_3.png: passed (colour difference 0.0); creative_4.png: passed (colour difference 0.0)"
+      },
+      {
+        "turn": 4,
+        "plan": "Submit the completed campaign for owner review since all captions and images are verified",
+        "tool": "submit_campaign",
+        "args": {},
+        "observation": "Submitted for owner approval. Nothing is published until the owner approves."
+      }
+    ]
+  }
+}
