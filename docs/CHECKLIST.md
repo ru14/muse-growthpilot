@@ -26,7 +26,7 @@
 - [x] SAM mask keeps the real product untouched in edits by Oct 31, or dropped (0.0 colour difference)
 - [x] Meta AI is essential to at least one core step, not bolted on
 - [x] Integration goes beyond a basic API call (agent loop, SAM masks, LLM judge)
-- [ ] Meta AI's role is visible in the demo video
+- [x] Meta AI's role is visible in the demo video
 
 ### Technical Depth & Execution (20%)
 - [x] Inputs are validated (business file, results, approval gate)
@@ -102,14 +102,14 @@ See [PLAN.md](PLAN.md#winning-edge).
 - [x] README setup instructions work (fresh clone, Python 3.10, 2 Nov)
 - [x] Required code and documentation are committed
 - [x] No API keys, passwords, or other secrets are exposed (full history scanned 2 Nov)
-- [ ] Demo video link opens successfully (test in a private/incognito window)
+- [x] Demo video link opens successfully (test in a private/incognito window)
 - [x] Live product/demo link works (https://muse-growthpilot-demo.onrender.com, checked 2 Nov: campaigns, background check, results and recommendation load)
 
 ### Three-minute demo
 - [x] Demo script completed ([DEMO_SCRIPT.md](DEMO_SCRIPT.md))
-- [ ] Video opens with one line: what was pre-existing vs. built during the hackathon
-- [ ] Video is a product demo, not a slide presentation
-- [ ] Video demonstrates the actual working product
+- [x] Video opens with one line: what was pre-existing vs. built during the hackathon
+- [x] Video is a product demo, not a slide presentation
+- [x] Video demonstrates the actual working product
 - [ ] Product intake is shown
 - [ ] AI-generated Facebook and Instagram content is shown
 - [ ] Human approval is demonstrated
@@ -118,13 +118,13 @@ See [PLAN.md](PLAN.md#winning-edge).
 - [ ] Next-step recommendation is demonstrated
 - [ ] Technical implementation is briefly highlighted
 - [ ] Final recording is no longer than three minutes
-- [ ] Video link is accessible to reviewers
+- [x] Video link is accessible to reviewers
 
 ### Team and submission
 - [ ] Everyone who worked on the project is listed on the submission page
 - [x] One representative is designated if submitting as a team/startup (not applicable: Indie developer track)
 - [ ] Only one project submission is made per team/startup
-- [ ] Complete draft submitted by Nov 2 (editable until the deadline)
+- [x] Complete draft submitted by Nov 2 (editable until the deadline)
 - [ ] All required submission fields are complete
 - [ ] Repository, video, and live demo links are verified
 - [ ] Submission completed before the deadline
