@@ -123,5 +123,113 @@
       "confidence_cap": "low: only 3 result(s), smallest reach 180",
       "problems": []
     }
+  ],
+  "advice": [
+    {
+      "made_at": "2026-11-03 11:17",
+      "based_on": [
+        "r1",
+        "r2",
+        "r3"
+      ],
+      "summary": "SAMPLE advice from the made-up demo numbers. Instagram close-ups are bringing free reach, saves and new followers, while posting on both apps the same day splits attention.",
+      "signals": [
+        {
+          "id": "posted_together",
+          "fact": "r1 and r2 went out on the same day, so they competed for the same people's attention",
+          "results": [
+            "r1",
+            "r2"
+          ]
+        },
+        {
+          "id": "follows",
+          "fact": "14 new follower(s) from 3 post(s)",
+          "results": [
+            "r1",
+            "r2",
+            "r3"
+          ]
+        },
+        {
+          "id": "organic_only",
+          "fact": "no post has been boosted, so all reach so far is free reach",
+          "results": [
+            "r1",
+            "r2",
+            "r3"
+          ]
+        }
+      ],
+      "actions": [
+        {
+          "hindi": "फेसबुक और इंस्टाग्राम पर एक ही दिन पोस्ट न करें। इस हफ्ते एक दिन इंस्टाग्राम पर फोटो डालें और अगले दिन फेसबुक पर डालें।",
+          "english": "Do not post on Facebook and Instagram on the same day. This week share a photo on Instagram on one day and on Facebook on the next day.",
+          "why": "r1 and r2 were posted together and competed for the same attention, so giving each post its own day helps each reach more of the right people.",
+          "signal": "posted_together",
+          "evidence": [
+            {
+              "result": "r1",
+              "metric": "reach",
+              "value": 420,
+              "meaning": ""
+            },
+            {
+              "result": "r2",
+              "metric": "reach",
+              "value": 180,
+              "meaning": ""
+            }
+          ],
+          "dropped_evidence": [],
+          "cost": "free"
+        },
+        {
+          "hindi": "इंस्टाग्राम पर रोज कमेंट और मैसेज का जवाब दें। नए फॉलो करने वालों को धन्यवाद का मैसेज भेजें और पूछें कि उन्हें कौन सा रंग पसंद है।",
+          "english": "On Instagram, reply to comments and messages every day. Send a thank you message to new followers and ask which colour they like.",
+          "why": "new followers are coming from your posts, and a quick personal reply helps turn profile visits into messages.",
+          "signal": "follows",
+          "evidence": [
+            {
+              "result": "r3",
+              "metric": "follows",
+              "value": 9,
+              "meaning": ""
+            },
+            {
+              "result": "r1",
+              "metric": "follows",
+              "value": 5,
+              "meaning": ""
+            }
+          ],
+          "dropped_evidence": [],
+          "cost": "free"
+        },
+        {
+          "hindi": "इस हफ्ते इंस्टाग्राम पर साड़ी के बॉर्डर और कपड़े की दो क्लोज-अप फोटो डालें। कैप्शन में लोगों से कहें कि पसंद आए तो सेव करें और मैसेज करें।",
+          "english": "This week share two close-up photos of the saree border and fabric on Instagram. In the caption ask people to save the post and message you if they like it.",
+          "why": "all reach so far is free, and close-ups earned the most saves, so more detail photos can grow free reach without paying.",
+          "signal": "organic_only",
+          "evidence": [
+            {
+              "result": "r3",
+              "metric": "saves",
+              "value": 24,
+              "meaning": ""
+            },
+            {
+              "result": "r1",
+              "metric": "saves",
+              "value": 11,
+              "meaning": ""
+            }
+          ],
+          "dropped_evidence": [],
+          "cost": "free"
+        }
+      ],
+      "dropped": []
+    }
   ]
 }

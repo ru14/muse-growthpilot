@@ -15,7 +15,7 @@ def test_demo_pages_load_from_the_committed_data():
     for run in campaigns():
         assert client.get(f"/run/{run}").status_code == 200
     page = client.get("/results").get_data(as_text=True)
-    assert "SAMPLE" in page and "Recommendation 1" in page
+    assert "SAMPLE" in page and "Recommendation 1" in page and "SAMPLE advice" in page
 
 
 def test_demo_never_calls_the_models(monkeypatch):
@@ -26,6 +26,8 @@ def test_demo_never_calls_the_models(monkeypatch):
     run = campaigns()[-1]
 
     page = client.post("/recommend", follow_redirects=True).get_data(as_text=True)
+    assert "off in the hosted demo" in page
+    page = client.post("/advice", follow_redirects=True).get_data(as_text=True)
     assert "off in the hosted demo" in page
     page = client.post("/recommendations/0/start", follow_redirects=True).get_data(as_text=True)
     assert "off in the hosted demo" in page
