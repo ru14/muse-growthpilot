@@ -1,6 +1,6 @@
 # Muse GrowthPilot — Submission
 
-**Status:** Draft submitted 2 Nov 2026 (editable until the deadline); video uploaded 2 Nov (Unlisted, 1:39)
+**Status:** Draft submitted 2 Nov 2026 (editable until the deadline); video re-uploaded 3 Nov with growth advice (Unlisted, 1:57)
 
 **Track:** Indie developer · **Theme:** Build for Your World
 
@@ -53,7 +53,7 @@ Demo 25%.
 ### Final submission links
 
 - Repository: https://github.com/ru14/muse-growthpilot
-- Three-minute demo video: https://youtu.be/4vozMFQUVtY (Unlisted; plays without signing in)
+- Three-minute demo video: https://youtu.be/sFQJcCA9Uto (Unlisted; plays without signing in)
 - Live product/demo: https://muse-growthpilot-demo.onrender.com (hosted demo on synthetic data; the free plan sleeps when idle, so the first load can take about a minute)
 - Architecture documentation: README.md (flow diagram) and docs/PLAN.md
 - Evaluation results: evaluations/results/summary.md
@@ -162,7 +162,7 @@ it is included.
 **Links:**
 - GitHub: https://github.com/ru14/muse-growthpilot
 - Live demo: https://muse-growthpilot-demo.onrender.com
-- Video: https://youtu.be/4vozMFQUVtY
+- Video: https://youtu.be/sFQJcCA9Uto
 
 ### Submission record
 
