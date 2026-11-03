@@ -246,14 +246,12 @@ Outputs go to `scripts/smoke_out/` (not committed).
 | `approval/` | The owner's screen: `gate.py` (what may be exported) and `app.py` (approval, results, recommendations) |
 | `tests/` | Offline tests |
 | `evaluations/` | Evaluation cases with ground truth, the runner, and results |
-| `docs/` | Plan, checklist, submission and demo script |
+| `docs/` | Plan and submission |
 
 ## Project docs
 
 - [Plan](docs/PLAN.md)
-- [Checklist](docs/CHECKLIST.md)
 - [Submission](docs/SUBMISSION.md)
-- [Demo script](docs/DEMO_SCRIPT.md)
 
 ## Credits
 
