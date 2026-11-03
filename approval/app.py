@@ -22,6 +22,7 @@ from flask import Flask, abort, flash, redirect, render_template, request, send_
 from agent_kit.meta_api import MetaAPI
 from agent_kit.tools import publish as publish_tools
 from agent_kit.tools import results as ledger_tools
+from agent_kit.tools.advice import AdviceError, advise
 from agent_kit.tools.business import load_business
 from agent_kit.tools.recommend import RecommendError, recommend
 from growthpilot import config
@@ -203,6 +204,7 @@ def create_app(business_file: Path, out_root: Path, owner: str, make_api=None, d
             results=[(r, ledger_tools.derived(r)) for r in ledger["results"]],
             runs=runs,
             recommendations=recs,
+            advice=(ledger.get("advice") or [None])[-1],
             counts=ledger_tools.COUNTS,
             platforms=ledger_tools.PLATFORMS,
             kinds=ledger_tools.KINDS,
@@ -246,6 +248,31 @@ def create_app(business_file: Path, out_root: Path, owner: str, make_api=None, d
         ledger_tools.save_ledger(business_file, ledger)
         flash(f"New recommendation, confidence {rec['confidence']}", "ok")
         return redirect(url_for("results_page") + "#recommendations")
+
+    @app.post("/advice")
+    def make_advice():
+        if demo_refuses("New growth advice"):
+            return redirect(url_for("results_page") + "#advice")
+        business = load_business(business_file)
+        ledger = ledger_tools.load_ledger(business_file)
+        published = {}
+        for r in gate.list_runs(out_root):
+            when = (gate.load_campaign(out_root / r["id"]).get("published") or {}).get("published_at")
+            if when:
+                published[r["id"]] = when
+        try:
+            api = make_api(Trace(out_root / "advice.trace.jsonl"))
+            advice = advise(api, business, ledger["results"], published)
+        except (AdviceError, config.MissingKeyError) as e:
+            flash(f"No advice: {e}", "error")
+            return redirect(url_for("results_page"))
+        except Exception as e:  # API or network trouble: say so, keep the page working
+            flash(f"Muse Spark call failed ({type(e).__name__}); try again.", "error")
+            return redirect(url_for("results_page"))
+        ledger.setdefault("advice", []).append(advice)
+        ledger_tools.save_ledger(business_file, ledger)
+        flash(f"New growth advice: {len(advice['actions'])} actions", "ok")
+        return redirect(url_for("results_page") + "#advice")
 
     @app.post("/recommendations/<int:index>/start")
     def start_from_recommendation(index: int):

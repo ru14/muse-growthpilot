@@ -54,6 +54,32 @@
   <div style="margin-top:10px"><button>Record result</button></div>
 </form>
 
+<h2 id="advice">Growth advice</h2>
+<form method="post" action="{{ url_for('make_advice') }}">
+  <button {{ 'disabled' if not results }}>What should I do to grow?</button>
+  <span class="muted">Code finds the patterns in the results; Muse Spark turns them into actions. Each action must rest on a pattern or a recorded number.</span>
+</form>
+
+{% if advice %}
+<div class="card" style="margin-top:16px">
+  <div class="row"><strong>This week</strong><span class="muted">{{ advice.made_at }} · from {{ advice.based_on | join(', ') }}</span></div>
+  <p>{{ advice.summary }}</p>
+  <ol>
+    {% for a in advice.actions %}
+    <li style="margin-bottom:10px">
+      {% if a.hindi %}<div lang="hi">{{ a.hindi }}</div>{% endif %}
+      <div><strong>{{ a.english }}</strong>{% if a.cost == 'paid' %} <span class="badge awaiting_owner_approval">costs money: your decision</span>{% endif %}</div>
+      <div class="muted">Why: {{ a.why }}{% for e in a.evidence %} · {{ e.result }} {{ e.metric.replace('_', ' ') }} = {{ e.value }}{% endfor %}</div>
+    </li>
+    {% endfor %}
+  </ol>
+  <details><summary class="muted">Patterns code found in the results</summary>
+    <ul>{% for s in advice.signals %}<li><code>{{ s.id }}</code>: {{ s.fact }}</li>{% endfor %}</ul>
+  </details>
+  {% if advice.dropped %}<p class="muted">Dropped: {{ advice.dropped | join('; ') }}</p>{% endif %}
+</div>
+{% endif %}
+
 <h2 id="recommendations">Next campaign</h2>
 <form method="post" action="{{ url_for('make_recommendation') }}">
   <button {{ 'disabled' if not results }}>Recommend the next campaign</button>

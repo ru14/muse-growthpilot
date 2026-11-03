@@ -101,7 +101,12 @@ Suite insights (read 3 Nov).
 >    owner's click;
 > 5. records each post's results with their source, and asks Muse Spark for the next campaign;
 >    code checks every number it cites against the records and caps its confidence by how much
->    data there is.
+>    data there is;
+> 6. tells the owner what to do to grow, beyond the next post: code finds patterns in the
+>    results (posts that went out together, few people reached, shares spreading a post,
+>    messages not counted) and Muse Spark turns them into a few actions for the week in Hindi
+>    and English, each resting on a pattern or a checked number. For Nidhaye: post one saree
+>    a day instead of two at once, ask people to share, try Instagram, invite friends to follow.
 >
 > Nidhaye's first GrowthPilot campaigns (bottle-green and orange sarees) went live on its
 > Facebook Page on 2 Nov, approved by the owner.
@@ -109,8 +114,8 @@ Suite insights (read 3 Nov).
 **How we used Meta's models:**
 > - **Muse Spark 1.3**: the agent's planner (plan → act → observe with tools: analyze_product,
 >   write_captions, make_creatives, ask_owner, submit_campaign, stop), photo understanding,
->   bilingual captions, the claim check, the background check, and results-based
->   recommendations.
+>   bilingual captions, the claim check, the background check, results-based
+>   recommendations, and growth advice.
 > - **Muse Image 1.0**: festive backgrounds around the real product.
 > - **SAM 3.1**: product masks, so the image model never touches the product.
 > - All through the Meta Model API, standard models only, since real business data is sent.
@@ -122,7 +127,7 @@ Suite insights (read 3 Nov).
 > each caption against today's facts before export. Every model call, check and agent step is
 > traced to a JSONL file and shown on the owner's screen. Posting goes through the Graph API
 > (Facebook first; Instagram gets the copy Facebook hosts), and a retry never posts twice.
-> 64 offline tests.
+> 73 offline tests.
 
 **Results / impact:**
 > On 14 synthetic test products (12 traps, 2 controls), Muse Spark alone made an unsupported
@@ -145,7 +150,8 @@ Suite insights (read 3 Nov).
 > photo, the brand's own name); the evaluation set found that, and it is fixed.
 
 **What's next:**
-> Real results from Nidhaye's posts feeding the next campaign, the owner's answers on fabric
+> Scheduling, so posts never go out at the same time; counting messages and sales as results;
+> real results from Nidhaye's posts feeding the next campaign, the owner's answers on fabric
 > and weave for the remaining sarees, Instagram posting by default, and more product types
 > (brass décor, fragrances).
 

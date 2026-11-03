@@ -34,15 +34,16 @@ generated with Muse Image ([cases/input/](cases/input/)).
 ```
 
 On the screen: pick an image and a caption and approve (the export folder is shown),
-then open **Results**, record some numbers, and click **Recommend the next campaign**.
+then open **Results**, record some numbers, and click **What should I do to grow?** and
+**Recommend the next campaign**.
 
 ## Hosted demo
 
 A public, view-and-try version of the owner's screen, live at https://muse-growthpilot-demo.onrender.com, runs from
 [approval/demo.py](approval/demo.py) on [cases/demo/](cases/demo/): a synthetic business,
 two campaigns the real agent made on Meta's models (one from a brief that asks for a
-sale and unconfirmed claims), and **sample** results with a real Muse Spark
-recommendation. Visitors can approve, reject and answer questions; changes reset on
+sale and unconfirmed claims), and **sample** results with real Muse Spark growth advice
+and a recommendation. Visitors can approve, reject and answer questions; changes reset on
 restart. It has no API key, so steps that call the models, and posting, are off there.
 [render.yaml](render.yaml) deploys it on Render. To run it locally:
 
@@ -128,6 +129,7 @@ flowchart TD
     G -- approve --> E[Export image + captions]
     E --> Post[Owner posts on Facebook and Instagram]
     Post --> M[Owner records results]
+    M --> A[Growth advice: code finds patterns, Muse Spark writes actions]
     M --> N{Muse Spark recommendation; evidence and confidence checked in code}
     N -- next brief --> C
 ```
@@ -182,6 +184,15 @@ next, then checks the answer in code
   5 results or reach under 1,000.
 - The suggested campaign must follow the business rules (no prices or offers) and name a
   real product.
+
+**What should I do to grow?** gives the owner a few actions for the week, beyond the next
+post ([agent_kit/tools/advice.py](agent_kit/tools/advice.py)). Code first finds the
+patterns in the results: posts that went out together, posts few people saw, shares that
+spread a post, messages not yet counted, one platform only. Muse Spark turns them into
+plain actions in Hindi and English, such as posting one saree a day or asking people to
+share. Each action must rest on one of those patterns or on a number that matches the
+records, and follow the business rules; anything else is dropped. Anything that costs money
+is marked as the owner's decision.
 
 **Make this campaign** sends the recommendation to the agent as the next brief (campaign
 B), which goes through the same verification and approval.
@@ -240,10 +251,10 @@ Outputs go to `scripts/smoke_out/` (not committed).
 | Folder | Responsibility |
 |---|---|
 | `agent/` | Decides what to do and when to stop: `loop.py` and `system_instructions.md` |
-| `agent_kit/` | Reusable pieces: `meta_api.py` (Meta Model API client), `progress.py` (checklist and step log) and `tools/` (business data, product profile, captions, creative, verification, results, recommendation) |
+| `agent_kit/` | Reusable pieces: `meta_api.py` (Meta Model API client), `progress.py` (checklist and step log) and `tools/` (business data, product profile, captions, creative, verification, results, recommendation, growth advice) |
 | `cases/` | Campaign inputs (`input/`, synthetic examples) and generated runs (`output/`, not committed) |
 | `growthpilot/` | Coordinates the application: `campaign.py` CLI, `config.py`, `trace.py` |
-| `approval/` | The owner's screen: `gate.py` (what may be exported) and `app.py` (approval, results, recommendations) |
+| `approval/` | The owner's screen: `gate.py` (what may be exported) and `app.py` (approval, results, growth advice, recommendations) |
 | `tests/` | Offline tests |
 | `evaluations/` | Evaluation cases with ground truth, the runner, and results |
 | `docs/` | Plan and submission |
