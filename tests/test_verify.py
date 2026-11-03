@@ -76,7 +76,7 @@ def test_romanised_hindi_is_refused():
 
 def test_approved_cta_is_not_sent_to_the_claim_judge():
     business, product = demo()
-    api = FakeAPI({"claim_check": [{"results": []}]})
+    api = FakeAPI({"claim_check": [{"results": [{"variant": 0, "unsupported": []}, {"variant": 1, "unsupported": []}]}]})
     claim_check(api, [variant(), variant(cta="Only 3 left, message us")], product, business.allowed_ctas)
     prompt = api.calls[0][1]
     assert "Message us on Instagram or Facebook to know more" not in prompt
@@ -90,7 +90,7 @@ def test_malformed_hashtag_is_refused():
 
 def test_claim_check_maps_unsupported_claims_to_variants():
     _, product = demo()
-    api = FakeAPI({"claim_check": [{"results": [{"variant": 1, "unsupported": [{"claim": "handwoven", "reason": "not in facts"}]}]}]})
+    api = FakeAPI({"claim_check": [{"results": [{"variant": 0, "unsupported": []}, {"variant": 1, "unsupported": [{"claim": "handwoven", "reason": "not in facts"}]}]}]})
     problems = claim_check(api, [variant(), variant(angle="craft")], product)
     assert list(problems) == [1]
     assert "handwoven" in problems[1][0]
@@ -98,7 +98,7 @@ def test_claim_check_maps_unsupported_claims_to_variants():
 
 def test_claim_check_sees_the_photo_and_business_name():
     _, product = demo()
-    api = FakeAPI({"claim_check": [{"results": []}]})
+    api = FakeAPI({"claim_check": [{"results": [{"variant": 0, "unsupported": []}]}]})
     claim_check(api, [variant()], product, observed="deep red with a gold border", business_name="Demo Weaves")
     prompt = api.calls[0][1]
     assert "deep red with a gold border" in prompt and '"Demo Weaves" may always be used' in prompt
@@ -110,6 +110,13 @@ def test_unreadable_claim_check_refuses_everything():
     assert set(claim_check(api, [variant(), variant()], product)) == {0, 1}
 
 
+def test_variant_without_a_judgement_is_refused():
+    _, product = demo()
+    for answer in ({"results": []}, {"results": [{"variant": 0, "unsupported": []}]}, {"results": [{"variant": 1}]}):
+        problems = claim_check(FakeAPI({"claim_check": [answer]}), [variant(), variant()], product)
+        assert 1 in problems and "no judgement" in problems[1][-1]
+
+
 def test_refused_variant_is_rewritten_with_feedback():
     business, product = demo()
     api = FakeAPI(
@@ -119,8 +126,8 @@ def test_refused_variant_is_rewritten_with_feedback():
                 {"variants": [variant(angle="craft fixed")]},
             ],
             "claim_check": [
-                {"results": [{"variant": 1, "unsupported": [{"claim": "Handwoven", "reason": "not confirmed"}]}]},
-                {"results": []},
+                {"results": [{"variant": 0, "unsupported": []}, {"variant": 1, "unsupported": [{"claim": "Handwoven", "reason": "not confirmed"}]}]},
+                {"results": [{"variant": 0, "unsupported": []}]},
             ],
         }
     )

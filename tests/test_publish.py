@@ -19,13 +19,15 @@ class Response:
 class FakeGraphHTTP:
     """Stands in for requests: answers the Graph API calls a post makes and records them."""
 
-    def __init__(self, instagram_linked=True, instagram_status="FINISHED"):
-        self.calls = []
+    def __init__(self, instagram_linked=True, instagram_status="FINISHED", down=()):
+        self.calls, self.down = [], set(down)
         self.instagram_linked, self.instagram_status = instagram_linked, instagram_status
 
     def post(self, url, data, files=None, timeout=None):
         path = url.split("/v23.0/")[1]
         self.calls.append(("POST", path, {k: v for k, v in data.items() if k != "access_token"}))
+        if path in self.down:
+            raise ConnectionError(f"{url}?access_token=TOKEN")
         if path == "PAGE/photos":
             assert files and "source" in files
             return Response({"id": "PHOTO", "post_id": "PAGE_POST"})
@@ -95,6 +97,17 @@ def test_instagram_failure_keeps_facebook_and_a_retry_never_posts_twice(setup):
         gate.publish(run, "Owner", poster(FakeGraphHTTP()))
 
 
+def test_network_error_on_instagram_keeps_the_facebook_post(setup):
+    _, _, run = approved(setup)
+    done = gate.publish(run, "Owner", poster(FakeGraphHTTP(down={"IG/media"})))
+    assert done["facebook"]["id"] == "PAGE_POST"
+    assert "ConnectionError" in done["instagram_error"] and "TOKEN" not in done["instagram_error"]
+
+    retry = FakeGraphHTTP()
+    gate.publish(run, "Owner", poster(retry))
+    assert not any(path == "PAGE/photos" for _, path, _ in retry.calls)
+
+
 def test_meta_errors_are_reported_without_the_token():
     graph = publish.Graph("SECRET-TOKEN", http=None)
     with pytest.raises(publish.PublishError) as e:
@@ -122,3 +135,15 @@ def test_a_post_made_by_hand_can_be_recorded(setup):
     assert "Post link saved." in page
     published = json.loads((run / "campaign.json").read_text())["published"]
     assert published["instagram"] == {"url": "https://www.instagram.com/p/xyz/", "by_hand": True}
+
+
+def test_posts_from_another_site_are_refused(setup):
+    business_file, out, run = approved(setup)
+    http = FakeGraphHTTP()
+    client = create_app(business_file, out, "Owner", make_publisher=lambda: poster(http)).test_client()
+    url = f"/run/{run.name}/publish"
+    assert client.post(url, data={"confirm": "1"}, headers={"Origin": "https://evil.example"}).status_code == 403
+    assert client.post(url, data={"confirm": "1"}, headers={"Sec-Fetch-Site": "cross-site"}).status_code == 403
+    assert http.calls == []
+    same = client.post(url, data={"confirm": "1"}, headers={"Origin": "https://localhost", "Sec-Fetch-Site": "same-origin"})
+    assert same.status_code == 302 and http.calls

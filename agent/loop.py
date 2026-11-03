@@ -157,10 +157,16 @@ class CampaignAgent:
             decision = self.api.spark_json("agent_decide", prompt)
         except json.JSONDecodeError:
             return "", "(invalid)", {}
+        except Exception as e:  # API or network errors: a failed turn, so repeats escalate
+            return "", "(model error)", {"error": f"{type(e).__name__}: {str(e)[:300]}"}
+        if not isinstance(decision, dict):
+            return "", "(invalid)", {}
         args = decision.get("args")
         return str(decision.get("plan", "")), str(decision.get("tool", "")), args if isinstance(args, dict) else {}
 
     def _act(self, tool: str, args: dict) -> str:
+        if tool == "(model error)":
+            return f"FAILED: Muse Spark could not be reached: {args['error']}"
         if tool not in self.tools:
             return f"FAILED: unknown tool '{tool}'. Choose one of: {', '.join(self.tools)}."
         try:

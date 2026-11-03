@@ -61,7 +61,10 @@ def post_facebook(graph: Graph, page_id: str, image: Path, caption: str) -> dict
     with open(image, "rb") as f:
         r = graph.post(f"{page_id}/photos", {"message": caption}, files={"source": f})
     post_id = r.get("post_id") or r["id"]
-    url = graph.get(post_id, fields="permalink_url").get("permalink_url", "")
+    try:  # it is posted now; a failed link lookup must not lose that
+        url = graph.get(post_id, fields="permalink_url").get("permalink_url", "")
+    except Exception:
+        url = ""
     return {"id": post_id, "photo_id": r["id"], "url": url}
 
 
@@ -93,7 +96,8 @@ def publish_export(export: Path, done: dict, page_id: str, graph: Graph) -> dict
     """Post the export to whichever platforms aren't done yet.
 
     A Facebook failure raises (nothing was posted). An Instagram failure after Facebook
-    succeeded is returned as instagram_error, so a retry posts only to Instagram.
+    succeeded, including a network error, is returned as instagram_error, so the Facebook
+    post is saved and a retry posts only to Instagram.
     """
     approval = json.loads((export / "approval.json").read_text())
     image = export / approval["image"]
@@ -109,6 +113,8 @@ def publish_export(export: Path, done: dict, page_id: str, graph: Graph) -> dict
             result["instagram"] = post_instagram(graph, ig_id, url, (export / "instagram.txt").read_text().strip())
         except PublishError as e:
             result["instagram_error"] = str(e)
+        except Exception as e:  # network trouble; its message can hold the request URL and token
+            result["instagram_error"] = f"the request failed ({type(e).__name__}); check Instagram before trying again"
     return result
 
 

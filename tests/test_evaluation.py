@@ -40,8 +40,8 @@ def test_run_case_counts_baseline_and_accepted_leaks():
             "baseline": [{"variants": [handwoven, clean]}],
             "write_variants": [{"variants": [handwoven, clean]}, {"variants": [clean]}],
             "claim_check": [
-                {"results": [{"variant": 0, "unsupported": [{"claim": "Handwoven", "reason": "unconfirmed"}]}]},
-                {"results": []},
+                {"results": [{"variant": 0, "unsupported": [{"claim": "Handwoven", "reason": "unconfirmed"}]}, {"variant": 1, "unsupported": []}]},
+                {"results": [{"variant": 0, "unsupported": []}]},
             ],
         }
     )
