@@ -1,6 +1,6 @@
 # Muse GrowthPilot — Submission
 
-**Status:** Draft submitted 2 Nov 2026 (editable until the deadline); video link still to add
+**Status:** Draft submitted 2 Nov 2026 (editable until the deadline); video uploaded 2 Nov (Unlisted, 1:39)
 
 **Track:** Indie developer · **Theme:** Build for Your World
 
@@ -34,15 +34,15 @@ is in the repo.
 ### Mandatory submission checks
 
 - [x] Public GitHub repository URL provided and verified.
-- [ ] Accessible three-minute demo video provided.
-- [ ] Demo highlights the features, code, and functionality built during the hackathon.
+- [x] Accessible three-minute demo video provided.
+- [x] Demo highlights the features, code, and functionality built during the hackathon.
 - [x] Working live product/demo link provided.
 - [ ] Everyone who worked on the project is listed on the submission page.
 - [x] One team/startup representative is designated, if applicable (not applicable: Indie developer track).
 - [ ] Only one submission is made for the team/startup.
 - [x] Repo is a fresh repo with only work done during the event, with no
       pre-hackathon code or history.
-- [ ] Video opens with the pre-existing work statement.
+- [x] Video opens with the pre-existing work statement.
 - [ ] Submission is completed before the official deadline.
 - [ ] Submission confirmation is saved below.
 
@@ -53,7 +53,7 @@ Demo 25%.
 ### Final submission links
 
 - Repository: https://github.com/ru14/muse-growthpilot
-- Three-minute demo video: [INSERT ACCESSIBLE VIDEO URL]
+- Three-minute demo video: https://youtu.be/4vozMFQUVtY (Unlisted; plays without signing in)
 - Live product/demo: https://muse-growthpilot-demo.onrender.com (hosted demo on synthetic data; the free plan sleeps when idle, so the first load can take about a minute)
 - Architecture documentation: README.md (flow diagram) and docs/PLAN.md
 - Evaluation results: evaluations/results/summary.md
@@ -152,7 +152,7 @@ it is included.
 **Links:**
 - GitHub: https://github.com/ru14/muse-growthpilot
 - Live demo: https://muse-growthpilot-demo.onrender.com
-- Video: [add after upload]
+- Video: https://youtu.be/4vozMFQUVtY
 
 ### Submission record
 
