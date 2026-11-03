@@ -1,6 +1,6 @@
 # Muse GrowthPilot — Submission
 
-**Status:** Draft submitted 2 Nov 2026 (editable until the deadline); video re-uploaded 3 Nov with growth advice (Unlisted, 1:57)
+**Status:** Submitted 3 Nov 2026, before the 4 Nov deadline. Video: Unlisted, 1:57, with growth advice
 
 **Track:** Indie developer · **Theme:** Build for Your World
 
@@ -37,14 +37,14 @@ is in the repo.
 - [x] Accessible three-minute demo video provided.
 - [x] Demo highlights the features, code, and functionality built during the hackathon.
 - [x] Working live product/demo link provided.
-- [ ] Everyone who worked on the project is listed on the submission page.
+- [x] Everyone who worked on the project is listed on the submission page (sole developer).
 - [x] One team/startup representative is designated, if applicable (not applicable: Indie developer track).
 - [ ] Only one submission is made for the team/startup.
 - [x] Repo is a fresh repo with only work done during the event, with no
       pre-hackathon code or history.
 - [x] Video opens with the pre-existing work statement.
-- [ ] Submission is completed before the official deadline.
-- [ ] Submission confirmation is saved below.
+- [x] Submission is completed before the official deadline.
+- [x] Submission confirmation is saved below.
 
 Judges score the video, the code and the live product against the rubric in
 [PLAN.md](PLAN.md#judging-rubric): Impact 30%, Meta AI Tooling 25%, Technical Depth 20%,
@@ -166,10 +166,15 @@ it is included.
 
 ### Submission record
 
-- Final Git commit: [INSERT COMMIT HASH]
-- Submission date and time: [INSERT DATE, TIME, AND TIME ZONE]
-- Submission confirmation or ID: [INSERT VALUE]
-- Remaining known issues: [LIST ISSUES]
-
-Do not mark the submission complete until it has actually been sent and the
-confirmation is recorded here.
+- Final Git commit: b8740ac (Merge pull request #22: the new demo video link)
+- Submission date and time: 3 Nov 2026, by 3:15 PM PST (6:15 PM EST)
+- Submission confirmation: confirmed by the developer on 3 Nov 2026; no confirmation ID
+  was shown
+- Remaining known issues:
+  - The hosted demo runs on Render's free plan, which sleeps when idle; the first load
+    can take about a minute.
+  - Real results so far are two organic posts with small reach (14 and 3 people), too
+    few to show growth; recommendation confidence is capped at low.
+  - The evaluation is one run on a synthetic test set, captions only.
+  - The video's growth-advice section uses the hosted demo's sample numbers, labelled
+    as such on screen.
