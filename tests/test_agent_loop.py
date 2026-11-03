@@ -28,7 +28,7 @@ def test_happy_path_submits_for_owner_approval(tmp_path):
         [decide("analyze_product"), decide("write_captions"), decide("submit_campaign")],
         analyze_product=[PROFILE],
         write_variants=[{"variants": [variant()]}],
-        claim_check=[{"results": []}],
+        claim_check=[{"results": [{"variant": 0, "unsupported": []}]}],
     )
     case = agent.run()
     assert case.status == "awaiting_owner_approval"
@@ -45,7 +45,7 @@ def test_submit_is_refused_until_captions_are_verified(tmp_path):
         [decide("submit_campaign"), decide("analyze_product"), decide("write_captions"), decide("submit_campaign")],
         analyze_product=[PROFILE],
         write_variants=[{"variants": [variant()]}],
-        claim_check=[{"results": []}],
+        claim_check=[{"results": [{"variant": 0, "unsupported": []}]}],
     )
     case = agent.run()
     first = agent.progress.log[0]["observation"]
@@ -109,3 +109,16 @@ def test_failed_product_check_does_not_count_and_retry_numbers_files(tmp_path, m
     assert agent_.progress.checklist["creatives_verified"] == "done"
     assert "analyze_product" in agent_.progress.log[2]["observation"]  # submit still refused
     assert case.status == "needs_owner_input"
+
+
+def test_api_errors_while_deciding_escalate_and_keep_progress(tmp_path):
+    agent_, api = make_agent(tmp_path, [])
+
+    def unreachable(step, prompt, images=()):
+        raise ConnectionError("network down")
+
+    api.spark_json = unreachable
+    case = agent_.run()
+    assert case.status == "needs_owner_input" and "failed 3 times" in case.stop_reason
+    saved = json.loads((tmp_path / "progress.json").read_text())
+    assert saved["log"][0]["observation"].startswith("FAILED: Muse Spark could not be reached: ConnectionError")

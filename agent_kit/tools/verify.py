@@ -84,6 +84,9 @@ quantity or exclusivity, certification, price, availability or delivery need sup
 VARIANTS:
 {variants}
 
+Give one result for every variant, with an empty "unsupported" list when nothing is
+unsupported; a variant with no result is refused.
+
 Answer only JSON: {{"results": [{{"variant": <index>, "unsupported": [{{"claim": "", "reason": ""}}]}}]}}"""
 
 
@@ -95,7 +98,8 @@ def claim_check(
     observed: str = "",
     business_name: str = "",
 ) -> dict[int, list[str]]:
-    """Map variant index -> unsupported-claim problems. An unreadable judgement refuses all.
+    """Map variant index -> unsupported-claim problems. An unreadable judgement refuses all,
+    and a variant the judgement leaves out is refused too.
 
     A call to action the owner approved word for word is not judged again.
     """
@@ -124,18 +128,25 @@ def claim_check(
         return {i: ["the claim check could not be read; refusing to be safe"] for i in range(len(variants))}
 
     problems: dict[int, list[str]] = {}
-    for result in results:
+    judged = set()
+    for result in results if isinstance(results, list) else []:
         if not isinstance(result, dict):
             continue
         index = result.get("variant")
-        if not isinstance(index, int) or not 0 <= index < len(variants):
+        unsupported = result.get("unsupported")
+        if not isinstance(index, int) or not 0 <= index < len(variants) or not isinstance(unsupported, list):
             continue
+        judged.add(index)
         angle = variants[index].get("angle") or f"variant {index}"
-        for item in result.get("unsupported") or []:
+        for item in unsupported:
             if isinstance(item, dict) and item.get("claim"):
                 problems.setdefault(index, []).append(
                     f"{angle}: unsupported claim '{item['claim']}' ({item.get('reason', '')})"
                 )
+    for index in range(len(variants)):
+        if index not in judged:
+            angle = variants[index].get("angle") or f"variant {index}"
+            problems.setdefault(index, []).append(f"{angle}: the claim check gave no judgement; refusing to be safe")
     return problems
 
 

@@ -15,6 +15,7 @@ import subprocess
 import sys
 import time
 from pathlib import Path
+from urllib.parse import urlsplit
 
 from flask import Flask, abort, flash, redirect, render_template, request, send_from_directory, url_for
 
@@ -44,6 +45,21 @@ def create_app(business_file: Path, out_root: Path, owner: str, make_api=None, d
     make_publisher = make_publisher or _meta_publisher
     app = Flask(__name__)
     app.secret_key = os.urandom(16)  # only for the one-line messages after each action
+
+    @app.before_request
+    def same_site_only():
+        """Refuse a POST another website's page makes the owner's browser send (CSRF).
+
+        Browsers mark such requests with Sec-Fetch-Site and Origin; tools like curl send neither.
+        """
+        if request.method != "POST":
+            return None
+        if request.headers.get("Sec-Fetch-Site") in ("cross-site", "same-site"):
+            abort(403)
+        origin = request.headers.get("Origin")
+        if origin is not None and urlsplit(origin).netloc != request.host:  # host only: Render adds HTTPS in front
+            abort(403)
+        return None
 
     @app.context_processor
     def mode():
