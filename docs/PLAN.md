@@ -150,7 +150,7 @@ Do not depend on last-minute coding or video recording.
 | 2:20–2:50 | Show the evidence-based next-campaign recommendation. |
 | 2:50–3:00 | Briefly highlight the technical implementation. |
 
-Keep the video within three minutes. Full script: [DEMO_SCRIPT.md](DEMO_SCRIPT.md).
+Keep the video within three minutes. Final video: https://youtu.be/4vozMFQUVtY
 Instagram Reels stay optional until the core campaign loop is reliable.
 
 ## Judging Rubric
