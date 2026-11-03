@@ -64,8 +64,8 @@ Demo 25%.
 
 ## Form answers
 
-Ready to paste. Every number here comes from the repo or a live post; update the results
-line once Post 1's insights are read.
+Ready to paste. Every number here comes from the repo or from the posts' Meta Business
+Suite insights (read 3 Nov).
 
 **Project name:** Muse GrowthPilot
 
@@ -129,9 +129,13 @@ line once Post 1's insights are read.
 > claim in 32 of 36 captions (89%), in every trap case. GrowthPilot's accepted captions: 0 of
 > 36 (0%), with 6 of 6 control captions accepted (no over-blocking). 58 seconds and $0.07 of
 > Muse Spark per campaign. Product images: colour difference 0.00–0.01/255. Nidhaye now has
-> two GrowthPilot campaigns live on Facebook.
-> Limits: a synthetic test set, one run, and captions only; real post results are still
-> coming in.
+> two GrowthPilot campaigns live on Facebook. In their first 22 hours (organic, no boost),
+> the bottle-green post reached 14 people (51 views, 4 reactions, 2 shares, 1 new follow) and
+> the orange post reached 3 (18 views, 1 reaction). GrowthPilot recorded these with their
+> source; Muse Spark recommended the navy saree next, and code capped its confidence at low
+> (two posts, smallest reach 3).
+> Limits: a synthetic test set, one run, and captions only; two real posts are too few to
+> show a change in reach.
 
 **Challenges:**
 > Muse Image sometimes drew a second saree into the background, which would show customers
